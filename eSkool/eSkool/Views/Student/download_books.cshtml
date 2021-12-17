@@ -4,7 +4,7 @@
     <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/js/site.js" />
     <style>
-        
+
 
         body {
             background-color: #fbe2ea87;
@@ -14,29 +14,36 @@
         nav {
             background-color: #8b0432;
         }
+
         #profile-card {
             background-color: #ebced7;
             width: 20%;
-            padding:0;
+            padding: 0;
             text-align: center;
             margin-top: 10px;
         }
+
         img {
             width: 80%;
             height: 10%;
-          
         }
-        #books {
+
+        .book-card {
             background-color: #ebced7;
             width: 20%;
             margin: 10px;
             padding: 0;
             text-align: center;
         }
+        .book-display{
+            display:flex;
+            flex-direction:row;
+        }
+
         ul {
             padding: 0;
             list-style: none;
-            padding-top:5px;
+            padding-top: 5px;
         }
     </style>
 
@@ -44,12 +51,12 @@
 </head>
 
 <body>
+
     <div style=" background-color: white; text-align:center; padding: 30px;">
         <h1 style="font-size: 50px; ">School Name</h1>
         <p>Few Discription for School</p>
 
     </div>
-
     <nav class="navbar navbar-expand-sm navbar-dark" style="padding: 8px; ">
         <!-- Brand -->
         <a class="navbar-brand" href="#">Eskool</a>
@@ -65,37 +72,57 @@
             <li class="nav-item">
                 <a class="nav-link" href="#"> Fee Challan </a>
             </li>
-
-
-
         </ul>
     </nav>
-    <div id="profile-card">
-        <ul>
-            <li>
-                <img src="~/lib/profile_pic.png" />
-            </li>
-            <li>
-                Maira Malik
-            </li>
-            <li>
-                BSEF18A509
-            </li>
-            <li>
-                SEF18 AFT
-            </li>
-        </ul>
+    <!-- Links -->
 
+    <div class="book-display">
+
+        <div class="book-card">
+            <ul>
+                <li>
+                    <img src="~/lib/profile_pic.png" />
+                </li>
+                <li>
+                    English
+                </li>
+
+            </ul>
+        </div>
+        <div class="book-card">
+            <ul>
+                <li>
+                    <img src="~/lib/profile_pic.png" />
+                </li>
+                <li>
+                    Science
+                </li>
+
+            </ul>
+        </div>
+        <div class="book-card">
+            <ul>
+                <li>
+                    <img src="~/lib/profile_pic.png" />
+                </li>
+                <li>
+                    Mathematics
+                </li>
+
+            </ul>
+        </div>
+        <div class="book-card">
+            <ul>
+                <li>
+                    <img src="~/lib/profile_pic.png" />
+                </li>
+                <li>
+                    Urdu
+                </li>
+
+            </ul>
+        </div>
     </div>
-    <div id="books">
-        <ul>
-            <li>
-                <img src="~/lib/banner.png"/>
-            </li>
-            <li>
-                <a href="/Student/download_books">Books</a>
-            </li>
-        </ul>
-    </div>
+
 </body>
 </html>

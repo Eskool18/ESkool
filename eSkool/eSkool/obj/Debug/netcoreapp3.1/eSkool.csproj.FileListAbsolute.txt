@@ -270,3 +270,4 @@ F:\Desktop\Sem 7\Esook-fyp\eSkool\eSkool\obj\Debug\netcoreapp3.1\eSkool.dll
 F:\Desktop\Sem 7\Esook-fyp\eSkool\eSkool\obj\Debug\netcoreapp3.1\eSkool.pdb
 F:\Desktop\Sem 7\Esook-fyp\eSkool\eSkool\obj\Debug\netcoreapp3.1\eSkool.genruntimeconfig.cache
 F:\Desktop\Sem 7\Esook-fyp\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\Student\Dashboard.cshtml.g.cs
+F:\Desktop\Sem 7\Esook-fyp\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\Student\download_books.cshtml.g.cs
