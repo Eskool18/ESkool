@@ -1,5 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 #pragma checksum "C:\Users\Hp\Desktop\Eskool Web\ESkool\eSkool\eSkool\Views\Shared\_Layout.cshtml" "{ff1816ec-aa5e-4d10-87f7-6f4963833460}" "192b5227b2d5caf50b30e9f751df7afa2b81d6c3"
+=======
+#pragma checksum "F:\Desktop\Sem 7\Esook-fyp\eSkool\eSkool\Views\Shared\_Layout.cshtml" "{ff1816ec-aa5e-4d10-87f7-6f4963833460}" "8887453c455003e016e4f5db8047a59d510b098c"
+>>>>>>> 20651045b7315ffe0d101eb08ec8b96107e6f334
 =======
 #pragma checksum "F:\Desktop\Sem 7\Esook-fyp\eSkool\eSkool\Views\Shared\_Layout.cshtml" "{ff1816ec-aa5e-4d10-87f7-6f4963833460}" "8887453c455003e016e4f5db8047a59d510b098c"
 >>>>>>> 20651045b7315ffe0d101eb08ec8b96107e6f334
@@ -69,7 +73,11 @@ using eSkool.Models;
         {
             WriteLiteral("<!DOCTYPE html>\r\n<html lang=\"en\">\r\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "192b5227b2d5caf50b30e9f751df7afa2b81d6c38025", async() => {
+=======
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8887453c455003e016e4f5db8047a59d510b098c5645", async() => {
+>>>>>>> 20651045b7315ffe0d101eb08ec8b96107e6f334
 =======
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8887453c455003e016e4f5db8047a59d510b098c5645", async() => {
 >>>>>>> 20651045b7315ffe0d101eb08ec8b96107e6f334
@@ -82,8 +90,13 @@ using eSkool.Models;
 #line hidden
 #nullable disable
 <<<<<<< HEAD
+<<<<<<< HEAD
                 WriteLiteral(" - eSkool</title>\r\n    ");
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "192b5227b2d5caf50b30e9f751df7afa2b81d6c38665", async() => {
+=======
+                WriteLiteral(" Eskool</title>\r\n    ");
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "8887453c455003e016e4f5db8047a59d510b098c6272", async() => {
+>>>>>>> 20651045b7315ffe0d101eb08ec8b96107e6f334
 =======
                 WriteLiteral(" Eskool</title>\r\n    ");
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "8887453c455003e016e4f5db8047a59d510b098c6272", async() => {
@@ -103,7 +116,11 @@ using eSkool.Models;
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n    ");
 <<<<<<< HEAD
+<<<<<<< HEAD
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "192b5227b2d5caf50b30e9f751df7afa2b81d6c39843", async() => {
+=======
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "8887453c455003e016e4f5db8047a59d510b098c7450", async() => {
+>>>>>>> 20651045b7315ffe0d101eb08ec8b96107e6f334
 =======
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "8887453c455003e016e4f5db8047a59d510b098c7450", async() => {
 >>>>>>> 20651045b7315ffe0d101eb08ec8b96107e6f334
@@ -133,6 +150,7 @@ using eSkool.Models;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n");
+<<<<<<< HEAD
 <<<<<<< HEAD
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "192b5227b2d5caf50b30e9f751df7afa2b81d6c311725", async() => {
                 WriteLiteral("\r\n    <header>\r\n        <nav class=\"navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3\">\r\n            <div class=\"container\">\r\n                ");
@@ -233,6 +251,11 @@ using eSkool.Models;
                 WriteLiteral("\r\n");
                 WriteLiteral("    <div class=\"container\" >\r\n        <main role=\"main\" class=\"pb-3\">\r\n            ");
 >>>>>>> 20651045b7315ffe0d101eb08ec8b96107e6f334
+=======
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8887453c455003e016e4f5db8047a59d510b098c9332", async() => {
+                WriteLiteral("\r\n");
+                WriteLiteral("    <div class=\"container\" >\r\n        <main role=\"main\" class=\"pb-3\">\r\n            ");
+>>>>>>> 20651045b7315ffe0d101eb08ec8b96107e6f334
 #nullable restore
 #line 37 "C:\Users\Hp\Desktop\Eskool Web\ESkool\eSkool\eSkool\Views\Shared\_Layout.cshtml"
        Write(RenderBody());
@@ -243,7 +266,11 @@ using eSkool.Models;
                 WriteLiteral("\r\n        </main>\r\n    </div>\r\n\r\n");
                 WriteLiteral("    ");
 <<<<<<< HEAD
+<<<<<<< HEAD
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "192b5227b2d5caf50b30e9f751df7afa2b81d6c320432", async() => {
+=======
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8887453c455003e016e4f5db8047a59d510b098c10012", async() => {
+>>>>>>> 20651045b7315ffe0d101eb08ec8b96107e6f334
 =======
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8887453c455003e016e4f5db8047a59d510b098c10012", async() => {
 >>>>>>> 20651045b7315ffe0d101eb08ec8b96107e6f334
@@ -261,7 +288,11 @@ using eSkool.Models;
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n    ");
 <<<<<<< HEAD
+<<<<<<< HEAD
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "192b5227b2d5caf50b30e9f751df7afa2b81d6c321533", async() => {
+=======
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8887453c455003e016e4f5db8047a59d510b098c11112", async() => {
+>>>>>>> 20651045b7315ffe0d101eb08ec8b96107e6f334
 =======
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8887453c455003e016e4f5db8047a59d510b098c11112", async() => {
 >>>>>>> 20651045b7315ffe0d101eb08ec8b96107e6f334
@@ -279,7 +310,11 @@ using eSkool.Models;
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n    ");
 <<<<<<< HEAD
+<<<<<<< HEAD
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "192b5227b2d5caf50b30e9f751df7afa2b81d6c322634", async() => {
+=======
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8887453c455003e016e4f5db8047a59d510b098c12212", async() => {
+>>>>>>> 20651045b7315ffe0d101eb08ec8b96107e6f334
 =======
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8887453c455003e016e4f5db8047a59d510b098c12212", async() => {
 >>>>>>> 20651045b7315ffe0d101eb08ec8b96107e6f334

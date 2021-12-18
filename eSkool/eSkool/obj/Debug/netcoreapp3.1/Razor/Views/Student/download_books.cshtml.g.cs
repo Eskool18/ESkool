@@ -1,5 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 #pragma checksum "C:\Users\Hp\Desktop\Eskool Web\ESkool\eSkool\eSkool\Views\Student\download_books.cshtml" "{ff1816ec-aa5e-4d10-87f7-6f4963833460}" "f38452945211d3020f565283f6cd5f040c771cd9"
+=======
+#pragma checksum "F:\Desktop\Sem 7\Esook-fyp\eSkool\eSkool\Views\Student\download_books.cshtml" "{ff1816ec-aa5e-4d10-87f7-6f4963833460}" "29b5acd858eea51a6acdf8167116abd792a1c671"
+>>>>>>> 20651045b7315ffe0d101eb08ec8b96107e6f334
 =======
 #pragma checksum "F:\Desktop\Sem 7\Esook-fyp\eSkool\eSkool\Views\Student\download_books.cshtml" "{ff1816ec-aa5e-4d10-87f7-6f4963833460}" "29b5acd858eea51a6acdf8167116abd792a1c671"
 >>>>>>> 20651045b7315ffe0d101eb08ec8b96107e6f334
@@ -67,9 +71,15 @@ using eSkool.Models;
         {
             WriteLiteral("<!DOCTYPE html>\r\n<html>\r\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f38452945211d3020f565283f6cd5f040c771cd94877", async() => {
                 WriteLiteral("\r\n    ");
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "f38452945211d3020f565283f6cd5f040c771cd95139", async() => {
+=======
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "29b5acd858eea51a6acdf8167116abd792a1c6715216", async() => {
+                WriteLiteral("\r\n    ");
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "29b5acd858eea51a6acdf8167116abd792a1c6715478", async() => {
+>>>>>>> 20651045b7315ffe0d101eb08ec8b96107e6f334
 =======
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "29b5acd858eea51a6acdf8167116abd792a1c6715216", async() => {
                 WriteLiteral("\r\n    ");
@@ -90,7 +100,11 @@ using eSkool.Models;
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n    ");
 <<<<<<< HEAD
+<<<<<<< HEAD
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "f38452945211d3020f565283f6cd5f040c771cd96317", async() => {
+=======
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "29b5acd858eea51a6acdf8167116abd792a1c6716656", async() => {
+>>>>>>> 20651045b7315ffe0d101eb08ec8b96107e6f334
 =======
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("link", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "29b5acd858eea51a6acdf8167116abd792a1c6716656", async() => {
 >>>>>>> 20651045b7315ffe0d101eb08ec8b96107e6f334
@@ -166,7 +180,11 @@ using eSkool.Models;
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n\r\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f38452945211d3020f565283f6cd5f040c771cd98988", async() => {
+=======
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "29b5acd858eea51a6acdf8167116abd792a1c6719327", async() => {
+>>>>>>> 20651045b7315ffe0d101eb08ec8b96107e6f334
 =======
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "29b5acd858eea51a6acdf8167116abd792a1c6719327", async() => {
 >>>>>>> 20651045b7315ffe0d101eb08ec8b96107e6f334
@@ -203,7 +221,11 @@ using eSkool.Models;
                 <li>
                     ");
 <<<<<<< HEAD
+<<<<<<< HEAD
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "f38452945211d3020f565283f6cd5f040c771cd910209", async() => {
+=======
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "29b5acd858eea51a6acdf8167116abd792a1c67110597", async() => {
+>>>>>>> 20651045b7315ffe0d101eb08ec8b96107e6f334
 =======
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "29b5acd858eea51a6acdf8167116abd792a1c67110597", async() => {
 >>>>>>> 20651045b7315ffe0d101eb08ec8b96107e6f334
@@ -220,9 +242,12 @@ using eSkool.Models;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
 <<<<<<< HEAD
+<<<<<<< HEAD
                 WriteLiteral("\r\n                </li>\r\n                <li>\r\n                    English\r\n                </li>\r\n\r\n            </ul>\r\n        </div>\r\n        <div class=\"book-card\">\r\n            <ul>\r\n                <li>\r\n                    ");
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "f38452945211d3020f565283f6cd5f040c771cd911545", async() => {
 =======
+=======
+>>>>>>> 20651045b7315ffe0d101eb08ec8b96107e6f334
                 WriteLiteral("\r\n                </li>\r\n\r\n                <li>\r\n                    English\r\n                </li>\r\n                <li>\r\n                    ");
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "29b5acd858eea51a6acdf8167116abd792a1c67111837", async() => {
                     WriteLiteral(" Download ");
@@ -240,6 +265,9 @@ using eSkool.Models;
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                </li>\r\n            </ul>\r\n        </div>\r\n        <div class=\"book-card\">\r\n            <ul>\r\n                <li>\r\n                    ");
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "29b5acd858eea51a6acdf8167116abd792a1c67113142", async() => {
+<<<<<<< HEAD
+>>>>>>> 20651045b7315ffe0d101eb08ec8b96107e6f334
+=======
 >>>>>>> 20651045b7315ffe0d101eb08ec8b96107e6f334
                 }
                 );
@@ -254,9 +282,12 @@ using eSkool.Models;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
 <<<<<<< HEAD
+<<<<<<< HEAD
                 WriteLiteral("\r\n                </li>\r\n                <li>\r\n                    Science\r\n                </li>\r\n\r\n            </ul>\r\n        </div>\r\n        <div class=\"book-card\">\r\n            <ul>\r\n                <li>\r\n                    ");
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "f38452945211d3020f565283f6cd5f040c771cd912881", async() => {
 =======
+=======
+>>>>>>> 20651045b7315ffe0d101eb08ec8b96107e6f334
                 WriteLiteral("\r\n                </li>\r\n                <li>\r\n                    Science\r\n                </li>\r\n                <li>\r\n                    ");
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "29b5acd858eea51a6acdf8167116abd792a1c67114378", async() => {
                     WriteLiteral(" Download ");
@@ -274,6 +305,9 @@ using eSkool.Models;
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                </li>\r\n            </ul>\r\n        </div>\r\n        <div class=\"book-card\">\r\n            <ul>\r\n                <li>\r\n                    ");
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "29b5acd858eea51a6acdf8167116abd792a1c67115683", async() => {
+<<<<<<< HEAD
+>>>>>>> 20651045b7315ffe0d101eb08ec8b96107e6f334
+=======
 >>>>>>> 20651045b7315ffe0d101eb08ec8b96107e6f334
                 }
                 );
@@ -288,9 +322,12 @@ using eSkool.Models;
                 Write(__tagHelperExecutionContext.Output);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
 <<<<<<< HEAD
+<<<<<<< HEAD
                 WriteLiteral("\r\n                </li>\r\n                <li>\r\n                    Mathematics\r\n                </li>\r\n\r\n            </ul>\r\n        </div>\r\n        <div class=\"book-card\">\r\n            <ul>\r\n                <li>\r\n                    ");
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "f38452945211d3020f565283f6cd5f040c771cd914221", async() => {
 =======
+=======
+>>>>>>> 20651045b7315ffe0d101eb08ec8b96107e6f334
                 WriteLiteral("\r\n                </li>\r\n                <li>\r\n                    Mathematics\r\n                </li>\r\n                <li>\r\n                    ");
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "29b5acd858eea51a6acdf8167116abd792a1c67116923", async() => {
                     WriteLiteral(" Download ");
@@ -308,6 +345,9 @@ using eSkool.Models;
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                </li>\r\n            </ul>\r\n        </div>\r\n        <div class=\"book-card\">\r\n            <ul>\r\n                <li>\r\n                    ");
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "29b5acd858eea51a6acdf8167116abd792a1c67118228", async() => {
+<<<<<<< HEAD
+>>>>>>> 20651045b7315ffe0d101eb08ec8b96107e6f334
+=======
 >>>>>>> 20651045b7315ffe0d101eb08ec8b96107e6f334
                 }
                 );
