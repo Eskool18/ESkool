@@ -12,90 +12,110 @@
         }
 
         nav {
-            background-color: #8b0432;
+            background-color: #b3006b;
         }
-        #profile-card {
-            background-color: #ebced7;
+        #profile-card, #announcement {
+            margin-top: 5%;
             width: 20%;
-            padding:0;
+            padding: 0;
             text-align: center;
-            margin-top: 10px;
+            background-color: #ecc0da;
+            display: flex;
+            flex-direction: column;
         }
+        #announcement p{
+            color: red;
+        }
+        #announcement {
+            margin-inline-start: auto;
+        }
+        .container1{
+            display:flex;
+            flex-direction:row;
+        }
+        .banner {
+            width: 100%;
+            background-color: #f3d6e7;
+            height: 290px;
+        }
+            .banner div {
+                margin-left: 25%;
+                margin-top: 2%;
+                background-color: #b3006b1a;
+                text-align: center;
+                width: 50%;
+                padding:5px;
+            }
         img {
             width: 80%;
-            height: 10%;
-          
+            height: 40%;
+            margin: 10%;
         }
-        #books {
-            background-color: #ebced7;
+        #books{
+            background-color: #ecc0da;
             width: 20%;
-            margin: 10px;
+            margin-top: 10px;
             padding: 0;
             text-align: center;
+            display: flex;
+            flex-direction: column;
         }
-        ul {
-            padding: 0;
-            list-style: none;
-            padding-top:5px;
-        }
+
+       
     </style>
 
 
 </head>
 
 <body>
-    <div style=" background-color: white; text-align:center; padding: 30px;">
-        <h1 style="font-size: 50px; ">School Name</h1>
-        <p>Few Discription for School</p>
+
+    <div class="banner">
+        <nav class="navbar navbar-expand-sm navbar-dark" style="padding: 8px; ">
+            <!-- Brand -->
+            <a class="navbar-brand" href="#">Eskool</a>
+
+            <!-- Links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/Student/Dashboard">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Student/subjects">Subjects</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Student/challan"> Fee Challan </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Student/attendance"> Attendance </a>
+                </li>
+            </ul>
+        </nav>
+        <div>
+            <h1 style="font-size: 50px; ">School Name</h1>
+            <p>Education shows us the importance of hard work and, at the same time, helps us grow and develop. Thus, we are able to shape a better society to live in by knowing and respecting rights, laws, and regulations.</p>
+        </div>
 
     </div>
 
-    <nav class="navbar navbar-expand-sm navbar-dark" style="padding: 8px; ">
-        <!-- Brand -->
-        <a class="navbar-brand" href="#">Eskool</a>
-
-        <!-- Links -->
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Dashboard</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Courses</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"> Fee Challan </a>
-            </li>
-
-
-
-        </ul>
-    </nav>
-    <div id="profile-card">
-        <ul>
-            <li>
-                <img src="~/lib/profile_pic.png" />
-            </li>
-            <li>
-                Maira Malik
-            </li>
-            <li>
-                BSEF18A509
-            </li>
-            <li>
+    <div class="container1">
+        <div id="profile-card">
+            <img src="~/lib/login.png" />
+            <p>
+                Maira Malik <br />
+                BSEF18A509<br />
                 SEF18 AFT
-            </li>
-        </ul>
-
+            </p>
+        </div>
+        <div id="announcement">
+            <h1 style="font-size: 20px; ">Announcements</h1>
+            <p>Holidays are starting from 27 Decemeber 2021.</p>
+        </div>
     </div>
+
+    
     <div id="books">
-        <ul>
-            <li>
-                <img src="~/lib/banner.png"/>
-            </li>
-            <li>
-                <a href="/Student/download_books">Books</a>
-            </li>
-        </ul>
+        <img src="~/lib/banner.png" />
+        <a href="/Student/download_books">Books</a>
     </div>
 </body>
 </html>
