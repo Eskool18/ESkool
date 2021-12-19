@@ -12,5 +12,7 @@ namespace eSkool.Controllers
         {
             return View();
         }
+        
+      
     }
 }
