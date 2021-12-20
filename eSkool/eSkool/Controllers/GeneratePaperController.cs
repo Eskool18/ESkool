@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace eSkool.Controllers
 {
+    
     public class GeneratePaperController : Controller
     {
-        List<string> PageTraverse;
-
+       static List<string> PageTraverse = new List<string>();
         public IActionResult showCourses()
         {
             return View();
@@ -18,14 +18,29 @@ namespace eSkool.Controllers
        [HttpGet]
         public IActionResult showClasses(string courseName)
         {
-            //PageTraverse.Add(courseName);
+            PageTraverse.Add(courseName);
             ViewBag.name = courseName;
             
             return View(); 
         }
 
-        public IActionResult showSubjects()
+        public IActionResult showSubjects(int className)
         {
+
+            PageTraverse.Add(className.ToString());
+            ViewBag.className = className;
+            ViewBag.name = PageTraverse.ElementAt(0);
+
+            return View();
+        }
+
+        public IActionResult selectSyllabus(string subjectName)
+        {
+            PageTraverse.Add(subjectName);
+            ViewBag.subjectName = subjectName;
+            
+
+
             return View();
         }
     }
