@@ -9,6 +9,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\admin\addStudent.cshtml" />
+    <None Include="Views\admin\addTeacher.cshtml" />
+    <None Include="Views\admin\adminDashboard.cshtml" />
+    <None Include="Views\admin\signUp.cshtml" />
     <None Include="wwwroot\lib\CN.pdf" />
   </ItemGroup>
 

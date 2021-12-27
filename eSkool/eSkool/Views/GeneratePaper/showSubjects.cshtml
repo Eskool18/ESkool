@@ -1,9 +1,7 @@
-﻿<!DOCTYPE html>
-<html>
+﻿<html>
 <head>
     <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/js/site.js" />
-    <link rel="stylesheet" href="css/A.ionicons.min.css+style.css,Mcc.GqYucYQRjt.css.pagespeed.cf.O6choJIIar.css">
 
 </head>
 
@@ -47,65 +45,61 @@
         <!--main Row For Entire Page-->
         <div class="row">
             <div class="col-md-6 mb-6">
-                <a href="~/GeneratePaper/showClasses?courseName=PTB">
-                    <button class="btn btn-outline-primary" style=" width:95%;margin-bottom:30px">
+                <a href="~/GeneratePaper/selectSyllabus?subjectName=Physics" >
+                    <button class="btn btn-outline-primary" style=" width:95%;margin-bottom:10px">
                         <div style="width:25%;float:left;margin-left:5px">
                             <img src="~/image/ptb.jpg" class="img-fluid" />
                         </div>
                         <div style="width:70%;float:right">
-                            <h3> PTB </h3>
-                            <hr />
-                            <p>Punjab Text Book Course</p>
+                            @{
+                                if (ViewBag.className > 4 && ViewBag.className < 11)
+                                {
+                                    <h3> Physics - @ViewBag.className <sup>th</sup> </h3>
+                                }
+                                else if (ViewBag.className == 11)
+                                {
+                                    <h3> Physics - 1<sup>st</sup> Year </h3>
+                                }
+                                else
+                                {
+                                    <h3> Physics - 2<sup>nd</sup> Year </h3>
+                                }
+                                    <hr />
+                                <p>Course : @ViewBag.name </p>
+                            }
                         </div>
                     </button>
                 </a>
             </div>
             <div class="col-md-6 mb-6">
-                <a href="~/GeneratePaper/showClasses?courseName=Oxfird">
-                    <button class="btn btn-outline-primary" style=" width:95% ;margin-bottom:30px">
+                <a>
+                    <button class="btn btn-outline-primary" style=" width:95% ;margin-bottom:10px">
                         <div style="width:25%;float:left">
                             <img src="~/image/ptb.jpg" class="img-fluid" />
                         </div>
                         <div style="width:70%;float:right">
-                            <h3> Oxf </h3>
-                            <hr />
-                            <p>Oxford syllabus</p>
+                            @{
+                                if (ViewBag.className > 4 && ViewBag.className < 11)
+                                {
+                                    <h3> Math - @ViewBag.className <sup>th</sup> </h3>
+                                }
+                                else if (ViewBag.className == 11)
+                                {
+                                    <h3> Math - 1<sup>st</sup> Year </h3>
+                                }
+                                else
+                                {
+                                    <h3> Math - 2<sup>nd</sup> Year </h3>
+                                }
+                                <hr />
+                                <p>Course : @ViewBag.name </p>
+                            }
                         </div>
                     </button>
                 </a>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6 mb-6">
-                <a href="~/GeneratePaper/showClasses?courseName=SCS">
-                    <button class="btn btn-outline-primary" style=" width:95%;margin-bottom:30px">
-                        <div style="width:25%;float:left">
-                            <img src="~/image/ptb.jpg" class="img-fluid" />
-                        </div>
-                        <div style="width:70%;float:right">
-                            <h3> Single circular Syllabus </h3>
-                            <hr />
-                            <p> New syllabus announced by Govt.</p>
-                        </div>
-                    </button>
-                </a>
-            </div>
-            <div class="col-md-6 mb-6">
-                <a href="~/GeneratePaper/showClasses?courseName=Afaq">
-                    <button class="btn btn-outline-primary" style=" width:95%;margin-bottom:30px">
-                        <div style="width:25%;float:left">
-                            <img src="~/image/ptb.jpg" class="img-fluid" />
-                        </div>
-                        <div style="width:70%;float:right">
-                            <h3> Afaq </h3>
-                            <hr />
-                            <p>Afaq Publisher5</p>
-                        </div>
-                    </button>
-                </a>
-            </div>
-
-        </div>
+        
 
 
 
@@ -113,6 +107,5 @@
 
     </div>
 
-    </div>
 </body>
 </html>

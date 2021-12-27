@@ -30,7 +30,12 @@ namespace eSkool.Controllers
                     {
                         HttpContext.Session.SetString("username", user);
                         HttpContext.Session.SetString("password", password);
-                        return RedirectToAction("signUp","signup");
+                        if(temp.Role=="A")
+                            return RedirectToAction("adminDashboard","admin");
+                        if (temp.Role == "T")
+                            return RedirectToAction("Dashboard", "Teacher");
+                        if (temp.Role == "S")
+                            return RedirectToAction("Dashboard", "Student");
                     }
                     return View();
                 }
