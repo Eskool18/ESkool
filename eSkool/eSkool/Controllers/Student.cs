@@ -22,6 +22,14 @@ namespace eSkool.Controllers
         {
             return View();
         }
+        public ActionResult helping_material()
+        {
+            return View();
+        }
+        public ActionResult class_announcement()
+        {
+            return View();
+        }
         public ActionResult challan()
         {
             return View();
