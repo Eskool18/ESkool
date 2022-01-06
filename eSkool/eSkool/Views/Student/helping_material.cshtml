@@ -1,45 +1,12 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/js/site.js" />
+﻿@{
+    ViewBag.Title = "helping_material";
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+
+}
+
     <style>
-
-
-        body {
-            background-color: #fbe2ea87;
-            font-family: fangsong;
-        }
-
-        .banner {
-            width: 100%;
-            background-color: #f3d6e7;
-            height: 290px;
-        }
-
-            .banner div {
-                margin-left: 25%;
-                margin-top: 2%;
-                background-color: #b3006b1a;
-                text-align: center;
-                width: 50%;
-                padding: 5px;
-            }
-
-        nav {
-            background-color: #b3006b;
-        }
-
-        #profile-card {
-            background-color: #ebced7;
-            width: 20%;
-            padding: 0;
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        img {
-            width: 80%;
+        .book-card img {
+            width: 40%;
             height: 10%;
         }
 
@@ -58,7 +25,7 @@
             justify-content: center;
         }
 
-        ul {
+        .book-card ul {
             padding: 0;
             list-style: none;
             padding-top: 5px;
@@ -76,272 +43,235 @@
         }
     </style>
 
+        <h3> Guides </h3>
+        <div class="book-display">
 
-</head>
+            <div class="book-card">
+                <ul>
+                    <li>
+                        <img src="~/lib/books.png" />
+                    </li>
 
-<body>
-
-
-    <div class="banner">
-        <nav class="navbar navbar-expand-sm navbar-dark" style="padding: 8px; ">
-            <!-- Brand -->
-            <a class="navbar-brand" href="#">Eskool</a>
-
-            <!-- Links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="/Student/Dashboard">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/Student/subjects">Subjects</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/Student/challan"> Fee Challan </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/Student/attendance"> Attendance </a>
-                </li>
-            </ul>
-        </nav>
-        <div>
-            <h1 style="font-size: 50px; ">School Name</h1>
-            <p>Education shows us the importance of hard work and, at the same time, helps us grow and develop. Thus, we are able to shape a better society to live in by knowing and respecting rights, laws, and regulations.</p>
+                    <li>
+                        English
+                    </li>
+                    <li>
+                        <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="book-card">
+                <ul>
+                    <li>
+                        <img src="~/lib/books.png" />
+                    </li>
+                    <li>
+                        Science
+                    </li>
+                    <li>
+                        <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="book-card">
+                <ul>
+                    <li>
+                        <img src="~/lib/books.png" />
+                    </li>
+                    <li>
+                        Mathematics
+                    </li>
+                    <li>
+                        <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="book-card">
+                <ul>
+                    <li>
+                        <img src="~/lib/books.png" />
+                    </li>
+                    <li>
+                        Urdu
+                    </li>
+                    <li>
+                        <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
+                    </li>
+                </ul>
+            </div>
         </div>
 
-    </div>
+        <h3> Notes & Slides </h3>
+        <div class="book-display">
 
-    <!-- Links -->
+            <div class="book-card">
+                <ul>
+                    <li>
+                        <img src="~/lib/books.png" />
+                    </li>
 
-    <h3> Guides </h3>
-    <div class="book-display">
+                    <li>
+                        English
+                    </li>
+                    <li>
+                        <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="book-card">
+                <ul>
+                    <li>
+                        <img src="~/lib/books.png" />
+                    </li>
+                    <li>
+                        Science
+                    </li>
+                    <li>
+                        <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="book-card">
+                <ul>
+                    <li>
+                        <img src="~/lib/books.png" />
+                    </li>
+                    <li>
+                        Mathematics
+                    </li>
+                    <li>
+                        <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="book-card">
+                <ul>
+                    <li>
+                        <img src="~/lib/books.png" />
+                    </li>
+                    <li>
+                        Urdu
+                    </li>
+                    <li>
+                        <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <h3> Guess Papers </h3>
+        <div class="book-display">
 
-        <div class="book-card">
-            <ul>
-                <li>
-                    <img src="~/lib/books.png" />
-                </li>
+            <div class="book-card">
+                <ul>
+                    <li>
+                        <img src="~/lib/books.png" />
+                    </li>
 
-                <li>
-                    English
-                </li>
-                <li>
-                    <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
-                </li>
-            </ul>
+                    <li>
+                        English
+                    </li>
+                    <li>
+                        <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="book-card">
+                <ul>
+                    <li>
+                        <img src="~/lib/books.png" />
+                    </li>
+                    <li>
+                        Science
+                    </li>
+                    <li>
+                        <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="book-card">
+                <ul>
+                    <li>
+                        <img src="~/lib/books.png" />
+                    </li>
+                    <li>
+                        Mathematics
+                    </li>
+                    <li>
+                        <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="book-card">
+                <ul>
+                    <li>
+                        <img src="~/lib/books.png" />
+                    </li>
+                    <li>
+                        Urdu
+                    </li>
+                    <li>
+                        <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="book-card">
-            <ul>
-                <li>
-                    <img src="~/lib/books.png" />
-                </li>
-                <li>
-                    Science
-                </li>
-                <li>
-                    <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
-                </li>
-            </ul>
-        </div>
-        <div class="book-card">
-            <ul>
-                <li>
-                    <img src="~/lib/books.png" />
-                </li>
-                <li>
-                    Mathematics
-                </li>
-                <li>
-                    <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
-                </li>
-            </ul>
-        </div>
-        <div class="book-card">
-            <ul>
-                <li>
-                    <img src="~/lib/books.png" />
-                </li>
-                <li>
-                    Urdu
-                </li>
-                <li>
-                    <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
-                </li>
-            </ul>
-        </div>
-    </div>
 
-    <h3> Notes & Slides </h3>
-    <div class="book-display">
+        <h3> Past Papers </h3>
+        <div class="book-display">
 
-        <div class="book-card">
-            <ul>
-                <li>
-                    <img src="~/lib/books.png" />
-                </li>
+            <div class="book-card">
+                <ul>
+                    <li>
+                        <img src="~/lib/books.png" />
+                    </li>
 
-                <li>
-                    English
-                </li>
-                <li>
-                    <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
-                </li>
-            </ul>
+                    <li>
+                        English
+                    </li>
+                    <li>
+                        <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="book-card">
+                <ul>
+                    <li>
+                        <img src="~/lib/books.png" />
+                    </li>
+                    <li>
+                        Science
+                    </li>
+                    <li>
+                        <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="book-card">
+                <ul>
+                    <li>
+                        <img src="~/lib/books.png" />
+                    </li>
+                    <li>
+                        Mathematics
+                    </li>
+                    <li>
+                        <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="book-card">
+                <ul>
+                    <li>
+                        <img src="~/lib/books.png" />
+                    </li>
+                    <li>
+                        Urdu
+                    </li>
+                    <li>
+                        <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="book-card">
-            <ul>
-                <li>
-                    <img src="~/lib/books.png" />
-                </li>
-                <li>
-                    Science
-                </li>
-                <li>
-                    <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
-                </li>
-            </ul>
-        </div>
-        <div class="book-card">
-            <ul>
-                <li>
-                    <img src="~/lib/books.png" />
-                </li>
-                <li>
-                    Mathematics
-                </li>
-                <li>
-                    <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
-                </li>
-            </ul>
-        </div>
-        <div class="book-card">
-            <ul>
-                <li>
-                    <img src="~/lib/books.png" />
-                </li>
-                <li>
-                    Urdu
-                </li>
-                <li>
-                    <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <h3> Guess Papers </h3>
-    <div class="book-display">
 
-        <div class="book-card">
-            <ul>
-                <li>
-                    <img src="~/lib/books.png" />
-                </li>
-
-                <li>
-                    English
-                </li>
-                <li>
-                    <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
-                </li>
-            </ul>
-        </div>
-        <div class="book-card">
-            <ul>
-                <li>
-                    <img src="~/lib/books.png" />
-                </li>
-                <li>
-                    Science
-                </li>
-                <li>
-                    <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
-                </li>
-            </ul>
-        </div>
-        <div class="book-card">
-            <ul>
-                <li>
-                    <img src="~/lib/books.png" />
-                </li>
-                <li>
-                    Mathematics
-                </li>
-                <li>
-                    <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
-                </li>
-            </ul>
-        </div>
-        <div class="book-card">
-            <ul>
-                <li>
-                    <img src="~/lib/books.png" />
-                </li>
-                <li>
-                    Urdu
-                </li>
-                <li>
-                    <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <h3> Past Papers </h3>
-    <div class="book-display">
-
-        <div class="book-card">
-            <ul>
-                <li>
-                    <img src="~/lib/books.png" />
-                </li>
-
-                <li>
-                    English
-                </li>
-                <li>
-                    <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
-                </li>
-            </ul>
-        </div>
-        <div class="book-card">
-            <ul>
-                <li>
-                    <img src="~/lib/books.png" />
-                </li>
-                <li>
-                    Science
-                </li>
-                <li>
-                    <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
-                </li>
-            </ul>
-        </div>
-        <div class="book-card">
-            <ul>
-                <li>
-                    <img src="~/lib/books.png" />
-                </li>
-                <li>
-                    Mathematics
-                </li>
-                <li>
-                    <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
-                </li>
-            </ul>
-        </div>
-        <div class="book-card">
-            <ul>
-                <li>
-                    <img src="~/lib/books.png" />
-                </li>
-                <li>
-                    Urdu
-                </li>
-                <li>
-                    <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-</body>
-</html> 
+ 

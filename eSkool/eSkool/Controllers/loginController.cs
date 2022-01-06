@@ -29,6 +29,7 @@ namespace eSkool.Controllers
                     if (temp != null && temp.UserName == user && temp.Password == password)
                     {
                         HttpContext.Session.SetString("username", user);
+                  
                         HttpContext.Session.SetString("password", password);
                         if(temp.Role=="A")
                             return RedirectToAction("adminDashboard","admin");

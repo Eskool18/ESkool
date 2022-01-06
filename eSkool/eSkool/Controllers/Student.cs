@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using Grpc.Core;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eSkool.Controllers
@@ -12,7 +13,13 @@ namespace eSkool.Controllers
     {
         public IActionResult Dashboard()
         {
-            return View();
+            if (HttpContext.Session.GetString("username") != null)
+            {
+                ViewBag.uname = HttpContext.Session.GetString("username");
+                return View();
+            }
+            return RedirectToAction("login", "login");
+         
         }
         public ActionResult download_books()
         {
@@ -35,6 +42,14 @@ namespace eSkool.Controllers
             return View();
         }
         public ActionResult attendance()
+        {
+            return View();
+        }
+        public ActionResult gradebook()
+        {
+            return View();
+        }
+        public ActionResult practice()
         {
             return View();
         }

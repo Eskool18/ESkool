@@ -1,0 +1,258 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-12/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+
+        html, body {
+            font-family: system-ui;
+            height: 100%;
+        }
+
+        .outer-div {
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+        }
+
+        .main-div {
+            margin-left: 23%;
+            width: 77%;
+            height: 100%;
+        }
+
+        .footer p {
+            color: #259db2;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer a {
+            color: #259db2;
+            font-size: large;
+        }
+
+        nav {
+            padding: 0px;
+            border-bottom: 1px solid #ededed;
+        }
+
+        .bar {
+            margin: 2px;
+            color: #ffffff;
+            border: 1px solid #adb5bd;
+            font-style: italic;
+            text-align: center;
+            text-align-last: justify;
+            padding: 1%;
+            background-image: linear-gradient(to right, #9f6086,#e6d5df,#ffffff, #ffffff,#e6d5df,#a76d90);
+        }
+        
+
+        .nav-link {
+            /*   border-bottom: groove;
+            border-start-end-radius: 2px;*/
+            color: #813870;
+            margin: 0px 5px;
+            padding: 20px;
+            /*  border-color: #f7e0e0;
+            border-radius: 30px;
+            background: #f6e8f9;*/
+        }
+
+        .navbar-brand {
+            /*   background: #813870;
+            color: white;
+
+            padding: 10px;
+            border-color: white;*/
+            color: #813870;
+            padding: 15px;
+            margin: 0px;
+            /* border-style: groove;
+            border-bottom-left-radius: 20px;
+            border-top-right-radius: 20px;*/
+        }
+
+        #profile-card {
+            margin-top: 30%;
+            padding: 0;
+            text-align: center;
+            font-size: large;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        #announcement p {
+            color: red;
+        }
+
+        #profile-card p {
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        #announcement {
+            background-color: #f5dede;
+            padding: 10px;
+            text-align: center;
+            width: 30%;
+        }
+
+        .side-bar {
+            /* background-color: #7e0404;*/
+            /* background-image: linear-gradient(to bottom right,#476585,#a342c3, #ce67d5, #cb88b9,#cf6fa4,#c5387f, #c10050);
+             */
+            background-image: linear-gradient(to bottom,#20a3b9,#4a7485,#885595, #9d3b7e, #7a072d);
+            /* background-image: linear-gradient(to bottom,#03788b,#414f95,#885595, #9d3b7e, #7a072d);
+         */ color: floralwhite;
+            /* height: 100%;*/
+            width: 23%;
+            font-size: 15px;
+            position: fixed;
+            overflow-x: hidden;
+            z-index: 1;
+            top: 0;
+            left: 0;
+        }
+
+        .func-div {
+            margin: 2%;
+        }
+
+        #profile-card img {
+            width: 35%;
+            height: 35%;
+            margin: 10px;
+        }
+
+
+        .side-links {
+            margin-top: 10px;
+            display: flex;
+            padding: 5px;
+            flex-direction: column;
+            text-align: center;
+            color: floralwhite;
+        }
+
+            .side-links a {
+                margin: 5px 35px;
+                padding: 10px;
+                border-bottom: groove;
+                border-color: #ecc0da;
+                display: flex;
+                flex-direction: column;
+                color: floralwhite;
+            }
+
+        #logout {
+            margin: 25%;
+            border-style: outset;
+            border-radius: 60px;
+            border-color: #ecc0da;
+        }
+        /*.bg {*/
+        /*background-image: linear-gradient(to bottom, #20a3b9, #4a7485, #885595, #9d3b7e, #7a072d);
+         */ /*height: 100%;
+                    -webkit-filter: blur(5px);
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                }*/
+        .nav-item:hover {
+            text-decoration: none;
+            background-color: rgb(226 209 222);
+            color: white;
+        }
+
+        .nav-item {
+            background-color: #ddbed640;
+        }
+
+        .navbar a:hover {
+            color: white;
+        }
+
+        .footer {
+            bottom: 0;
+            margin: 1% 2%;
+        }
+
+        .side-links a:hover {
+            text-decoration: none;
+            background-color: #f6e8f9d9;
+            color: rgb(129 56 112);
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div class="outer-div">
+        <div class="side-bar">
+            @*<div class="bg"></div>*@
+            <div id="profile-card">
+                <img src="~/lib/pp.png" />
+                <p>
+                    Maira Malik <br />
+                    BSEF18A509<br />
+                </p>
+            </div>
+            <div class="side-links">
+                <a href="#">Manage Profile</a>
+                <a href="#">Settings</a>
+                <a href="#">Chat</a>
+                <a id="logout" href="#">Logout</a>
+            </div>
+
+
+
+        </div>
+        <div class="main-div">
+            <nav class="navbar navbar-expand-sm " style="justify-content: space-between;padding: 0px; ">
+                <!-- Brand -->
+                <p class="navbar-brand" href="/Student/Dashboard"> Eskool @*<img src="~/lib/eskool.png" />*@ </p>
+
+                <!-- Links -->
+                <ul class="navbar-nav" style=" color: #7e0404; justify-content: flex-end; ">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Student/Dashboard">Dashboard  </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Student/subjects">Subjects </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Student/challan"> Fee Challan  </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Student/attendance"> Attendance </a>
+                    </li>
+                </ul>
+            </nav>
+            @*<div class="bar">
+            <span id='date-time'></span>
+        </div>*@
+
+            <div class="func-div">
+                @RenderBody()
+            </div>
+            <div class="footer">
+                <p>
+                    <i class="fa fa-phone" style="color: #954587; font-size: x-large;">  <a href="tel:+090078601"> tel: 090078601 </a> </i>
+                    <i class="fa fa-envelope" style="color: #954587; font-size: x-large;"> <a href="mailto:eskooleims@gmail.com">eims@eskool.com </a>  </i>
+                </p>
+            </div>
+        </div>
+       
+    </div>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

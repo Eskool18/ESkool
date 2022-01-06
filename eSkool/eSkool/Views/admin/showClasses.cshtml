@@ -1,0 +1,211 @@
+﻿@{
+    ViewBag.Title = "showClasses";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    .class-div {
+        color: whitesmoke;
+        box-shadow: 0px 10px 10px 0 rgb(39 155 176 / 42%), 0 15px 30px 0 rgb(145 73 139 / 60%);
+        width: 29%;
+        
+        background-color: #7b5c9261;
+        margin: 2%;
+    }
+
+    .class-detail {
+        text-align: center;
+        width:100%;
+        padding: 5%;
+    }
+
+    .class-banner {
+        width: 18%;
+        color: #22a1b782;
+        font-weight: bolder;
+        text-align: center;
+        border-left: 3px #75b1c6;
+        border-left-style: outset;
+        background: white;
+    }
+
+    .show-btn {
+        /* font-weight: 600; */
+        color: #ffffff;
+        width: 90%;
+        box-shadow: -6px 6px 0px 0 rgb(145 74 140 / 45%);
+        font-size: 18px;
+        border: none;
+        padding: 2%;
+        /* border: 1px solid #7b5c92d9; */
+        background: #22a1b782;
+    }
+        .show-btn:hover {
+         /*   box-shadow: 0px 20px 80px 0 rgb(38 157 178 / 62%);*/
+            box-shadow: -6px 6px 0px 0 #22a1b782;
+            background: rgb(145 74 140 / 45%);
+        }
+
+
+    .class-card {
+        display: flex;
+        height:100%;
+        flex-direction: row;
+    }
+
+    .add-class {
+        text-align: center;
+        width: 20%;
+        height: 10%;
+        background: #75b1c65c;
+        border: 2px dashed #269cb2;
+        padding: 5%;
+        margin: 2%;
+    }
+
+        .add-class i {
+            color: #22a0b6;
+            font-size: 40px;
+        }
+
+    .cards-container {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        border: 1px solid rgb(145 74 140);
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        box-shadow: 0 4px 8px 0 rgb(199 24 161 / 57%), 0 6px 20px 0 #448797;   
+        border: 1px solid #888;
+        width: 50%;
+    }
+
+    /* The Close Button */
+    .close {
+        color: white;
+        float: right;
+        font-size: 30px;
+        font-weight: bold;
+    }
+    .modal-header {
+        background-color: #7b5c9261;
+        color: white;
+    }
+        .modal-header h3 {
+            font-size: 25px;
+            font-style: italic;
+            font-family: serif;
+        }
+    
+    .close:hover,
+    .close:focus {
+        color: rgb(145 74 140);     
+        font-weight: bolder;
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
+<div class="cards-container">
+    <div class="class-div">
+        <div class="class-card">
+            <div class="class-banner">
+                <p>
+                    9<br />T<br />H
+                </p>
+            </div>
+            <div class="class-detail">
+                <p>
+                    Teacher : Ma'am Maira Malik
+                </p>
+                <p>
+                    Students : 40
+                </p>
+                <button class="show-btn"> Show </button>
+            </div>
+        </div>
+    </div>
+    <div class="class-div">
+        <div class="class-card">
+            <div class="class-banner">
+                <p>
+                    10 <br />T<br />H
+                </p>
+            </div>
+            <div class="class-detail">
+                <p>
+                    Teacher : Sir Ali Iftikhar
+                </p>
+                <p>
+                    Students : 45
+                </p>
+                <button class="show-btn"> Show </button>
+            </div>
+        </div>
+    </div>
+    <div class="class-div">
+        <div class="class-card">
+            <div class="class-banner">
+                <p>
+                    11 <br />T<br />H
+                </p>
+            </div>
+            <div class="class-detail">
+                <p>
+                    Teacher : Sir Farooq
+                </p>
+                <p>
+                    Students : 50
+                </p>
+                <button class="show-btn"> Show </button>
+
+            </div>
+        </div>
+    </div>
+   
+    <div class="add-class">
+        <a href="/admin/addClass">
+            <i class="fa fa-plus"></i>
+        </a>
+    </div>
+   
+</div>
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Class 9<sup>th </sup></h3>
+
+            <span class="close">&times;</span>
+
+
+        </div>
+        <div class="modal-body">
+            <p>List of Students: </p>
+            <p>Waleed</p>
+            <p>Areej</p>
+            <p>Rida</p>
+        </div>
+
+    </div>
+
+</div>
+
+

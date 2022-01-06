@@ -1,41 +1,52 @@
 ﻿<!DOCTYPE html>
 
-<html lang="en" dir="ltr">
-   <head>
-      <meta charset="utf-8">
-      <title>Login</title>
-      <link rel="stylesheet" href="~/css/style_login.css">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   </head>
-   <body>
-      <div class="wrapper">
-         
-         <div class="form-container">
-            <div class="slide-controls">
-               <label for="login" class="slide login">Login Form</label>
-               <div class="slider-tab"></div>
-            </div>
+<html lang="en" dir="ltr" @*style=" background-image: linear-gradient(to bottom, #20a3b9, #4a7485, #885595, #9d3b7e, #7a072d);"*@>
+<head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/style_login.css?v=1.0" type="text/css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="bg"></div>
+    
+    <div class="wrapper">
+        @*<i class="fa fa-user" style="color:white; font-size:80px; text-align:center;"></i>*@
+        <div class="form-container">
+
             <div class="form-inner">
-               <form action="/login/login" method="post" class="">
-                  <div class="field">
-                     <input type="text" name="user" placeholder="User Name" required>
-                  </div>
-                  <div class="field">
-                     <input type="password" name="password" placeholder="Password" required>
-                  </div>
-                  <div class="pass-link">
-                     <a href="#">Forgot password?</a>
-                  </div>
-                  <div class="field btn">
-                     <div class="btn-layer"></div>
-                     <input type="submit" value="Login">
-                  </div>
-                  <div class="signup-link">
-                     Not a member? <a href="">Signup now</a>
-                  </div>
-               </form>
+                <form action="/login/login" method="post" class="">
+                    <div class="field">
+                        <div class="icon">
+                            <i class="fa fa-user" style="color:white;"></i>
+                        </div>
+
+                        <input type="text" name="user" placeholder="User Name" required>
+                    </div>
+                    <div class="field">
+                        <div class="icon">
+                            <i class="fa fa-key" style="color:white;"></i>
+                        </div>
+                        <input type="password" name="password" placeholder="Password" required>
+                    </div>
+                    <div class="pass-link">
+                        <a href="#">Forgot password?</a>
+                    </div>
+                    <div class="sub-btn">
+                        @*<div class="btn-layer"></div>*@
+                        <input type="submit" value="LOGIN">
+                    </div>
+                    @*<div class="signup-link">
+                       Not a member? <a href="">Signup now</a>
+                    </div>*@
+                </form>
             </div>
-         </div>
-      </div>
-   </body>
+        </div>
+    </div>
+    <div class="footer">
+        <i class="fa fa-copyright"> </i> 2021  Developed by Eskool (Educational Institution Management System)
+    </div>
+</body>
 </html>

@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "addClass";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    form {
+        display: flex;
+        flex-direction: column;
+        padding: 2%;       
+        margin: 2%;
+      /*  border: 2px dashed #954587;     */
+        background-color: #f6eff5;
+    }
+    .form-tab input {
+        border-color: #22a1b782;
+        margin: 1%;
+        padding: 1%;
+        width: 50%;
+    }
+    h2 {
+  
+        text-align: center;
+        color: #22a1b782;
+    }
+    #add-btn input:hover {
+        box-shadow: -6px 6px 0px 0 #22a1b782;
+        background: rgb(145 74 140 / 45%);
+    }
+    #add-btn input{
+        color: #ffffff;
+        width: 100%;
+        box-shadow: -6px 6px 0px 0 rgb(145 74 140 / 45%);
+        font-size: 18px;
+        border: none;
+        padding: 3%;
+        /* border: 1px solid #7b5c92d9; */
+        background: #22a1b782;
+    }
+    #add-btn {
+        width: 20%;
+        margin: 5% 35%;
+    }
+    .form-tab label {
+        width: 20%;
+        margin: 1%;
+    
+    }
+</style>
+<form action="/admin/addClass" method="post">
+    <h2>ADD CLASS</h2>
+    <div class="form-tab">
+        <label for="class-name">Enter Class name </label>
+        <input id="class-name" type="text" placeholder="e.g Pre 9th" />
+    </div>
+    <div class="form-tab">
+        <label for="grade">Enter Class Grade </label>
+        <input id="grade" type="text" placeholder="e.g; 9th" />
+    </div>
+    <div class="form-tab">
+        <label for="teacher-name">Enter Teacher name </label>
+        <input id="teacher-name" type="text" placeholder="e.g; Sir XYZ" />
+    </div>
+    <div class="form-tab">
+        <label for="strength">Enter Class Strength </label>
+        <input id="strength" type="text" placeholder="e.g; 45" />
+    </div>
+    <div id="add-btn">
+        <input type="submit" value="Add">
+    </div>
+ 
+</form> 

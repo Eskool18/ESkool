@@ -21,11 +21,12 @@ namespace eSkool.Controllers
 
         public IActionResult adminDashboard()
         {
-            if(HttpContext.Session.GetString("username") != null)
+            if (HttpContext.Session.GetString("username") != null)
             {
                 return View();
             }
             return RedirectToAction("login", "login");
+   
         }
 
 
@@ -120,6 +121,14 @@ namespace eSkool.Controllers
         }
 
         public IActionResult questionNotification()
+        {
+            return View();
+        }
+        public IActionResult addClass()
+        {
+            return View();
+        }
+        public IActionResult showClasses()
         {
             return View();
         }
