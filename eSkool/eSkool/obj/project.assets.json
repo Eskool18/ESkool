@@ -6572,23 +6572,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\YOUNASS\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Farooq\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Desktop\\Sem 7\\Fyp\\eSkool\\eSkool\\eSkool.csproj",
+      "projectUniqueName": "C:\\Users\\Farooq\\ESkool\\eSkool\\eSkool\\eSkool.csproj",
       "projectName": "eSkool",
-      "projectPath": "F:\\Desktop\\Sem 7\\Fyp\\eSkool\\eSkool\\eSkool.csproj",
-      "packagesPath": "C:\\Users\\YOUNASS\\.nuget\\packages\\",
-      "outputPath": "F:\\Desktop\\Sem 7\\Fyp\\eSkool\\eSkool\\obj\\",
+      "projectPath": "C:\\Users\\Farooq\\ESkool\\eSkool\\eSkool\\eSkool.csproj",
+      "packagesPath": "C:\\Users\\Farooq\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Farooq\\ESkool\\eSkool\\eSkool\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\YOUNASS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Farooq\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6600,6 +6596,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -6611,6 +6608,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "EntityFramework": {
             "target": "Package",
@@ -6657,7 +6655,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
       }
     }
   }

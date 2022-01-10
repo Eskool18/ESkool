@@ -9,15 +9,6 @@ namespace eSkool.Controllers
 {
     public class adminController : Controller
     {
-        public IActionResult signUp()
-        {
-
-            if (HttpContext.Session.GetString("username") != null)
-            {
-                return View();
-            }
-            return RedirectToAction("login", "login");
-        }
 
         public IActionResult adminDashboard()
         {
@@ -62,7 +53,6 @@ namespace eSkool.Controllers
            return RedirectToAction("login", "login");
         }
 
-
         public IActionResult showTeachers()
         {
             try
@@ -82,6 +72,9 @@ namespace eSkool.Controllers
             }
             return View();
         }
+
+
+
 
         [HttpGet]
         public IActionResult addStudent()
@@ -120,11 +113,31 @@ namespace eSkool.Controllers
             return View();
         }
 
+
+
+        [HttpGet]
+        public IActionResult addQuestion()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult addQuestion(string name)
+        {
+            return View();
+        }
         public IActionResult questionNotification()
         {
             return View();
         }
+
+        [HttpGet]
         public IActionResult addClass()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult addClass(string className,string grade,string teacherName,int strength)
         {
             return View();
         }
