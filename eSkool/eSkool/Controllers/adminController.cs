@@ -121,7 +121,8 @@ namespace eSkool.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult addQuestion(string name)
+        public IActionResult addQuestion(string Syllabus,string Class,string Questiontype,string Subject,string Chapter,
+            string Exercise,string Statement,string Option1=null, string Option2=null, string Option3=null, string Option4=null, string CorrectOption=null)
         {
             return View();
         }

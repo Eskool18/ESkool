@@ -237,3 +237,4 @@ C:\Users\Farooq\ESkool\eSkool\eSkool\obj\Debug\netcoreapp3.1\eSkool.csproj.CopyC
 C:\Users\Farooq\ESkool\eSkool\eSkool\obj\Debug\netcoreapp3.1\eSkool.dll
 C:\Users\Farooq\ESkool\eSkool\eSkool\obj\Debug\netcoreapp3.1\eSkool.pdb
 C:\Users\Farooq\ESkool\eSkool\eSkool\obj\Debug\netcoreapp3.1\eSkool.genruntimeconfig.cache
+C:\Users\Farooq\ESkool\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\admin\addQuestion.cshtml.g.cs
