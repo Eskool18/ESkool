@@ -13,14 +13,14 @@ namespace eSkool.Controllers
     {
         public IActionResult Dashboard()
         {
-            if (HttpContext.Session.GetString("username") != null)
-            {
-                ViewBag.uname = HttpContext.Session.GetString("username");
-                return View();
-            }
-            return RedirectToAction("login", "login");
-         
-        }
+        //    if (HttpContext.Session.GetString("username") != null)
+        //    {
+        //        ViewBag.uname = HttpContext.Session.GetString("username");
+        //        return View();
+        //    }
+        //    return RedirectToAction("login", "login");
+            return View();
+    }
         public ActionResult download_books()
         {
             return View();
@@ -39,6 +39,7 @@ namespace eSkool.Controllers
         }
         public ActionResult challan()
         {
+            ViewBag.uname = HttpContext.Session.GetString("username");
             return View();
         }
         public ActionResult attendance()

@@ -35,7 +35,8 @@ html, body {
     box-shadow: 19px 20px 12px 4px rgb(0 0 0 / 31%);
 }
 .bg {
-    background-image: linear-gradient(to bottom, #20a3b9, #4a7485, #885595, #9d3b7e, #7a072d);
+/*    background-image: linear-gradient(to bottom, #20a3b9, #4a7485, #885595, #9d3b7e, #7a072d);*/
+    background-image: linear-gradient(to bottom,#4a7485,#20a3b9,#70a7c0,#a7a9c9, #bfaacf, #a07ca7,#954591);
     height: 100%;
     -webkit-filter: blur(5px);
     background-position: center;
