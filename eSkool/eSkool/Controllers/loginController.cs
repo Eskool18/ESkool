@@ -74,5 +74,9 @@ namespace eSkool.Controllers
         }
    
     
+        public IActionResult temp()
+        {
+            return View();
+        }
     }//End Controller
 }

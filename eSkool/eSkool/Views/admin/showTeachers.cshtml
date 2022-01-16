@@ -47,10 +47,8 @@
     }
 </style>
 
-<h1>Teachers List</h1>
-
 <p class="float-right">
-    <a href="#" class="btn btn-outline-primary">Create New</a>
+    <a href="/admin/addTeacher" class="btn btn-outline-primary">Add Teacher</a>
 </p>
 <table class="table">
     <thead>
@@ -59,61 +57,42 @@
                 @Html.DisplayNameFor(model => model.TeacherName)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.TeacherCnic)
+            </th>
+
+            <th>
                 @Html.DisplayNameFor(model => model.Designation)
             </th>
-            
+            <th>
+                @Html.DisplayNameFor(model => model.Salary)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Education)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Experience)
+                @Html.DisplayNameFor(model => model.TeacherId)
             </th>
             <th>Edit/Delete</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>Ali u Ali u Ali</td>
-            <td>Assistant Professor</td>
-            <td>M.Phil(CS)</td>
-            <td>3 years</td>
-            <td>
-                <a href="#" class="btn btn-success">Edit</a>
-                <a href="#" class="btn btn-danger">Delete</a>
-            </td>
-        </tr>
-        @*@foreach (var item in Model) {
+        @{ 
+            foreach (var teacher in Model)
+            {
                 <tr>
+                    <td>@teacher.TeacherName</td>
+                    <td>@teacher.TeacherCnic</td>
+                    <td>@teacher.Designation</td>
+                    <td>@teacher.Salary</td>
+                    <td>@teacher.Education</td>
+                    <td>@teacher.TeacherId.</td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.TeacherId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Designation)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Salary)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Education)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Gender)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TeacherName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TeacherCnic)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Experience)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    <a href="#" class="btn btn-success">Edit</a>
+                    <a href="#" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
-        }*@
+            }
+          }
     </tbody>
+            
 </table>

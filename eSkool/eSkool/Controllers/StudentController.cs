@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace eSkool.Controllers
 {
-    public class Student : Controller
+    public class StudentController : Controller
     {
         public IActionResult Dashboard()
         {

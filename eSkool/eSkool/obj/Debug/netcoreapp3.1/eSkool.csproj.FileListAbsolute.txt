@@ -508,3 +508,4 @@ C:\Users\Hp\Desktop\EskoolFYP\Eskool18\ESkool\eSkool\eSkool\obj\Debug\netcoreapp
 C:\Users\Hp\Desktop\EskoolFYP\Eskool18\ESkool\eSkool\eSkool\obj\Debug\netcoreapp3.1\eSkool.pdb
 C:\Users\Hp\Desktop\EskoolFYP\Eskool18\ESkool\eSkool\eSkool\obj\Debug\netcoreapp3.1\eSkool.genruntimeconfig.cache
 C:\Users\Hp\Desktop\EskoolFYP\Eskool18\ESkool\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\login\AccessWarning403.cshtml.g.cs
+C:\Users\Hp\Desktop\EskoolFYP\Eskool18\ESkool\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\login\temp.cshtml.g.cs

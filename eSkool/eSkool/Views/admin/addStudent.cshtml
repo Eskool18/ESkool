@@ -1,42 +1,262 @@
-﻿@{
-    ViewBag.Title = "Add Student";
+﻿@model List<UserInfo>
+
+@{
+    ViewBag.Title = "addClass";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link href="~/js/site.js" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
 
-    <div class="form" style="text-align:center;">
-        <div class="tab-header">
-            <div>Add Student</div>
-        </div>
-        <form action="/admin/addStudent" method="post">
-            <div class="tab-body">
-                <div class="form-element">
-                    <input type="text" name="sId" placeholder="Student Id">
-                </div>
-                <div class="form-element">
-                    <input type="text" name="userName" placeholder="Student Name">
-                </div>
-                <div class="form-element">
-                    <input type="text" name="rollnum" placeholder="Roll_No">
-                </div>
-                <div class="form-element">
-                    <input type="text" name="sClass" placeholder="Class">
-                </div>
-                <div class="form-element">
-                    <input type="password" name="password" placeholder="Password">
-                </div>
-                <div class="form-element">
-                    <input class="btn btn-primary" type="submit" value="Add Student" />
-                </div>
+<head>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            padding: 2%;
+            margin: 2%;
+            /*  border: 2px dashed #954587;     */
+            background-color: #f6eff5;
+        }
+
+        .tab {
+            display: none;
+        }
+
+        .step {
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbbbbb;
+            border: none;
+            border-radius: 50%;
+            display: inline-block;
+            opacity: 0.5;
+        }
+
+            .step.finish {
+                background-color: #04AA6D;
+            }
+
+            .step.active {
+                opacity: 1;
+            }
+
+        .form-tab input {
+            border-color: #22a1b782;
+            margin: 1%;
+            padding: 1%;
+            width: 50%;
+        }
+
+        #assign tr {
+            border: 1px dashed grey;
+            background-color: #457a8b1f;
+        }
+
+        #assign {
+            width: 30%;
+        }
+
+            #assign tr td {
+                padding: 5%;
+            }
+
+        h2 {
+            text-align: center;
+            color: #22a1b782;
+        }
+
+        .add-btn input:hover {
+            box-shadow: -6px 6px 0px 0 #22a1b782;
+            background: rgb(145 74 140 / 45%);
+        }
+
+        .add-btn input {
+            color: #ffffff;
+            width: 100%;
+            box-shadow: -6px 6px 0px 0 rgb(145 74 140 / 45%);
+            font-size: 18px;
+            border: none;
+            padding: 3%;
+            /* border: 1px solid #7b5c92d9; */
+            background: #22a1b782;
+        }
+
+        .add-btn {
+            width: 20%;
+            margin: 5% 35%;
+        }
+
+        .form-tab label {
+            width: 20%;
+            margin: 1%;
+        }
+    </style>
+    <link href="~/css/forms.css" rel="stylesheet" />
+</head>
+
+<body >
+    <div class="container" style="background-color:lightblue;margin-top:20px;margin-bottom:10px">
+        <div class="row">
+            <div class="col-sm-3">
+                <img src="~/image/RegistrationForm.png" />
             </div>
-        </form>
+
+            <div class="col-sm-6">
+                <h1> <b>Eskool</b> </h1>
+                <h5><i> Students Admission Form</i> </h5>
+            </div>
+
+
+
+        </div>
+        <hr style="background-color:black " />
+        <div class="form-group" style="margin-bottom:10px; border: 2px solid;border-color:black;border-radius:10px;padding:20px">
+            <form action="/admin/addStudent" method="post" enctype="multipart/form-data">
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label><b>Student Name</b></label>
+                        <input name="StudentName" type="text" class="form-control" placeholder="In Capital words" required />
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label><b>Father Name</b></label>
+                        <input name="FatherName" type="text" class="form-control" placeholder="In Capital words" required />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label><b>Address</b></label>
+                        <input name="StudentAddress" type="text" class="form-control" required>
+                    </div>
+                </div>
+
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label><b>Date of Birth</b></label>
+                        <input name="StudentDOB" type="date" class="form-control" placeholder="e.g. dd/mm/yyyy" required />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label><b>Age in year and Month</b></label>
+                        <input name="StudentAge" type="text" class="form-control" placeholder="e.g. n year m month" required />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label><b>Email Address</b></label>
+                        <input name="StudentEmail" class="form-control" type="email" placeholder="e.g. abc@xyz.com" required />
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label><b>Contact Number#1</b></label>
+                        <input name="ContactNumber1" class="form-control" type="text" placeholder="e.g. 03xx-xxxxxx" required />
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label><b>Contact Number#2</b></label>
+                        <input name="ContactNumber2" class="form-control" type="text" placeholder="e.g. 03xx-xxxxxx" required />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label><b>CNIC / B-Form</b></label>
+                        <input name="StudentCNIC" type="text" class="form-control" placeholder="e.g. 35XXX-XXXXXX-X" required />
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label><b>Class Grade</b> </label>
+                        <select name="ClassGrade" class="custom-select custom-select-lg" required>
+                            <option disabled selected>--Select Class</option>
+                            <option>0</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label><b>Class Name</b></label>
+                        <select name="ClassName" class="custom-select custom-select-lg" required>
+                            <option disabled selected>--Select Section</option>
+                            <option>9th</option>
+                            <option>Pre-9th</option>                           
+                            <option>9th-special section</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+                    <div class=" form-group col-md-6">
+                        <label><b>Disability</b></label>
+                        <br />
+                        <div class="form-check form-check-inline">
+                            <input name="StudentDisability" id="mart_Single" type="radio" value="Yes" class="form-check-input"  />
+                            <label style="margin-right:20px" class="form-check-label">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input name="StudentDisability" id="mart_Married" type="radio" value="No" class="form-check-input" checked/>
+                            <label style="margin-right:20px" class="form-check-label">No</label>
+                        </div>
+                    </div>
+                    <div class=" form-group col-md-6">
+                        <label><b>Gender</b></label>
+                        <br />
+                        <div class="form-check form-check-inline">
+                            <input name="StudentGender" id="gen_Male" type="radio" value="Male" class="form-check-input" checked />
+                            <label style="margin-right:20px" class="form-check-label">Male</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input name="StudentGender" id="gen_female" type="radio" value="Female" class="form-check-input" />
+                            <label style="margin-right:20px" class="form-check-label">Female</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input name="StudentGender" id="gen_other" type="radio" value="Others" class="form-check-input" />
+                            <label style="margin-right:20px" class="form-check-label">others</label>
+                        </div>
+
+                    </div>
+                </div>
+                <br />
+                <div class="form-row">
+                    <div class=" form-group col-md-6">
+                        <label><b>Religion</b></label>
+                        <br />
+                        <div class="form-check form-check-inline">
+                            <input name="StudentReligion" id="rele_Muslim" type="radio" value="Muslim" class="form-check-input" checked />
+                            <label style="margin-right:20px" class="form-check-label">Muslim</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input name="StudentReligion" id="rele_Nonmuslim" type="radio" value="Non-Muslim" class="form-check-input" />
+                            <label style="margin-right:20px" class="form-check-label">Non-Muslim</label>
+                        </div>
+                    </div>
+                    <div class=" form-group col-md-6">
+                        <label><b>Hafiz-e-QURAN?</b></label>
+                        <br />
+                        <div class="form-check form-check-inline">
+                            <input name="StudentHafiz" id="hafiz_yes" type="radio" value="Yes" class="form-check-input" />
+                            <label style="margin-right:20px" class="form-check-label">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input name="StudentHafiz" id="hafiz_no" type="radio" value="No" class="form-check-input" checked />
+                            <label style="margin-right:20px" class="form-check-label">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <input style="margin-bottom:4px" class="btn btn-primary btn-block" type="submit" />
+
+            </form>
+
+        </div>
+
     </div>
+
 </body>
-</html>

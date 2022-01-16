@@ -4,6 +4,7 @@ using System;
 using eSkool.Models;
 using System.Collections.Generic;
 using System.Linq;
+using eSkool.Logistics;
 
 namespace eSkool.Controllers
 {
@@ -39,6 +40,10 @@ namespace eSkool.Controllers
         }
 
 
+
+
+
+
         [HttpGet]
         public IActionResult addTeacher()
         {
@@ -55,7 +60,7 @@ namespace eSkool.Controllers
                         //Coding Block---------------------------------------------------------
                         {
 
-                        return View();
+                            return View();
                         }
                         //Coding Block---------------------------------------------------------
 
@@ -65,38 +70,51 @@ namespace eSkool.Controllers
 
             }
             return RedirectToAction("login", "login");
-            
+
         }
 
 
 
 
+
+
+
         [HttpPost]
-        public IActionResult addTeacher(string tId,string userName,string salary,string designation,string password)
+        public IActionResult addTeacher(Teacher TeacherInfoObj,string TeacherEmail)
         {
-           if(HttpContext.Session.GetString("username") != null)
+            if(HttpContext.Session.GetString("username") != null)
             {
-                string role = "T";
+                
                 try
                 {
                     using (eSkoolDBContext dBContext = new eSkoolDBContext())
                     {
-                        UserInfo temp = new UserInfo();
-                        temp.UserName = userName;
-                        temp.Password = password;
-                        temp.Role = role;
-                        dBContext.UserInfos.Add(temp);
-                        dBContext.SaveChanges();
+                        //TeacherId==UserName
+                        TeacherInfoObj.TeacherId = Algorithms.generateTeacherUsername(TeacherEmail);
+
+                        //Add Teacher Credential In UserInfo Table
+                        UserInfo user = new UserInfo(TeacherInfoObj.TeacherId, "T");
+                        dBContext.UserInfos.Add(user);
+
+                        //Add Teacher Complete Info Teacher Table
+                        dBContext.Teachers.Add(TeacherInfoObj);
+
+                        //Update DB
+                        dBContext.SaveChanges();                        
+                    
                     }
                 }
                 catch (Exception ex)
                 {
                     
                 }
-                return RedirectToAction("addUsers", "admin");
+                return RedirectToAction("showTeachers", "admin");
             }
-           return RedirectToAction("login", "login");
+            return RedirectToAction("login", "login");
         }
+
+
+
 
 
 
@@ -114,8 +132,19 @@ namespace eSkool.Controllers
 
                         //Coding Block---------------------------------------------------------
                         {
+                            try
+                            {
+                                using(eSkoolDBContext dBContext=new eSkoolDBContext())
+                                {
+                                    List<Teacher> TeacherList = dBContext.Teachers.ToList();
+                                   return View(TeacherList);
+                                }
+                            }
+                            catch(Exception ex)
+                            {
+                                return View();
+                            }
 
-                        return View();
                         }
                         //Coding Block---------------------------------------------------------
                     
@@ -130,61 +159,101 @@ namespace eSkool.Controllers
 
 
 
+
+
         [HttpGet]
         public IActionResult addStudent()
         {
-            if (HttpContext.Session.GetString("username") != null)
-            {
-                string username = HttpContext.Session.GetString("username");
-                using (eSkoolDBContext db = new eSkoolDBContext())
-                {
-                    string role = db.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
-                    if (role == "A")
-                    {
-                        ViewBag.username = username;
+             if (HttpContext.Session.GetString("username") != null)
+              {
+                 string username = HttpContext.Session.GetString("username");
+                 using (eSkoolDBContext db = new eSkoolDBContext())
+                 {
+                       string role = db.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
+                       if (role == "A")
+                       {
+                           ViewBag.username = username;
 
-                        //Coding Block---------------------------------------------------------
-                        {
+                           //Coding Block---------------------------------------------------------
+                            {
 
 
-                            return View();
-                        }
-                        //Coding Block---------------------------------------------------------
+                               return View();
+                            }
+                            //Coding Block---------------------------------------------------------
 
-                    }
-                    else return RedirectToAction("AccessWarning403", "login", new { role = role });
-                }
+                       }
+                       else return RedirectToAction("AccessWarning403", "login", new { role = role });
+                 }
 
-            }
-            return RedirectToAction("login", "login");            
+             }
+             return RedirectToAction("login", "login");
         }
+
+
+
+
+
+
+
         [HttpPost]
-        public IActionResult addStudent(string sId, string userName, string rollnum, string sClass, string password)
+        public IActionResult addStudent(Student studentinfoObj ,string StudentAge)
         {
             if (HttpContext.Session.GetString("username") != null)
             {
-                string role = "S";
+                
                 try
                 {
                     using (eSkoolDBContext dBContext = new eSkoolDBContext())
                     {
-                        UserInfo temp = new UserInfo();
-                        temp.UserName = userName;
-                        temp.Password = password;
-                        temp.Role = role;
-                        dBContext.UserInfos.Add(temp);
+                        //admisionDate
+                        studentinfoObj.AdmissionDate = DateTime.Today;
+
+                        //Age
+                        string[] temp  = StudentAge.Split(" ");
+                        studentinfoObj.StudentAge = Convert.ToInt32(temp[0]);
+
+                        //rollNumber
+                        int roll=dBContext.Students.Where(x => x.ClassGrade == studentinfoObj.ClassGrade).ToList().Count;
+                        studentinfoObj.RollNumber = (roll+1).ToString();
+                        
+                        //stundetId= WHICH IS HIS USER NAME
+                        studentinfoObj.StudentId = Algorithms.generateStudentUsername(studentinfoObj.StudentName, studentinfoObj.FatherName, studentinfoObj.RollNumber,Convert.ToInt32(studentinfoObj.ClassGrade));
+
+                        //student Class set
+                        if (dBContext.SchoolClasses.Find(studentinfoObj.ClassGrade, studentinfoObj.ClassName) == null)
+                        {
+                            studentinfoObj.ClassName = null;
+                            studentinfoObj.ClassGrade = null;
+                        }
+
+                        //add student Credential  in USERINFO
+                        UserInfo user = new UserInfo(studentinfoObj.StudentId,"S");
+                        dBContext.Add(user);                        
+                        
+                        //Add student Complete Info in Student Table
+                        dBContext.Students.Add(studentinfoObj);
+                       
+                        //Update DB
                         dBContext.SaveChanges();
+                                               
                     }
                 }
                 catch (Exception ex)
                 {
                     
                 }
-                return RedirectToAction("addUsers", "admin");
-            }
-            return RedirectToAction("login", "login");
+                return RedirectToAction("showStudents", "admin");
+             }
+           return RedirectToAction("login", "login");
         }
 
+
+
+
+
+
+        [HttpGet]
         public IActionResult showStudents()
         {
             if (HttpContext.Session.GetString("username") != null)
@@ -199,8 +268,23 @@ namespace eSkool.Controllers
 
                         //Coding Block---------------------------------------------------------
                         {
+                            ViewBag.classGrade = "All";
+                            ViewBag.className = "All";
+                            try
+                            {
+                                using(eSkoolDBContext dBContext=new eSkoolDBContext())
+                                {
+                                    List<Student> studentList= dBContext.Students.ToList();
+                                    return View(studentList);
+                                }
+                            }
+                            catch(Exception ex)
+                            {
+                                return RedirectToAction("showStudents", "admin");
+                            }
+                           
 
-                            return View();
+                            
                         }
                         //Coding Block---------------------------------------------------------
                     }
@@ -211,6 +295,52 @@ namespace eSkool.Controllers
             return RedirectToAction("login", "login");
          
         }
+
+
+
+
+
+
+        [HttpPost]
+        public IActionResult showStudents(int ClassGrade ,string className)
+        {
+            if (HttpContext.Session.GetString("username") != null)
+            {
+                string username = HttpContext.Session.GetString("username");
+                using (eSkoolDBContext db = new eSkoolDBContext())
+                {
+                    string role = db.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
+                    if (role == "A")
+                    {                       
+                        ViewBag.username = username;
+
+                        //Coding Block---------------------------------------------------------
+                        {
+                            ViewBag.classGrade = ClassGrade;
+                            ViewBag.className = className;
+                            try
+                            {
+                                using (eSkoolDBContext dBContext = new eSkoolDBContext())
+                                {
+                                   List<Student> StudentList= dBContext.Students.Where(x => x.ClassGrade == ClassGrade && x.ClassName == className).ToList();
+                                    return View(StudentList);
+                                }
+                            }
+                            catch
+                            {
+                                return RedirectToAction("showStudents", "admin");
+                            }                            
+                        }
+                        //Coding Block---------------------------------------------------------
+                    }
+                    else return RedirectToAction("AccessWarning403", "login", new { role = role });
+                }
+
+            }
+            return RedirectToAction("login", "login");
+
+        }
+
 
 
 
