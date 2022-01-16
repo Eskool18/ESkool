@@ -58,13 +58,7 @@ namespace eSkool.Controllers
             try
             {
                 eSkoolDBContext dbcontext = new eSkoolDBContext();
-                //var teachersList = from a in dbcontext.UserInfos
-                //                   join b in dbcontext.
-                //using (eSkoolDBContext dBContext = new eSkoolDBContext())
-                //{
-                //    List<UserInfo> teachers = new List<UserInfo>();
-                //    teachers = dBContext.UserInfos.ToList();
-                //}
+                
             }
             catch(Exception ex)
             {
