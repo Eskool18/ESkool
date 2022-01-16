@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<UserInfo>
+
+@{
     ViewBag.Title = "showClasses";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
@@ -7,14 +9,13 @@
         color: whitesmoke;
         box-shadow: 0px 10px 10px 0 rgb(39 155 176 / 42%), 0 15px 30px 0 rgb(145 73 139 / 60%);
         width: 29%;
-        
         background-color: #7b5c9261;
         margin: 2%;
     }
 
     .class-detail {
         text-align: center;
-        width:100%;
+        width: 100%;
         padding: 5%;
     }
 
@@ -39,8 +40,9 @@
         /* border: 1px solid #7b5c92d9; */
         background: #22a1b782;
     }
+
         .show-btn:hover {
-         /*   box-shadow: 0px 20px 80px 0 rgb(38 157 178 / 62%);*/
+            /*   box-shadow: 0px 20px 80px 0 rgb(38 157 178 / 62%);*/
             box-shadow: -6px 6px 0px 0 #22a1b782;
             background: rgb(145 74 140 / 45%);
         }
@@ -48,7 +50,7 @@
 
     .class-card {
         display: flex;
-        height:100%;
+        height: 100%;
         flex-direction: row;
     }
 
@@ -92,7 +94,7 @@
     .modal-content {
         background-color: #fefefe;
         margin: auto;
-        box-shadow: 0 4px 8px 0 rgb(199 24 161 / 57%), 0 6px 20px 0 #448797;   
+        box-shadow: 0 4px 8px 0 rgb(199 24 161 / 57%), 0 6px 20px 0 #448797;
         border: 1px solid #888;
         width: 50%;
     }
@@ -104,25 +106,28 @@
         font-size: 30px;
         font-weight: bold;
     }
+
     .modal-header {
         background-color: #7b5c9261;
         color: white;
     }
+
         .modal-header h3 {
             font-size: 25px;
             font-style: italic;
             font-family: serif;
         }
-    
+
     .close:hover,
     .close:focus {
-        color: rgb(145 74 140);     
+        color: rgb(145 74 140);
         font-weight: bolder;
         text-decoration: none;
         cursor: pointer;
     }
 </style>
 <div class="cards-container">
+
     <div class="class-div">
         <div class="class-card">
             <div class="class-banner">
@@ -137,7 +142,7 @@
                 <p>
                     Students : 40
                 </p>
-                <button class="show-btn"> Show </button>
+                <button class="show-btn" onclick="popModal();"> Show </button>
             </div>
         </div>
     </div>
@@ -155,7 +160,7 @@
                 <p>
                     Students : 45
                 </p>
-                <button class="show-btn"> Show </button>
+                <button class="show-btn" onclick="popModal();"> Show </button>
             </div>
         </div>
     </div>
@@ -173,18 +178,18 @@
                 <p>
                     Students : 50
                 </p>
-                <button class="show-btn"> Show </button>
+                <button class="show-btn" onclick="popModal();"> Show </button>
 
             </div>
         </div>
     </div>
-   
+
     <div class="add-class">
         <a href="/admin/addClass">
             <i class="fa fa-plus"></i>
         </a>
     </div>
-   
+
 </div>
 <div id="myModal" class="modal">
 
@@ -193,15 +198,22 @@
         <div class="modal-header">
             <h3>Class 9<sup>th </sup></h3>
 
-            <span class="close">&times;</span>
+            <button class="close" onclick="closeModal()"> &times; </button>
 
 
         </div>
         <div class="modal-body">
             <p>List of Students: </p>
-            <p>Waleed</p>
-            <p>Areej</p>
-            <p>Rida</p>
+            @{
+                foreach (var Student in Model)
+                {
+                    if (Student.Role == "S")
+                    {
+                        <p id="s1">@Student.UserName</p>
+                    }
+                }
+            }
+
         </div>
 
     </div>

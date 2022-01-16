@@ -3,35 +3,82 @@
     Layout = "~/Views/Shared/_StudentLayout.cshtml";
 
 }
+
 <style>
- 
+
+
+    #attendance-sheet {
+        margin-top: 5%;
+        background-color: #f6eff5;
+        text-align: center;
+        padding: 5px;
+        padding-bottom: 2%
+    }
+
+    table, th, td {
+        text-align: center;
+        margin: auto;
+        border: 1px solid #f6eff5;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 10px 30px;
+        background-color: #338da13d;
+        color: #267385;
+    }
+
+    #absent {
+        color: red;
+    }
+
+    th {
+        background-color: #338da1;
+        color: #f6eff5;
+    }
+
+    #attendance-sheet h1 {
+        color: #c1becd;
+        text-shadow: 2px 2px #954587;
+    }
+
+    #attendance-sheet h3 {
+        color: #c1becd;
+        text-shadow: 1px 1px #954587;
+    }
 </style>
 
-<div id="result-item">
-   
-        <h1>Result Sheet</h1>
-        
-        <table>
-            <tbody>
-                <tr>
-                    <th>Type</th>
-                    <th>Total Marks</th>
-                    <th>Obtained Marks</th>
-                    <th>Percentage</th>
-                </tr>
-                <tr>
-                    <td>Quiz 1</td>
-                    <td>50</td>
-                    <td>40</td>
-                    <td>85%</td>
-                </tr>
-                <tr>
-                    <td>Total </td>
-                    <td>1</td>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
-            </tbody>
-        </table>
-    
+<div id="attendance-sheet">
+
+    <h1>Result Sheet</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Type</th>
+                <th>Total Marks</th>
+                <th>Obtained Marks</th>
+                <th>Percentage</th>
+            </tr>
+            <tr>
+                <td>Quiz 1</td>
+                <td>50</td>
+                <td>40</td>
+                <td>85%</td>
+            </tr>
+            <tr>
+                <td>Total </td>
+                <td>1</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+        </tbody>
+    </table>
+
 </div>
+
+
+
+
+
+

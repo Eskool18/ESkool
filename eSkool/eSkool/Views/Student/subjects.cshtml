@@ -78,48 +78,7 @@
 </style>
 
 <div class="sub-div">
-    @*<div class="sub-card">
-            <img src="~/lib/banner.png" />
-            <h2>Chemistry</h2>
-            <a href="/Student/gradebook">Gradebook</a>
-            <a href="/Student/helping_material">Helping Material</a>
-            <a href="/Student/class_announcement">Announcements</a>
-            <a href="/Student/practice">Practice</a>
-        </div>
-
-        <div class="sub-card">
-            <img src="~/lib/banner.png" />
-            <h2>Computer</h2>
-            <a href="/Student/download_books">Gradebook</a>
-            <a href="/Student/helping_material">Helping Material</a>
-            <a href="/Student/class_announcement">Announcements</a>
-            <a href="/Student/download_books">Practice</a>
-
-        </div>
-        <div class="sub-card">
-            <img src="~/lib/banner.png" />
-            <h2>English</h2>
-            <a href="/Student/download_books">Gradebook</a>
-            <a href="/Student/helping_material">Helping Material</a>
-            <a href="/Student/class_announcement">Announcements</a>
-            <a href="/Student/download_books">Practice</a>
-        </div>
-        <div class="sub-card">
-            <img src="~/lib/banner.png" />
-            <h2>Urdu</h2>
-            <a href="/Student/download_books">Gradebook</a>
-            <a href="/Student/helping_material">Helping Material</a>
-            <a href="/Student/class_announcement">Announcements</a>
-            <a href="/Student/download_books">Practice</a>
-        </div>
-        <div class="sub-card">
-            <img src="~/lib/banner.png" />
-            <h2>Mathematics</h2>
-            <a href="/Student/download_books">Gradebook</a>
-            <a href="/Student/helping_material">Helping Material</a>
-            <a href="/Student/class_announcement">Announcements</a>
-            <a href="/Student/download_books">Practice</a>
-        </div>*@
+   
     @for (int i = 0; i < 3; i++)
     {
     <div class="class-div">
@@ -131,7 +90,7 @@
             </div>
             <div class="class-detail">
                 @*<i class="fas fa-shapes"></i>*@
-                <h2>@i</h2>
+                <h2>@i </h2>
                 <a href="/Student/gradebook"><i class="fas fa-trophy"></i>&nbsp; Gradebook</a>
                 <a href="/Student/helping_material"><i class="fas fa-book-open"></i>&nbsp; Helping Material</a>
                 <a href="/Student/class_announcement"><i class="fas fa-bell"></i>&nbsp; Announcements</a>

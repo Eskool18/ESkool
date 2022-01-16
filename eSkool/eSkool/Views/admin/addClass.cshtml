@@ -1,32 +1,69 @@
-﻿@{
+﻿@model List<UserInfo>
+
+@{
     ViewBag.Title = "addClass";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+
 <style>
     form {
         display: flex;
         flex-direction: column;
-        padding: 2%;       
+        padding: 2%;
         margin: 2%;
-      /*  border: 2px dashed #954587;     */
+        /*  border: 2px dashed #954587;     */
         background-color: #f6eff5;
     }
+    .tab {
+        display: none;
+    }
+    .step {
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbbbbb;
+        border: none;
+        border-radius: 50%;
+        display: inline-block;
+        opacity: 0.5;
+    }
+        .step.finish {
+            background-color: #04AA6D;
+        }
+        .step.active {
+            opacity: 1;
+        }
     .form-tab input {
         border-color: #22a1b782;
         margin: 1%;
         padding: 1%;
         width: 50%;
     }
+
+    #assign tr {
+        border: 1px dashed grey;
+        background-color: #457a8b1f;
+    }
+
+    #assign {
+        width: 30%;
+    }
+
+        #assign tr td {
+            padding: 5%;
+        }
+
     h2 {
-  
         text-align: center;
         color: #22a1b782;
     }
-    #add-btn input:hover {
+
+    .add-btn input:hover {
         box-shadow: -6px 6px 0px 0 #22a1b782;
         background: rgb(145 74 140 / 45%);
     }
-    #add-btn input{
+
+    .add-btn input {
         color: #ffffff;
         width: 100%;
         box-shadow: -6px 6px 0px 0 rgb(145 74 140 / 45%);
@@ -36,36 +73,102 @@
         /* border: 1px solid #7b5c92d9; */
         background: #22a1b782;
     }
-    #add-btn {
+
+    .add-btn {
         width: 20%;
         margin: 5% 35%;
     }
+
     .form-tab label {
         width: 20%;
         margin: 1%;
-    
     }
 </style>
-<form action="/admin/addClass" method="post">
-    <h2>ADD CLASS</h2>
-    <div class="form-tab">
-        <label for="className">Enter Class name </label>
-        <input name="className" type="text" placeholder="e.g Pre 9th" />
+<form id="reg-form" action="/admin/addClass" method="post">
+      <h2>ADD CLASS</h2>
+    <div class="tab">
+
+        <div class="form-tab">
+            <label for="class-name">Enter Class name </label>
+            <input id="class-name" oninput="this.className = ''" type="text" placeholder="e.g Pre 9th" />
+        </div>
+        <div class="form-tab">
+            <label for="grade">Enter Class Grade </label>
+            <input id="grade" type="text" oninput="this.className = ''" placeholder="e.g; 9th" />
+        </div>
+        <div class="form-tab">
+            <label for="classTeacher-name">Enter Class Teacher name </label>
+            <input id="classTeacher-name" oninput="this.className = ''" type="text" placeholder="e.g; Sir XYZ" />
+        </div>
+        <div class="form-tab">
+            <label for="strength">Enter Class Strength </label>
+            <input id="strength" oninput="this.className = ''" type="text" placeholder="e.g; 45" />
+        </div>
     </div>
-    <div class="form-tab">
-        <label for="grade">Enter Class Grade </label>
-        <input name="grade" type="text" placeholder="e.g; 9th" />
+    
+        <div class="tab">
+            <h2>ASSIGN TEACHERS</h2>
+            <div class="form-tab">
+                <label for="teacher-name">Teacher</label>
+                <select id="teacher-name" oninput="this.className = ''" @*onchange="assign();"*@>
+                    @{
+                        foreach (var Teacher in Model)
+                        {
+                            if (Teacher.Role == "T")
+                            {
+                            <option value="t1">@Teacher.UserName</option>
+                                }
+                            }
+                        }
+
+
+                    
+                </select>
+                <label for="subject-name">Subject</label>
+                <select id="subject-name" oninput="this.className = ''"  @*onchange="assign();"*@>
+                    <option value="s1">English</option>
+                    <option value="s2">Urdu</option>
+                    <option value="s3">Science</option>
+                </select>
+                <a onclick="assign();">  <i class="fa fa-plus"></i></a>
+                @*<input type="text" id="text" disabled />*@
+                <table id="assign">
+                    <thead>
+                        Assigned:
+                    </thead>
+                </table>
+            </div>
+        </div>
+
+        <div class="tab">
+            <h2>STUDENTS ENROLLED</h2>
+            <div class="form-tab">
+                <h3>List of Students: </h3>
+                <ul>
+                    @{
+                        foreach (var Student in Model)
+                        {
+                            if (Student.Role == "S")
+                            {
+                                <li id="s1">@Student.UserName</li>
+                            }
+                        }
+                    }
+                  
+                </ul>
+
+            </div>
+        </div>
+    <div style="overflow:auto;">
+    <div style="float:right;">
+      <button type="button" class ="add-btn" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+      <button type="button" class ="add-btn" id="nextBtn" onclick="nextPrev(1)">Next</button>
     </div>
-    <div class="form-tab">
-        <label for="teacherName">Enter Teacher name </label>
-        <input name="teacherName" type="text" placeholder="e.g; Sir XYZ" />
-    </div>
-    <div class="form-tab">
-        <label for="strength">Enter Class Strength </label>
-        <input name="strength" type="text" placeholder="e.g; 45" />
-    </div>
-    <div id="add-btn">
-        <input type="submit" value="Add">
-    </div>
- 
-</form> 
+  </div>
+       
+        <div style="text-align:center;margin-top:40px;">
+            <span class="step"></span>
+            <span class="step"></span>
+            <span class="step"></span>
+        </div>
+</form>

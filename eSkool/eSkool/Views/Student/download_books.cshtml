@@ -11,12 +11,47 @@
         height: 10%;
     }
 
+    .show-btn {
+        /* font-weight: 600; */
+        color: #ffffff;
+        width: 90%;
+        box-shadow: -6px 6px 0px 0 rgb(145 74 140 / 45%);
+        font-size: 18px;
+        border: none;
+        padding: 3%;
+        /* border: 1px solid #7b5c92d9; */
+        background: #22a1b782;
+    }
+
+    .book-details {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .show-btn:hover {
+        /*   box-shadow: 0px 20px 80px 0 rgb(38 157 178 / 62%);*/
+        box-shadow: -6px 6px 0px 0 #22a1b782;
+        background: rgb(145 74 140 / 45%);
+        color: white;
+        text-decoration: none;
+    }
+
+    .show-btn i {
+        color: #954587;
+    }
+
+
     .book-card {
-        background-color: #ebced7;
-        width: 20%;
+        width: 25%;
+        color: white;
         margin: 10px;
-        padding: 0;
+        padding: 1%;
+        background-color: #7b5c9261;
         text-align: center;
+    }
+
+    .book-details li i {
+        font-size: 50px;
     }
 
     .book-display {
@@ -32,11 +67,15 @@
         padding-top: 5px;
     }
 
+        .book-card ul li {
+            margin: 2%;
+        }
+
     .heading {
-        background-color: #b3006b;
+        background-color: #954587;
         opacity: 0.7;
         text-align: center;
-        color: aliceblue;
+        color: white;
         padding: 8px;
         width: 25%;
         justify-content: center;
@@ -47,144 +86,34 @@
 @for (int j = 0; j < 4; j++)
 {
     <h3 class="heading"> Class @j <sup>th</sup> </h3>
-<div class="book-display">
-    @for (int i = 0; i < 6; i++)
-    {
+    <div class="book-display">
+        @for (int i = 0; i < 6; i++)
+        {
 
-        <div class="book-card">
-            <ul>
-                <li>
-                    <i class="fas fa-book"></i>
-                    
-                </li>
+            <div class="book-card">
+                <ul>
+                    <div class="book-details">
+                        <li>
+                            <i class="fas fa-book"></i>
 
-                <li>
-                    @j . @i
-                </li>
-                <li>
-                    <a href="~/Student/download?filePath=/lib/@book"> <i class="fas fa-angle-double-down"> </i> Download </a>
-                </li>
-            </ul>
-        </div>
+                        </li>
+
+                        <li>
+                            @j . @i
+                        </li>
+                    </div>
+
+                    <li>
+                        <a class="show-btn" href="~/Student/download?filePath=/lib/@book"> <i class="fas fa-angle-double-down"> </i> Download </a>
+                    </li>
+                </ul>
+            </div>
 
 
-    }
-</div>
+        }
+    </div>
 
 }
-@*<h3 class="heading"> 9th Grade </h3>
-    <div class="book-display">
 
-        <div class="book-card">
-            <ul>
-                <li>
-                    <img src="~/lib/books.png" />
-                </li>
-
-                <li>
-                    English
-                </li>
-                <li>
-                    <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
-                </li>
-            </ul>
-        </div>
-        <div class="book-card">
-            <ul>
-                <li>
-                    <img src="~/lib/books.png" />
-                </li>
-                <li>
-                    Science
-                </li>
-                <li>
-                    <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
-                </li>
-            </ul>
-        </div>
-        <div class="book-card">
-            <ul>
-                <li>
-                    <img src="~/lib/books.png" />
-                </li>
-                <li>
-                    Mathematics
-                </li>
-                <li>
-                    <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
-                </li>
-            </ul>
-        </div>
-        <div class="book-card">
-            <ul>
-                <li>
-                    <img src="~/lib/books.png" />
-                </li>
-                <li>
-                    Urdu
-                </li>
-                <li>
-                    <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <h3 class="heading"> 10th Grade </h3>
-    <div class="book-display">
-
-        <div class="book-card">
-            <ul>
-                <li>
-                    <img src="~/lib/books.png" />
-                </li>
-
-                <li>
-                    English
-                </li>
-                <li>
-                    <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
-                </li>
-            </ul>
-        </div>
-        <div class="book-card">
-            <ul>
-                <li>
-                    <img src="~/lib/books.png" />
-                </li>
-                <li>
-                    Science
-                </li>
-                <li>
-                    <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
-                </li>
-            </ul>
-        </div>
-        <div class="book-card">
-            <ul>
-                <li>
-                    <img src="~/lib/books.png" />
-                </li>
-                <li>
-                    Mathematics
-                </li>
-                <li>
-                    <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
-                </li>
-            </ul>
-        </div>
-        <div class="book-card">
-            <ul>
-                <li>
-                    <img src="~/lib/books.png" />
-                </li>
-                <li>
-                    Urdu
-                </li>
-                <li>
-                    <a href="~/Student/download?filePath=/lib/CN.pdf"> Download </a>
-                </li>
-            </ul>
-        </div>
-    </div>*@
 
 

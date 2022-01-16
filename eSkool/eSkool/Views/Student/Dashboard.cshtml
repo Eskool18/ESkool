@@ -4,129 +4,211 @@
 
 }
 <style>
-    #form-field tr {
-        padding: 2%;
-        margin: 2%;
-    }
-    #books, #complaint {
-        margin: 5%;
-    }
+        #form-field {
+            padding: 1%;
+            margin: 1%;
+        }
+   
+       
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 50px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            border: 1px solid rgb(145 74 140);
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
 
-    #announcement {
-        margin: 5%;
-        border: 1px dashed red;
-    }
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            box-shadow: 0 4px 8px 0 rgb(199 24 161 / 57%), 0 6px 20px 0 #448797;
+            border: 1px solid #888;
+            width: 50%;
+        }
 
-    .card {
-        width: 25%;
-    }
+        /* The Close Button */
+        .comp-close, .leave-close {
+            color: white;
+            float: right;
+            font-size: 30px;
+            border: none;
+            background: none;
+            font-weight: bold;
+        }
 
-    .modal {
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
-        padding-top: 100px; /* Location of the box */
-        left: 0;
-        top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        border: 1px solid rgb(145 74 140);
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    }
+        .modal-body form {
+            display: flex;
+            flex-direction: column;
+            padding: 2%;
+        }
 
-    .modal-content {
-        background-color: #fefefe;
-        margin: auto;
-        box-shadow: 0 4px 8px 0 rgb(199 24 161 / 57%), 0 6px 20px 0 #448797;
-        border: 1px solid #888;
-        width: 50%;
-    }
+            .modal-body form input[type=submit]:hover {
+                box-shadow: -6px 6px 0px 0 #22a1b782;
+                background: rgb(145 74 140 / 45%);
+            }
 
-    /* The Close Button */
-    .comp-close {
-        color: white;
-        float: right;
-        font-size: 30px;
-        border: none;
-        
-        background: none;
-        font-weight: bold;
-    }
+            .modal-body form input[type=submit] {
+                color: #ffffff;
+                box-shadow: -6px 6px 0px 0 rgb(145 74 140 / 45%);
+                background: #22a1b782;
+            }
+
+            .modal-body form div {
+                margin-bottom: 2%
+            }
 
         .comp-close:hover,
-        .comp-close:focus {
+        .comp-close:focus, .leave-close:hover, .leave-close:focus {
             color: rgb(145 74 140);
             font-weight: bolder;
             text-decoration: none;
             cursor: pointer;
         }
-    #complaint {
-        width: 30%;
-        background-color: #f5dede;
-        display: flex;
-        text-align: center;
-        padding: 3%;
-        flex-direction: column;
-    }
-    .modal-header {
-        background-color: #7b5c9261;
-        color: white;
-    }
-
-        .modal-header h3 {
-            font-size: 25px;
-            font-style: italic;
-            font-family: serif;
-        }
-    .modal-body input, .modal-body textarea {
-        border: none;
-        background: #efefef;
-        padding: 2%;
-    }
-    /*.show-btn {*/
-        /* font-weight: 600; */
-        /*color: #ffffff;
-        width: 90%;
-        box-shadow: -6px 6px 0px 0 rgb(145 74 140 / 45%);
-        font-size: 18px;
-        border: none;
-        padding: 2%;*/
-        /* border: 1px solid #7b5c92d9; */
-        /*background: #22a1b782;
-    }
-
-       */
-    #complaint i {
-        font-size: 50px;
-        color: #d91616;
-        margin-bottom: 5%;
-    }
-    .show-btn {
-        border: none;
-        background: none;
-        color: #d91616;
-        font-size: 20px;
-    }
-        .show-btn:hover {
-            background: rgb(217 22 22 / 31%);
+      
+        .modal-header {
+            background-color: #7b5c9261;
             color: white;
         }
+
+            .modal-header h3 {
+                font-size: 25px;
+                font-style: italic;
+                font-family: serif;
+            }
+
+        .modal-body input, .modal-body textarea {
+            border: none;
+            background: #efefef;
+            padding: 2%;
+        }
+
+        #duration {
+            display: flex;
+            justify-content: space-between;
+        }
+
+     
+       
+     
+     
+
+        #duration input {
+            width: 27%;
+            height: 25%;
+            font-size: 15px;
+        }
+
+        #total-days input {
+            width: 16%;
+        }
+
+        #duration label, #total-days label {
+            width: 10%;
+        }
+
+        #total-days label {
+            width: fit-content;
+            margin: 2%;
+        }
+     
+
+        #obediently {
+            margin-bottom: 1%;
+            text-align: end;
+        }
+
+            #obediently p {
+                margin-bottom: 1%;
+            }
+
+        #form-field .col-25 input, #form-field .col-25 label {
+            margin: 2%;
+        }
+    #complaint, #books, #leave {
+        width: 30%;
+        padding: 4%;
+        font-size: 20px;
+        text-align: center;
+        color: white;
+        background: rgba(0, 0, 0, 0) linear-gradient( -135deg, #4ea5bdd1 0%, #b69cc3 100%) repeat scroll 0 0;
+        border-radius: 5px;
+        box-shadow: 0 3px 15px 0 rgb(0 0 0 / 10%);
+        float: left;
+    }
+    .dash i {
+        background: rgba(255, 255, 255, 0.4) none repeat scroll 0 0;    
+        border-radius: 50%;
+        color: #fff;
+        cursor: pointer;
+        display: inline-block;
+        float: right;
+        font-size: 30px;
+        line-height: 55px;
+        text-align: center;
+        width: 55px;
+        margin-top: -5px;
+    }
+    .dash{
+        display:flex;
+        justify-content:space-evenly;
+    }
+    .dash button{
+        border:none;
+        background:none;
+        color:white;
+        width:100%;
+        margin:0;
+     
+    }
+    .dash-links {
+        display: flex;
+        color: white;
+        justify-content: space-between;
+        padding:5%;
+    }
+    #announcement {
+        background: #ffc0cb78;
+        width: 30%;
+        text-align: center;
+        color: #ef172b;
+        margin: auto;
+        border: 1px dashed red;
+        padding:1%;
+        margin-bottom:2%;
+    }
+    .dash-links:hover {
+        background: rgba(255, 255, 255, 0.4) none repeat scroll 0 0;
+       text-decoration:none;
+       color:white;
+    }
+
+    
 </style>
 
 <div id="announcement">
-    <h1 style="font-size: 30px; margin-top:10px;">Notice</h1>
+    <h1 style="font-size: 40px; margin-top:10px;"><i class="fas fa-bullhorn"></i></h1>
     <p>Holidays are starting from 27 Decemeber 2021.</p>
 </div>
-<div id="books" class="card">
-    <img src="~/lib/banner.png" />
-    <a href="/Student/download_books"><i class="fas fa-angle-double-down"> </i> Books</a>
+<div class="dash">
+
+    <div id="books">
+        <a class="dash-links" href="/Student/download_books"><p>Books</p> <i class="fas fa-angle-double-down"> </i> </a>
+    </div>
+    <div id="complaint">
+        <button class="show-btn dash-links" onclick="popModal()"><p>Complain</p> <i class="fas fa-exclamation-circle"></i> </button>
+    </div>
+    <div id="leave">
+        <button class="show-leave dash-links" onclick="leaveModal()"><p>Apply for Leave </p> <i class="fas fa-edit"></i> </button>
+    </div>
 </div>
-<div id="complaint">
-    <i class="fas fa-exclamation-circle"></i>
-    <button class="show-btn" onclick="popModal()"> Complain </button>
-</div>
+
 
 
 
@@ -144,20 +226,22 @@
         <div class="modal-body">
 
             <p style="color:red;">This message will be received by admin of institute.</p>
-            <table id="form-field">
-                <tr class="col-25">
-                    <td>From:</td>
-                    <td><input type="text" placeholder="@ViewBag.uname" disabled /></td>
-                </tr>
-                <tr class="col-25">
-                    <td>Complaint</td>
-                    <td><input type="text" name="subject" placeholder="Write here.."/></td>
-                </tr>
-          
-                
-            </table>
-   
-            <input type="submit" value=" Send " />
+            <form action="Student/Dashboard">
+                <div id="form-field">
+                    <div class="col-25">
+                        <label for="complaint-from" style="width: 13%;">From:</label>
+                        <input id="complaint-from" type="text" placeholder="@ViewBag.uname" disabled />
+                    </div>
+                    <div class="col-25">
+                        <label for="complaint-body">Complaint</label>
+                        <textarea id="complaint-body" style="margin-left: 3%; width: 60%;" type="text" name="subject" placeholder="Write here.."></textarea>
+                    </div>
+
+
+                </div>
+
+                <input type="submit" style=" width: 30%; margin: auto;" value=" Send " />
+            </form>
         </div>
 
     </div>
@@ -165,4 +249,55 @@
 </div>
 
 
+<div id="leave-Modal" class="modal">
 
+    <!-- Modal content -->
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Leave/Application</h3>
+            <button class="leave-close" onclick="closeLeave()"> &times; </button>
+            @*<span class="comp-close">&times;</span>*@
+
+
+        </div>
+        <div class="modal-body">
+
+            <p style="color:red;">This message will be received by your Class Incharge.</p>
+            <form action="Student/Dashboard">
+                <div>
+                    <label for="name">Name:</label>
+                    <input type="text" style=" width: 40%;" id="name" name="name" placeholder="@ViewBag.uname" disabled />
+                    <label for="reason" style="margin-left:2%;">Reason: </label>
+                    <select id="reason" style=" width: 35%; padding: 2%; border: none; background: #efefef;" name="reason">
+                        <option value="Sick">Sick</option>
+                        <option value="Urgent">Urgent Work</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div id="duration">
+                    <label for="from">From:</label>
+                    <input type="date" id="from" name="from" onchange="calculateDuration();" required>
+                    <label for="to">To:</label>
+                    <input type="date" id="to" name="to" onchange="calculateDuration();" checked required>
+                    <div id="total-days" style="display:flex;">
+                        <label for="leaves-duration">Total Leaves: </label>
+                        <p style=" margin: 2%; color: red; border: 1px solid red; text-align: center; width: 45%;" id="leaves-duration">&nbsp; </p>
+                    </div>
+                </div>
+
+                <label for="txt">Dear Sir/Madam, </label>
+                <input type="text" id="txt" name="txt" style="height:80px;" required>
+                <div id="obediently">
+                    <p>Yours Obediently,</p>
+                    <p>@ViewBag.uname</p>
+                </div>
+
+                <input type="submit" style=" width: 30%; margin: auto;">
+            </form>
+
+
+        </div>
+
+    </div>
+
+</div>

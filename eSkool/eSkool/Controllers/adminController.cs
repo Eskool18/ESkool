@@ -14,6 +14,7 @@ namespace eSkool.Controllers
         {
             if (HttpContext.Session.GetString("username") != null)
             {
+                ViewBag.color = "57%";
                 return View();
             }
             return RedirectToAction("login", "login");
@@ -128,7 +129,22 @@ namespace eSkool.Controllers
         [HttpGet]
         public IActionResult addClass()
         {
-            return View();
+
+            List<UserInfo> Teachers=null;
+            try
+            {
+                using (eSkoolDBContext eskoolDb=new eSkoolDBContext())
+                {
+                   Teachers= eskoolDb.UserInfos.ToList();
+
+                }
+            }
+            catch(Exception e)
+            {
+
+            }
+
+            return View(Teachers);
         }
 
         [HttpPost]
@@ -138,7 +154,21 @@ namespace eSkool.Controllers
         }
         public IActionResult showClasses()
         {
-            return View();
+
+            List<UserInfo> Teachers = null;
+            try
+            {
+                using (eSkoolDBContext eskoolDb = new eSkoolDBContext())
+                {
+                    Teachers = eskoolDb.UserInfos.ToList();
+
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+            return View(Teachers);
         }
 
     }
