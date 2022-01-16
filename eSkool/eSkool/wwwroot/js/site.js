@@ -42,12 +42,7 @@
 //}
 
 //// When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-        span = document.getElementsByClassName("close")[0];
-    }
-}
+
 //----------function to print challan-----------
 function printDiv() {
     divContents = document.getElementById("challan").innerHTML;
@@ -165,21 +160,26 @@ function assign() {
     cell3.innerHTML = selectedS;
 
     cell4 = row.insertCell(3);
-    element1 = document.createElement("a");
-    element1.class = "dlt-row";
-    element1.innerHTML = "X";
-    element1.onclick = unassign();
-
-    cell4.appendChild(element1);
+    //element1 = document.createElement("a");
+    //element1.addEventListener("click", unassign, false); 
+    cell4.className = "dlt-row";
+    cell4.innerHTML = "X";
+    cell4.addEventListener("click", unassign, false);
+    
+    //cell4.appendChild(element1);
 }
+//function myFunction() {
+//    document.getElementById("myTable").deleteRow(0);
+//}
 
 function unassign() {
-    closebtns = document.getElementsByClassName("dlt-row");
-    for (i = 0; i < closebtns.length; i++) {
-        closebtns[i].addEventListener("click", function () {
-            this.parentElement.style.display = 'none';
-        });
-    }
+    this.parentElement.style.display = 'none';
+    //closebtns = document.getElementsByClassName("dlt-row");
+    //for (i = 0; i < closebtns.length; i++) {
+    //    closebtns[i].addEventListener("click", function () {
+           
+    //    });
+    //}
 }
 currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the current tab
@@ -252,18 +252,25 @@ function fixStepIndicator(n) {
     //... and adds the "active" class on the current step:
     x[n].className += " active";
 }
-window.onload = function () {
-    openChart();
-};
-function openChart() {
-    xValues = ["English", "Urdu", "Mathematics", "Science", "Computer"];
-    yValues = [5, 20, 14, 21, 15];
+//window.onload = function () {
+//    openChart();
+//};
+function openChart(yValues) {
+    xValues = ["English", "Urdu", "Mathematics", "Science","Pak-Study", "Islamiat", "Physics", "Chemistry", "Computer", "Boilogy"];
+        
+       
+    //yValues = { e, u, m, s, pak, i, p, c, comp, b };
     barColors = [
-        "#b91d47",
+        "#e5a0c3",
         "#00aba9",
         "#2b5797",
-        "#e8c3b9",
-        "#1e7145"
+        "#41e6f7",
+        "#ef28a9",
+        "#ecef28",
+        "#9ea5c5",
+        "#a0e5c5",
+        "#ef9628",
+        "purple"
     ];
 
     new Chart("myChart", {
@@ -278,8 +285,79 @@ function openChart() {
         options: {
             title: {
                 display: true,
-                text: "World Wide Wine Production 2018"
+                text: "Subject Teachers"
             }
         }
     });
+}
+
+
+
+
+function displayCalendar() {
+     dt = new Date();
+     month = dt.getMonth(); // read the current month
+     year = dt.getFullYear(); // read the current year
+
+    dt = new Date(year, month, 01);//Year , month,date format
+
+    first_day = dt.getDay(); //, first day of present month
+   
+    //document.write("first_day=" + first_day + "<br><br>");
+    
+    dt.setMonth(month + 1, 0); // Set to next month and one day backward.
+    last_date = dt.getDate(); // Last date of present month
+   
+    //document.write(dt); // Last date in full
+   
+    //document.write("<br><br> Last Date of the month =" + last_date + "<br><br>");
+
+    dy = 1; // day variable for adjustment of starting date.
+    //cal.innerHTML += "<table><tr><td>Su</td><td>Mon</td><td>Tue</td><td>Wed</td><td>Thu</td><td>Fri</td><td>Sat</td></tr></table>";
+    //document.write("<table><tr><td>Su</td><td>Mon</td><td>Tue</td><td>Wed</td><td>Thu</td><td>Fri</td><td>Sat</td>");
+    //cal.innerHTML += "<table><tr>";
+    table = document.getElementById("calendar");
+
+    rowCount = table.rows.length;
+    row = table.insertRow(rowCount);
+    row.className = "row1";
+    cell1 = row.insertCell(0);
+    cell1.innerHTML = "SUN";
+    cell2 = row.insertCell(1);
+    cell2.innerHTML = "MON";
+    cell3 = row.insertCell(2);
+    cell3.innerHTML = "TUE";
+    cell4 = row.insertCell(3);
+    cell4.innerHTML = "WED";
+    cell5 = row.insertCell(4);
+    cell5.innerHTML = "THU";
+    cell6 = row.insertCell(5);
+    cell6.innerHTML = "FRI";
+    cell7 = row.insertCell(6);
+    cell7.innerHTML = "SAT";
+
+    j = 0;
+    for (i = 0; i <= 41; i++) {
+        if ((i % 7) == 0) {
+            rowCount = table.rows.length;
+            row = table.insertRow(rowCount);
+            j = 0;
+            //document.write("</tr><tr>");
+        } // if week is over then start a new line
+        if ((i >= first_day) && (dy <= last_date)) {
+            cell = row.insertCell(j); 
+            cell.innerHTML = dy;
+            j++;
+            //document.write("<td>" + dy + "</td>");
+            dy = dy + 1;
+        } else {
+            cell = row.insertCell(j); 
+            cell.innerHTML = "*";
+            cell.className = "aesterik";
+            j++;
+            //document.write("<td>*</td>");
+        } // Blank dates.
+    } // end of for loop
+    
+    //document.write("</tr></table>")
 }

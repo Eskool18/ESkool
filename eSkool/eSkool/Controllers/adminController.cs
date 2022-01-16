@@ -25,7 +25,21 @@ namespace eSkool.Controllers
 
                         //Coding Block---------------------------------------------------------
                         {
-                            return View();
+                            List<ClassSubjectTeacher> teachers = null;
+                            try
+                            {
+                                using (eSkoolDBContext eskoolDb = new eSkoolDBContext())
+                                {
+                                    teachers = eskoolDb.ClassSubjectTeachers.ToList();
+
+                                }
+                            }
+                            catch (Exception e)
+                            {
+
+                            }
+
+                            return View(teachers);
                         }
                         //Coding Block---------------------------------------------------------
 
@@ -54,8 +68,8 @@ namespace eSkool.Controllers
 
                         //Coding Block---------------------------------------------------------
                         {
-
-                        return View();
+                            return View();
+                          
                         }
                         //Coding Block---------------------------------------------------------
 

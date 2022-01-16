@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<ClassSubjectTeacher>
+@{
     ViewBag.Title = "adminDashboard";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
@@ -52,24 +53,32 @@
     }
     .teachers {
         float: left;
-        padding: 23px 25px;
-        background: #fff none repeat scroll 0 0;
-        border-radius: 5px;      
-        box-shadow: 0 3px 15px 0 rgb(0 0 0 / 10%);       
-        width: 30%;
+        padding: 2% 3% 0%;
+        background: #ffffff none repeat scroll 0 0;
+        border-radius: 5px;
+        box-shadow: 0 3px 15px 0 #b1aacc;
+        width: 35%;
     }
-    .teachers p{
-        width: @ViewBag.color;
-        color:pink;
-    }
-    .teachers span{
-        background: #e9e9e9;  
-        float: left;
-        height: 7px;
-        margin-top: 30px;
-        position: relative;
-        width: 100%;
-    }
+        .teachers p {
+            color: #79b1c8;
+            margin-bottom: 0%;
+            font-style: italic;
+            font-size: 15px;
+        }
+        .teachers p i {
+            color: #79b1c8;
+            font-size: 30px;
+            margin-right:5%;
+        }
+        .teachers span {
+            background: #eeedf4;
+            float: left;
+            height: 7px;
+            margin-top: 5%;
+            position: relative;
+            width: 100%;
+            margin-bottom: 10%;
+        }
     .teachers > span.fifty::before {
         width: @ViewBag.color;
     }
@@ -92,27 +101,64 @@
     }
         .dash-links:hover
     {
-    
+
         background: rgba(255, 255, 255, 0.4) none repeat scroll 0 0;
         text-decoration: none;
         color:white;
     }
-        
+    #myChart {
+        padding: 2% 0%;
+        background: #ffffff none repeat scroll 0 0;
+        border-radius: 5px;
+        box-shadow: 0 3px 15px 0 #b1aacc;
+    }
 </style>
-<body onload="openChart();">
+ @{
+     int e = 0, u = 0, m = 0, p = 0, c = 0, b = 0, comp = 0, s = 0, pak = 0, i = 0;
+
+     foreach (var teacher in Model)
+     {
+         if (teacher.SubjectName.ToUpper() == "ENGLISH")
+             e++;
+         else if (teacher.SubjectName.ToUpper() == "URDU")
+             u++;
+         else if (teacher.SubjectName.ToUpper() == "MATH")
+             m++;
+         else if (teacher.SubjectName.ToUpper() == "SCIENCE")
+             s++;
+         else if (teacher.SubjectName.ToUpper() == "PAK-STUDY")
+             pak++;
+         else if (teacher.SubjectName.ToUpper() == "ISLAMIAT")
+             i++;
+         else if (teacher.SubjectName.ToUpper() == "PHYSICS")
+             p++;
+         else if (teacher.SubjectName.ToUpper() == "CHEMISTRY")
+             c++;
+         else if (teacher.SubjectName.ToUpper() == "COMPUTER")
+             comp++;
+         else if (teacher.SubjectName.ToUpper() == "BIOLOGY")
+             b++;
+
+     }
+     int[] yValues = { e, u, m, s, pak, i, p, c, comp, b };
+     }
+
+
+<body onload="return openChart([@e, @u, @m, @s, @pak, @i, @p, @c, @comp, @b]);">
 
     <div class="teacher-bar">
         <div class="teachers">
-            <p>Admin</p> <i class="fas fa-chalkboard-teacher"></i>
+            <p> <i class="fas fa-user-cog"></i> Admin</p>
             <span class="fifty purpal" :before></span>
 
-            <p>Teachers</p> <i class="fas fa-chalkboard-teacher"></i>
+            <p> <i class="fas fa-chalkboard-teacher"></i>Teachers</p>
             <span class="fifty purpal"></span>
 
-            <p>Students</p> <i class="fas fa-chalkboard-teacher"></i>
+            <p><i class="fas fa-user-graduate"></i>Students</p>
             <span class="fifty purpal"></span>
         </div>
-        <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+        <canvas id="myChart" style=" max-width: 55%; height: 270px; max-height: 270px;"></canvas>
 
     </div>
     <div class="dash">

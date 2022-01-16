@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace eSkool.Controllers
 {
-    public class Student : Controller
+    public class StudentController : Controller
     {
         public IActionResult Dashboard()
         {
@@ -26,13 +26,7 @@ namespace eSkool.Controllers
 
                         {
 
-                            //    if (HttpContext.Session.GetString("username") != null)
-                            //    {
-                            //        ViewBag.uname = HttpContext.Session.GetString("username");
-                            //        return View();
-                            //    }
-                            //    return RedirectToAction("login", "login");
-                            
+                          
                             return View();                         
                         }
 
