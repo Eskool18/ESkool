@@ -1,27 +1,34 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Farooq\\ESkool\\eSkool\\eSkool\\eSkool.csproj": {}
+    "C:\\Users\\Hp\\Desktop\\EskoolFYP\\Eskool18\\ESkool\\eSkool\\eSkool\\eSkool.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Farooq\\ESkool\\eSkool\\eSkool\\eSkool.csproj": {
+    "C:\\Users\\Hp\\Desktop\\EskoolFYP\\Eskool18\\ESkool\\eSkool\\eSkool\\eSkool.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Farooq\\ESkool\\eSkool\\eSkool\\eSkool.csproj",
+        "projectUniqueName": "C:\\Users\\Hp\\Desktop\\EskoolFYP\\Eskool18\\ESkool\\eSkool\\eSkool\\eSkool.csproj",
         "projectName": "eSkool",
-        "projectPath": "C:\\Users\\Farooq\\ESkool\\eSkool\\eSkool\\eSkool.csproj",
-        "packagesPath": "C:\\Users\\Farooq\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Farooq\\ESkool\\eSkool\\eSkool\\obj\\",
+        "projectPath": "C:\\Users\\Hp\\Desktop\\EskoolFYP\\Eskool18\\ESkool\\eSkool\\eSkool\\eSkool.csproj",
+        "packagesPath": "C:\\Users\\Hp\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Hp\\Desktop\\EskoolFYP\\Eskool18\\ESkool\\eSkool\\eSkool\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Farooq\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "D:\\VS\\MyMath\\MyMath\\bin\\Release\\netcoreapp3.1\\publish": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

@@ -52,7 +52,7 @@ namespace eSkool
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Student}/{action=Subjects}/{id?}");
+                    pattern: "{controller=login}/{action=login}/{id?}");
             });
         }
     }

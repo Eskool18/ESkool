@@ -14,8 +14,25 @@ namespace eSkool.Controllers
         {
             if (HttpContext.Session.GetString("username") != null)
             {
-                ViewBag.color = "57%";
-                return View();
+                string username = HttpContext.Session.GetString("username");
+                using(eSkoolDBContext db = new eSkoolDBContext())
+                {
+                    string role = db.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
+                    if (role == "A")
+                    {
+                        ViewBag.username = username;
+                        ViewBag.color = "57%";
+
+                        //Coding Block---------------------------------------------------------
+                        {
+                            return View();
+                        }
+                        //Coding Block---------------------------------------------------------
+
+                    }
+                    else return RedirectToAction("AccessWarning403", "login", new { role = role });
+                }
+                
             }
             return RedirectToAction("login", "login");
    
@@ -25,8 +42,35 @@ namespace eSkool.Controllers
         [HttpGet]
         public IActionResult addTeacher()
         {
-            return View();
+            if (HttpContext.Session.GetString("username") != null)
+            {
+                string username = HttpContext.Session.GetString("username");
+                using (eSkoolDBContext db = new eSkoolDBContext())
+                {
+                    string role = db.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
+                    if (role == "A")
+                    {
+                        ViewBag.username = username;
+
+                        //Coding Block---------------------------------------------------------
+                        {
+
+                        return View();
+                        }
+                        //Coding Block---------------------------------------------------------
+
+                    }
+                    else return RedirectToAction("AccessWarning403", "login", new { role = role });
+                }
+
+            }
+            return RedirectToAction("login", "login");
+            
         }
+
+
+
+
         [HttpPost]
         public IActionResult addTeacher(string tId,string userName,string salary,string designation,string password)
         {
@@ -54,18 +98,33 @@ namespace eSkool.Controllers
            return RedirectToAction("login", "login");
         }
 
+
+
         public IActionResult showTeachers()
         {
-            try
+            if (HttpContext.Session.GetString("username") != null)
             {
-                eSkoolDBContext dbcontext = new eSkoolDBContext();
-                
-            }
-            catch(Exception ex)
-            {
+                string username = HttpContext.Session.GetString("username");
+                using (eSkoolDBContext db = new eSkoolDBContext())
+                {
+                    string role = db.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
+                    if (role == "A")
+                    {
+                        ViewBag.username = username;
+
+                        //Coding Block---------------------------------------------------------
+                        {
+
+                        return View();
+                        }
+                        //Coding Block---------------------------------------------------------
+                    
+                    }
+                    else return RedirectToAction("AccessWarning403", "login", new { role = role });
+                }
 
             }
-            return View();
+            return RedirectToAction("login", "login");          
         }
 
 
@@ -74,7 +133,30 @@ namespace eSkool.Controllers
         [HttpGet]
         public IActionResult addStudent()
         {
-            return View();
+            if (HttpContext.Session.GetString("username") != null)
+            {
+                string username = HttpContext.Session.GetString("username");
+                using (eSkoolDBContext db = new eSkoolDBContext())
+                {
+                    string role = db.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
+                    if (role == "A")
+                    {
+                        ViewBag.username = username;
+
+                        //Coding Block---------------------------------------------------------
+                        {
+
+
+                            return View();
+                        }
+                        //Coding Block---------------------------------------------------------
+
+                    }
+                    else return RedirectToAction("AccessWarning403", "login", new { role = role });
+                }
+
+            }
+            return RedirectToAction("login", "login");            
         }
         [HttpPost]
         public IActionResult addStudent(string sId, string userName, string rollnum, string sClass, string password)
@@ -105,7 +187,29 @@ namespace eSkool.Controllers
 
         public IActionResult showStudents()
         {
-            return View();
+            if (HttpContext.Session.GetString("username") != null)
+            {
+                string username = HttpContext.Session.GetString("username");
+                using (eSkoolDBContext db = new eSkoolDBContext())
+                {
+                    string role = db.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
+                    if (role == "A")
+                    {
+                        ViewBag.username = username;
+
+                        //Coding Block---------------------------------------------------------
+                        {
+
+                            return View();
+                        }
+                        //Coding Block---------------------------------------------------------
+                    }
+                    else return RedirectToAction("AccessWarning403", "login", new { role = role });
+                }
+
+            }
+            return RedirectToAction("login", "login");
+         
         }
 
 
@@ -113,62 +217,165 @@ namespace eSkool.Controllers
         [HttpGet]
         public IActionResult addQuestion()
         {
-            return View();
+            if (HttpContext.Session.GetString("username") != null)
+            {
+                string username = HttpContext.Session.GetString("username");
+                using (eSkoolDBContext db = new eSkoolDBContext())
+                {
+                    string role = db.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
+                    if (role == "A")
+                    {
+                        ViewBag.username = username;
+
+                        //Coding Block---------------------------------------------------------
+                        {
+
+
+                            return View();
+                        }
+                        //Coding Block---------------------------------------------------------
+
+                       
+                    }
+                    else return RedirectToAction("AccessWarning403", "login", new { role = role });
+                }
+
+            }
+            return RedirectToAction("login", "login");            
         }
+
+
         [HttpPost]
         public IActionResult addQuestion(string Syllabus,string Class,string Questiontype,string Subject,string Chapter,
             string Exercise,string Statement,string Option1=null, string Option2=null, string Option3=null, string Option4=null, string CorrectOption=null)
         {
             return View();
         }
+
+
         public IActionResult questionNotification()
         {
-            return View();
+
+            if (HttpContext.Session.GetString("username") != null)
+            {
+                string username = HttpContext.Session.GetString("username");
+                using (eSkoolDBContext db = new eSkoolDBContext())
+                {
+                    string role = db.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
+                    if (role == "A")
+                    {
+                        ViewBag.username = username;
+
+                        //Coding Block---------------------------------------------------------
+                        {
+
+                            return View();
+                        }
+                        //Coding Block---------------------------------------------------------
+
+                       
+                    }
+                    else return RedirectToAction("AccessWarning403", "login", new { role = role });
+                }
+
+            }
+            return RedirectToAction("login", "login");
         }
+
+
 
         [HttpGet]
         public IActionResult addClass()
         {
-
-            List<UserInfo> Teachers=null;
-            try
+            if (HttpContext.Session.GetString("username") != null)
             {
-                using (eSkoolDBContext eskoolDb=new eSkoolDBContext())
+                string username = HttpContext.Session.GetString("username");
+                using (eSkoolDBContext db = new eSkoolDBContext())
                 {
-                   Teachers= eskoolDb.UserInfos.ToList();
+                    string role = db.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
+                   
+                    if (role == "A")
+                    {
+                       ViewBag.username = username;
+                       
+                         //Coding Block--------------------------------------------
+                        {
+                            List<UserInfo> Teachers = null;
+                            try
+                            {
+                                using (eSkoolDBContext eskoolDb = new eSkoolDBContext())
+                                {
+                                    Teachers = eskoolDb.UserInfos.ToList();
 
+                                }
+                            }
+                            catch (Exception e)
+                            {
+
+                            }
+
+                            return View(Teachers);
+                        }
+                        //Coding Block-----------------------------------------------------
+                    }
+
+
+                    else return RedirectToAction("AccessWarning403", "login", new { role = role });
                 }
             }
-            catch(Exception e)
-            {
-
-            }
-
-            return View(Teachers);
+            return RedirectToAction("login", "login");
+                       
         }
+
+
 
         [HttpPost]
         public IActionResult addClass(string className,string grade,string teacherName,int strength)
         {
             return View();
         }
+
+
+
         public IActionResult showClasses()
         {
 
-            List<UserInfo> Teachers = null;
-            try
+            if (HttpContext.Session.GetString("username") != null)
             {
-                using (eSkoolDBContext eskoolDb = new eSkoolDBContext())
+                string username = HttpContext.Session.GetString("username");
+                using (eSkoolDBContext db = new eSkoolDBContext())
                 {
-                    Teachers = eskoolDb.UserInfos.ToList();
+                    string role = db.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
+                    if (role == "A")
+                    {
+                        ViewBag.username = username;
 
+                        //Coding Block------------------------------------------------------------
+                        {
+                            List<UserInfo> Teachers = null;
+                            try
+                            {
+                                using (eSkoolDBContext eskoolDb = new eSkoolDBContext())
+                                {
+                                    Teachers = eskoolDb.UserInfos.ToList();
+
+                                }
+                            }
+                            catch (Exception e)
+                            {
+
+                            }
+
+                            return View(Teachers);
+                        }
+                        //Coding Block--------------------------------------------------------
+                    
+                    }
+                    else return RedirectToAction("AccessWarning403", "login", new { role = role });
                 }
-            }
-            catch (Exception e)
-            {
 
             }
-            return View(Teachers);
+            return RedirectToAction("login", "login");                       
         }
 
     }

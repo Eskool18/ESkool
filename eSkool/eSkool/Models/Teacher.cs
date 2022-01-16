@@ -9,7 +9,8 @@ namespace eSkool.Models
     {
         public Teacher()
         {
-            ClassTeachers = new HashSet<ClassTeacher>();
+            ClassSubjectTeachers = new HashSet<ClassSubjectTeacher>();
+            Complaints = new HashSet<Complaint>();
         }
 
         public string TeacherId { get; set; }
@@ -21,6 +22,7 @@ namespace eSkool.Models
         public string TeacherCnic { get; set; }
         public string Experience { get; set; }
 
-        public virtual ICollection<ClassTeacher> ClassTeachers { get; set; }
+        public virtual ICollection<ClassSubjectTeacher> ClassSubjectTeachers { get; set; }
+        public virtual ICollection<Complaint> Complaints { get; set; }
     }
 }

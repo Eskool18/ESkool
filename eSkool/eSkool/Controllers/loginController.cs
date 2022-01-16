@@ -44,8 +44,35 @@ namespace eSkool.Controllers
             {
                 return View();
             }
-            
-            
+                        
         }
-    }
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Remove("username");
+            HttpContext.Session.Remove("passwrod");            
+            return RedirectToAction("login");
+        }
+
+        public IActionResult AccessWarning403(string role)
+        {
+            HttpContext.Session.Remove("username");
+            HttpContext.Session.Remove("passwrod");
+            ViewBag.AccessWarningRole = getCompleteRole(role);
+            return View();
+        }
+
+        string getCompleteRole(string role)
+        {
+            if (role == "A")
+                return "Admin";
+            else if (role == "S")
+                return "Student";
+            else if(role=="T") 
+                return "Teacher";
+
+            return "Anonymous User";
+        }
+   
+    
+    }//End Controller
 }

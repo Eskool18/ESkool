@@ -9,15 +9,16 @@ namespace eSkool.Models
     {
         public SchoolClass()
         {
-            ClassTeachers = new HashSet<ClassTeacher>();
+            ClassSubjectTeachers = new HashSet<ClassSubjectTeacher>();
             Students = new HashSet<Student>();
         }
 
         public int ClassGrade { get; set; }
         public string ClassName { get; set; }
         public string Incharge { get; set; }
+        public int? TotalStudent { get; set; }
 
-        public virtual ICollection<ClassTeacher> ClassTeachers { get; set; }
+        public virtual ICollection<ClassSubjectTeacher> ClassSubjectTeachers { get; set; }
         public virtual ICollection<Student> Students { get; set; }
     }
 }

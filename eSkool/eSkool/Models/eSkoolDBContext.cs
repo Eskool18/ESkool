@@ -17,16 +17,22 @@ namespace eSkool.Models
         {
         }
 
+        public virtual DbSet<Application> Applications { get; set; }
         public virtual DbSet<ChaptersInfo> ChaptersInfos { get; set; }
+        public virtual DbSet<ClassSubjectTeacher> ClassSubjectTeachers { get; set; }
         public virtual DbSet<ClassTeacher> ClassTeachers { get; set; }
         public virtual DbSet<ClasssesInfo> ClasssesInfos { get; set; }
+        public virtual DbSet<Complaint> Complaints { get; set; }
         public virtual DbSet<CoursesInfo> CoursesInfos { get; set; }
         public virtual DbSet<ExercisesInfo> ExercisesInfos { get; set; }
+        public virtual DbSet<HelpingMeterial> HelpingMeterials { get; set; }
+        public virtual DbSet<Notice> Notices { get; set; }
         public virtual DbSet<QuestionBank> QuestionBanks { get; set; }
         public virtual DbSet<QuestionBankMcq> QuestionBankMcqs { get; set; }
         public virtual DbSet<QuestionTypesInfo> QuestionTypesInfos { get; set; }
         public virtual DbSet<SchoolClass> SchoolClasses { get; set; }
         public virtual DbSet<Student> Students { get; set; }
+        public virtual DbSet<Subject> Subjects { get; set; }
         public virtual DbSet<SubjectsInfo> SubjectsInfos { get; set; }
         public virtual DbSet<Teacher> Teachers { get; set; }
         public virtual DbSet<UserInfo> UserInfos { get; set; }
@@ -43,6 +49,34 @@ namespace eSkool.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
+
+            modelBuilder.Entity<Application>(entity =>
+            {
+                entity.Property(e => e.ApplicationId).HasColumnName("ApplicationID");
+
+                entity.Property(e => e.AppicationTitle).IsUnicode(false);
+
+                entity.Property(e => e.ApplicationBody).HasColumnType("text");
+
+                entity.Property(e => e.ApplicationFromDate).HasColumnType("date");
+
+                entity.Property(e => e.ApplicationToDate).HasColumnType("date");
+
+                entity.Property(e => e.StudentId)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("StudentID");
+
+                entity.Property(e => e.SubmissionDate)
+                    .HasColumnType("date")
+                    .HasColumnName("submissionDate");
+
+                entity.HasOne(d => d.Student)
+                    .WithMany(p => p.Applications)
+                    .HasForeignKey(d => d.StudentId)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_Applications_Student");
+            });
 
             modelBuilder.Entity<ChaptersInfo>(entity =>
             {
@@ -75,6 +109,39 @@ namespace eSkool.Models
                     .HasConstraintName("FK_ChaptersInfo_SubjectsInfo");
             });
 
+            modelBuilder.Entity<ClassSubjectTeacher>(entity =>
+            {
+                entity.HasKey(e => e.ClassSubjectId);
+
+                entity.ToTable("ClassSubjectTeacher");
+
+                entity.Property(e => e.ClassSubjectId).HasColumnName("ClassSubjectID");
+
+                entity.Property(e => e.ClassName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.SubjectName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("subjectName");
+
+                entity.Property(e => e.TeacherId)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("TeacherID");
+
+                entity.HasOne(d => d.Teacher)
+                    .WithMany(p => p.ClassSubjectTeachers)
+                    .HasForeignKey(d => d.TeacherId)
+                    .HasConstraintName("FK_ClassSubjectTeacher_Teacher");
+
+                entity.HasOne(d => d.Class)
+                    .WithMany(p => p.ClassSubjectTeachers)
+                    .HasForeignKey(d => new { d.ClassGrade, d.ClassName })
+                    .HasConstraintName("FK_ClassSubjectTeacher_SchoolClasses");
+            });
+
             modelBuilder.Entity<ClassTeacher>(entity =>
             {
                 entity.HasKey(e => new { e.ClassGrade, e.ClassName, e.TeacherId });
@@ -87,16 +154,6 @@ namespace eSkool.Models
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("TeacherID");
-
-                entity.HasOne(d => d.Teacher)
-                    .WithMany(p => p.ClassTeachers)
-                    .HasForeignKey(d => d.TeacherId)
-                    .HasConstraintName("FK_ClassTeachers_Teacher");
-
-                entity.HasOne(d => d.Class)
-                    .WithMany(p => p.ClassTeachers)
-                    .HasForeignKey(d => new { d.ClassGrade, d.ClassName })
-                    .HasConstraintName("FK_ClassTeachers_SchoolClasses");
             });
 
             modelBuilder.Entity<ClasssesInfo>(entity =>
@@ -121,6 +178,36 @@ namespace eSkool.Models
                     .WithMany(p => p.ClasssesInfos)
                     .HasForeignKey(d => d.CourseId)
                     .HasConstraintName("FK_ClasssesInfo_CoursesInfo1");
+            });
+
+            modelBuilder.Entity<Complaint>(entity =>
+            {
+                entity.Property(e => e.ComplaintId).HasColumnName("complaintID");
+
+                entity.Property(e => e.ComplaintDate)
+                    .HasColumnType("date")
+                    .HasColumnName("complaintDate");
+
+                entity.Property(e => e.ComplaintStatement)
+                    .HasColumnType("text")
+                    .HasColumnName("complaintStatement");
+
+                entity.Property(e => e.UserName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("userName");
+
+                entity.HasOne(d => d.UserNameNavigation)
+                    .WithMany(p => p.Complaints)
+                    .HasForeignKey(d => d.UserName)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_complaints_Student");
+
+                entity.HasOne(d => d.UserName1)
+                    .WithMany(p => p.Complaints)
+                    .HasForeignKey(d => d.UserName)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_complaints_Teacher");
             });
 
             modelBuilder.Entity<CoursesInfo>(entity =>
@@ -178,6 +265,55 @@ namespace eSkool.Models
                     .HasForeignKey(d => new { d.CourseId, d.ClassGrade, d.SubjectName, d.ChapterName })
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_ExercisesInfo_ChaptersInfo");
+            });
+
+            modelBuilder.Entity<HelpingMeterial>(entity =>
+            {
+                entity.HasKey(e => e.MaterialId)
+                    .HasName("PK_helpingMeterial");
+
+                entity.ToTable("HelpingMeterial");
+
+                entity.Property(e => e.MaterialId).HasColumnName("materialID");
+
+                entity.Property(e => e.MaterialClass).HasColumnName("materialClass");
+
+                entity.Property(e => e.MaterialName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("materialName");
+
+                entity.Property(e => e.MaterialSubject)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("materialSubject");
+
+                entity.Property(e => e.MaterialType)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("materialType");
+
+                entity.Property(e => e.UserName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("userName");
+            });
+
+            modelBuilder.Entity<Notice>(entity =>
+            {
+                entity.Property(e => e.NoticeId).HasColumnName("noticeID");
+
+                entity.Property(e => e.NoticeFromDate)
+                    .HasColumnType("date")
+                    .HasColumnName("noticeFromDate");
+
+                entity.Property(e => e.NoticeLastDate)
+                    .HasColumnType("date")
+                    .HasColumnName("noticeLastDate");
+
+                entity.Property(e => e.NoticeStatement)
+                    .HasColumnType("text")
+                    .HasColumnName("noticeStatement");
             });
 
             modelBuilder.Entity<QuestionBank>(entity =>
@@ -281,15 +417,12 @@ namespace eSkool.Models
 
             modelBuilder.Entity<Student>(entity =>
             {
-                entity.HasKey(e => e.UserName)
-                    .HasName("PK_Student_Info");
-
                 entity.ToTable("Student");
 
-                entity.Property(e => e.UserName)
+                entity.Property(e => e.StudentId)
                     .HasMaxLength(50)
                     .IsUnicode(false)
-                    .HasColumnName("userName");
+                    .HasColumnName("StudentID");
 
                 entity.Property(e => e.AdmissionDate).HasColumnType("date");
 
@@ -327,6 +460,16 @@ namespace eSkool.Models
                     .HasForeignKey(d => new { d.ClassGrade, d.ClassName })
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_Student_SchoolClasses");
+            });
+
+            modelBuilder.Entity<Subject>(entity =>
+            {
+                entity.HasKey(e => e.SubjectName);
+
+                entity.Property(e => e.SubjectName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("subjectName");
             });
 
             modelBuilder.Entity<SubjectsInfo>(entity =>
