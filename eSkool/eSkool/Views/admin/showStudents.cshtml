@@ -47,20 +47,64 @@
         text-shadow: 1px -1px #ffffff;
     }
 </style>
-<h1>Students List</h1>
+
+
+<div class="form-group">
+    <form action="/admin/showStudents" method="post">
+
+        <div class="form-row">
+            <div  class="form-group col-md-3">
+                <label><b>Class Grade</b> </label>
+                <select name="ClassGrade" class="custom-select custom-select-lg"  required>
+                    <option disabled selected>--Class @ViewBag.classGrade</option>
+                    <option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                </select>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label><b>Class Name</b></label>
+                <select name="ClassName" class="custom-select custom-select-lg" required>
+                    <option disabled selected>--Class @ViewBag.className</option>
+                    <option>9th</option>
+                    <option>Pre-9th</option>
+                    <option>9th-special section</option>
+                </select>
+            </div>
+
+        <div class="form-group col-md-3">            
+            <input type="submit" class="btn btn-dark" value="Search Now" style="margin-left:50px;margin-top:33px;width:60%" >
+        </div>
+        </div>
+    </form>
+
+</div>
 
 <p class="float-right">
-    <a href="#" class="btn btn-outline-primary">Create New</a>
+    <a href="/admin/addStudent" class="btn btn-outline-primary">Add Student</a>
 </p>
-<table class="table">
+<table class="table table-hover">
     <thead>
         <tr>
-            
+
             <th>
                 @Html.DisplayNameFor(model => model.StudentName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ClassName)
+                @Html.DisplayNameFor(model => model.FatherName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClassGrade)
+                /@Html.DisplayNameFor(model => model.ClassName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.RollNumber)
@@ -69,57 +113,33 @@
                 @Html.DisplayNameFor(model => model.ContactNumber1)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AdmissionDate)
+                @Html.DisplayNameFor(model => model.StudentCnic)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentId)
+            </th>
+
             <th>Edit/Delete</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>Muhammad Farooq</td>
-            <td>BS(SE)</td>
-            <td>bsef18a516</td>
-            <td>0302-********</td>
-            <td>01/01/2018</td>
-            <td>
-                <a href="#" class="btn btn-success">Edit</a>
-                <a href="#" class="btn btn-danger">Delete</a>
-            </td>
-        </tr>
-        @*@foreach (var item in Model)
-        {
-               <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TeacherId)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Designation)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Salary)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Education)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Gender)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TeacherName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TeacherCnic)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Experience)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                        </td>
-                    </tr>
-
-            }*@
-        </tbody>
-    </table>
+        @{ 
+            foreach (var student in Model)
+            {
+            <tr>
+                <td>@student.StudentName</td>
+                <td>@student.FatherName</td>
+                <td>@student.ClassGrade/@student.ClassName</td>
+                <td>@student.RollNumber</td>
+                <td>@student.ContactNumber1</td>
+                <td>@student.StudentCnic</td>
+                <td>@student.StudentId</td>
+                <td>
+                    <a href="#" class="btn btn-success">Edit</a>
+                    <a href="#" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+                }
+            }
+    </tbody>
+</table>

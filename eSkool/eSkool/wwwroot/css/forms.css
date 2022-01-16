@@ -1,0 +1,26 @@
+﻿h1 {
+    text-align: center;
+    text-decoration: double;
+    margin-top: 25px;
+}
+
+h5 {
+    text-align: center;
+    text-decoration: wavy;
+}
+
+img {
+    width: 130px;
+    height: 130px;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 15px;
+}
+
+label { 
+    font-weight:bold;
+    margin-left:10px;
+    margin-bottom:5px;
+    font-size:16px;
+    
+}

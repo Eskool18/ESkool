@@ -1,0 +1,180 @@
+﻿
+<head>    
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/StyleSheet.css" rel="stylesheet" />
+</head>
+
+<body style="background-color:#808080">
+
+    <div class="container" style="background:#ffd800;margin-top:20px;margin-bottom:10px">
+        <div class="row">
+            <div class="col-sm-3">
+                <img src="~/image/form2.png" />
+            </div>
+
+            <div class="col-sm-6">
+                <h1> <b>Coding Tower</b> </h1>
+                <h5><i> Application Form</i> </h5>
+            </div>
+
+
+
+        </div>
+        <hr style="background-color:black " />
+        <div class="form-group" style="margin-bottom:10px; border: 2px solid;border-color:black;border-radius:10px;padding:20px">
+            <form action="/action/submissionPage" method="post" enctype="multipart/form-data">
+                <div class="form-row">
+                    <div class="form-group col-md-9">
+                        <label><b>Place of Posting</b> </label>
+                        <input name="pp" type="text" class="form-control" placeholder="Enter the place" required />
+                        <br />
+                        <label><b> Post Applied For</b>  </label>
+                        <input name="pa" type="text" class="form-control" placeholder="Designation applied" required />
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <br />
+                        <input style="margin-left:30px;margin-top:5px" type="file" name="Image" />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label><b>Name</b></label>
+                        <input name="name" type="text" class="form-control" placeholder="In Capital words" required />
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label><b>Father's Name</b></label>
+                        <input name="fath" type="text" class="form-control" placeholder="In Capital words" required />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label><b>Address</b></label>
+                        <input name="pradd" type="text" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label><b>Postal Address</b></label>
+                        <input name="psadd" type="text" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label><b>Date of Birth</b></label>
+                        <input name="dob" type="date" class="form-control" placeholder="e.g. dd/mm/yyyy" required />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label><b>Age in year and Month</b></label>
+                        <input type="text" class="form-control" placeholder="e.g. n year m month" required />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label><b>Email Address</b></label>
+                        <input name="em" class="form-control" type="email" placeholder="e.g. abc@xyz.com" required />
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label><b>Contact Number</b></label>
+                        <input name="cont" class="form-control" type="text" placeholder="e.g. 03xxxxxxxx" required />
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label><b>Telephone</b></label>
+                        <input name="ph" class="form-control" type="text" placeholder="e.g. 57xxxxx" required />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label><b>CNIC</b></label>
+                        <input name="cnic" type="text" class="form-control" placeholder="e.g. 35XXX-XXXXXX-X" required />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label><b>Domicile(District)</b> </label>
+                        <select name="dis" class="custom-select custom-select-lg" required>
+                            <option selected>--Select the District</option>
+                            <option>Lahore</option>
+                            <option>Kasur</option>
+                            <option>Shiekhu Pura</option>
+                            <option>Sarghoda</option>
+                            <option>Shadra</option>
+                            <option>Raiwind</option>
+                            <option>--other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class=" form-group col-md-6">
+                        <label><b>Martial status</b></label>
+                        <br />
+                        <div class="form-check form-check-inline">
+                            <input name="mart" id="mart_Single" type="radio" value="single" class="form-check-input" checked />
+                            <label style="margin-right:20px" class="form-check-label">Single</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input name="mart" id="mart_Married" type="radio" value="Married" class="form-check-input" />
+                            <label style="margin-right:20px" class="form-check-label">Married</label>
+                        </div>
+                    </div>
+                    <div class=" form-group col-md-6">
+                        <label><b>>Gender</b></label>
+                        <br />
+                        <div class="form-check form-check-inline">
+                            <input name="gen" id="gen_Male" type="radio" value="Male" class="form-check-input" checked />
+                            <label style="margin-right:20px" class="form-check-label">Male</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input name="gen" id="gen_female" type="radio" value="Female" class="form-check-input" />
+                            <label style="margin-right:20px" class="form-check-label">Female</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input name="gen" id="gen_other" type="radio" value="Others" class="form-check-input" />
+                            <label style="margin-right:20px" class="form-check-label">others</label>
+                        </div>
+
+                    </div>
+                </div>
+                <br />
+                <div class="form-row">
+                    <div class=" form-group col-md-6">
+                        <label><b>Religion</b></label>
+                        <br />
+                        <div class="form-check form-check-inline">
+                            <input name="rele" id="rele_Muslim" type="radio" value="Muslim" class="form-check-input" checked />
+                            <label style="margin-right:20px" class="form-check-label">Muslim</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input name="rele" id="rele_Nonmuslim" type="radio" value="Non-Muslim" class="form-check-input" />
+                            <label style="margin-right:20px" class="form-check-label">Non-Muslim</label>
+                        </div>
+                    </div>
+                    <div class=" form-group col-md-6">
+                        <label><b>>Hafiz-e-QURAN</b></label>
+                        <br />
+                        <div class="form-check form-check-inline">
+                            <input name="hafiz" id="hafiz_yes" type="radio" value="Yes" class="form-check-input" />
+                            <label style="margin-right:20px" class="form-check-label">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input name="hafiz" id="hafiz_no" type="radio" value="No" class="form-check-input" checked />
+                            <label style="margin-right:20px" class="form-check-label">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <input style="margin-bottom:4px" class="btn btn-primary btn-block" type="submit" />
+
+            </form>
+
+        </div>
+
+    </div>
+
+</body>

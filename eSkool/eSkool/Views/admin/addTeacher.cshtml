@@ -1,45 +1,248 @@
-﻿@{
-    ViewBag.Title = "Add Teacher";
+﻿@model List<UserInfo>
+
+@{
+    ViewBag.Title = "addClass";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link href="~/js/site.js" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
 
-    <div class="form" style="text-align:center;">
-        <div class="tab-header">
-            <div>Add Teacher</div>
+<head>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            padding: 2%;
+            margin: 2%;
+            /*  border: 2px dashed #954587;     */
+            background-color: #f6eff5;
+        }
+
+        .tab {
+            display: none;
+        }
+
+        .step {
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbbbbb;
+            border: none;
+            border-radius: 50%;
+            display: inline-block;
+            opacity: 0.5;
+        }
+
+            .step.finish {
+                background-color: #04AA6D;
+            }
+
+            .step.active {
+                opacity: 1;
+            }
+
+        .form-tab input {
+            border-color: #22a1b782;
+            margin: 1%;
+            padding: 1%;
+            width: 50%;
+        }
+
+        #assign tr {
+            border: 1px dashed grey;
+            background-color: #457a8b1f;
+        }
+
+        #assign {
+            width: 30%;
+        }
+
+            #assign tr td {
+                padding: 5%;
+            }
+
+        h2 {
+            text-align: center;
+            color: #22a1b782;
+        }
+
+        .add-btn input:hover {
+            box-shadow: -6px 6px 0px 0 #22a1b782;
+            background: rgb(145 74 140 / 45%);
+        }
+
+        .add-btn input {
+            color: #ffffff;
+            width: 100%;
+            box-shadow: -6px 6px 0px 0 rgb(145 74 140 / 45%);
+            font-size: 18px;
+            border: none;
+            padding: 3%;
+            /* border: 1px solid #7b5c92d9; */
+            background: #22a1b782;
+        }
+
+        .add-btn {
+            width: 20%;
+            margin: 5% 35%;
+        }
+
+        .form-tab label {
+            width: 20%;
+            margin: 1%;
+        }
+    </style>
+    <link href="~/css/forms.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="container" style="background-color:lightblue;margin-top:20px;margin-bottom:10px">
+        <div class="row">
+            <div class="col-sm-3">
+                <img src="~/image/RegistrationForm.png" />
+            </div>
+
+            <div class="col-sm-6">
+                <h1> <b>Eskool</b> </h1>
+                <h5><i> Teacher Registation Form</i> </h5>
+            </div>
+
+
+
         </div>
-        <div class="tab-content">
-            <form action="/admin/addTeacher" method="post">
-                <div class="tab-body active">
-                    <div class="form-element">
-                        <input type="text" name="tId" placeholder="Teacher ID">
+        <hr style="background-color:black " />
+        <div class="form-group" style="margin-bottom:10px; border: 2px solid;border-color:black;border-radius:10px;padding:20px">
+            <form action="/admin/addTeacher" method="post" enctype="multipart/form-data">
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label ><b>Teacher Name</b></label>
+                        <input name="TeacherName" type="text" class="form-control" placeholder="In Capital words" required />
                     </div>
-                    <div class="form-element">
-                        <input type="text" name="userName" placeholder="Teacher Name">
-                    </div>
-                    <div class="form-element">
-                        <input type="text" name="salary" placeholder="Salary">
-                    </div>
-                    <div class="form-element">
-                        <input type="text" name="designation" placeholder="Designation">
-                    </div>
-                    <div class="form-element">
-                        <input type="password" name="password" placeholder="Password">
-                    </div>
-                    <div class="form-element">
-                        <input class="btn btn-primary" type="submit" value="Add Teacher" />
+
+                    <div class="form-group col-md-6">
+                        <label><b>Father Name</b></label>
+                        <input name="TeacherFatherName" type="text" class="form-control" placeholder="In Capital words" required />
                     </div>
                 </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label><b>Address</b></label>
+                        <input name="TeacherAddress" type="text" class="form-control" required>
+                    </div>
+                </div>
+
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label><b>Date of Birth</b></label>
+                        <input name="TeacherDOB" type="date" class="form-control" placeholder="e.g. dd/mm/yyyy" required />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label><b>Age in year and Month</b></label>
+                        <input name="TeacherAge" type="text" class="form-control" placeholder="e.g. n year m month" required />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label><b>Email Address</b></label>
+                        <input name="TeacherEmail" class="form-control" type="email" placeholder="e.g. abc@xyz.com" required />
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label><b>Contact Number#1</b></label>
+                        <input name="TeacherNumber1" class="form-control" type="text" placeholder="e.g. 03xx-xxxxxx" required />
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label><b>Contact Number#2</b></label>
+                        <input name="TeacherNumber2" class="form-control" type="text" placeholder="e.g. 03xx-xxxxxx" required />
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label><b>CNIC</b></label>
+                        <input name="TeacherCNIC" type="text" class="form-control" placeholder="e.g. 35XXX-XXXXXX-X" required />
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label><b>Education Level</b> </label>
+                        <select name="TeacherEducationLevel" class="custom-select custom-select-sm" required>
+                            <option disabled selected>--Education Level</option>
+                            <option>Matric</option>
+                            <option>Intermediate</option>
+                            <option>Graduate</option>
+                            <option>Masters</option>                                                      
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label><b>Degree Description</b></label>
+                        <input name="Education" type="text" class="form-control" placeholder="e.g. B.A English" required />
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+                    <div class=" form-group col-md-6">
+                        <label><b>Designation Assigned</b></label>
+                        <br />
+                        <div class="form-check form-check-inline">
+                            <input name="Designation" id="mart_Single" type="radio" value="Lecturer" class="form-check-input" checked />
+                            <label style="margin-right:20px" class="form-check-label">Lecturer</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input name="Designation" id="mart_Married" type="radio" value="Class Incharge" class="form-check-input" />
+                            <label style="margin-right:20px" class="form-check-label">Class Incharge</label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label><b>Experience In Year</b></label>
+                        <input name="Experience" type="number" class="form-control" value="{{model.PortNumber || 0}}" required />
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label><b>Salary</b></label>
+                        <input name="Salary" type="number" class="form-control" placeholder="Per Month" required />
+                    </div>
+
+
+                </div>
+                <br />
+                <div class="form-row">
+                    <div class=" form-group col-md-6">
+                        <label><b>Religion</b></label>
+                        <br />
+                        <div class="form-check form-check-inline">
+                            <input name="TeacherReligion" id="rele_Muslim" type="radio" value="Muslim" class="form-check-input" checked />
+                            <label style="margin-right:20px" class="form-check-label">Muslim</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input name="TeacherReligion" id="rele_Nonmuslim" type="radio" value="Non-Muslim" class="form-check-input" />
+                            <label style="margin-right:20px" class="form-check-label">Non-Muslim</label>
+                        </div>
+                    </div>
+                    <div class=" form-group col-md-6">
+                        <label><b>Gender</b></label>
+                        <br />
+                        <div class="form-check form-check-inline">
+                            <input name="Gender" id="gen_Male" type="radio" value="Male" class="form-check-input" checked />
+                            <label style="margin-right:20px" class="form-check-label">Male</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input name="Gender" id="gen_female" type="radio" value="Female" class="form-check-input" />
+                            <label style="margin-right:20px" class="form-check-label">Female</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input name="Gender" id="gen_other" type="radio" value="Others" class="form-check-input" />
+                            <label style="margin-right:20px" class="form-check-label">others</label>
+                        </div>
+
+                    </div>
+                </div>
+
+                <input style="margin-bottom:4px" class="btn btn-primary btn-block" type="submit" />
+
             </form>
+
         </div>
+
     </div>
 
 </body>
-</html>
