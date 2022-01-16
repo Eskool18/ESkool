@@ -1,0 +1,125 @@
+﻿@model IEnumerable<eSkool.Models.Student>
+
+
+@{
+    ViewBag.Title = "Show Students";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+
+
+    #teachers {
+        margin-top: 5%;
+        background-color: #f6eff5;
+        text-align: center;
+        padding: 5px;
+        padding-bottom: 2%
+    }
+
+    table, th, td {
+        text-align: center;
+        margin: auto;
+        border: 1px solid #f6eff5;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 10px 30px;
+        background-color: #338da13d;
+        color: #267385;
+    }
+
+
+
+    th {
+        background-color: #338da1;
+        color: #f6eff5;
+    }
+
+    #attendance-sheet h1 {
+        color: #ffffff;
+        text-shadow: 2px 2px #954587;
+    }
+
+    #attendance-sheet h3 {
+        color: #75b1c6;
+        text-shadow: 1px -1px #ffffff;
+    }
+</style>
+<h1>Students List</h1>
+
+<p class="float-right">
+    <a href="#" class="btn btn-outline-primary">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.StudentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ClassName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RollNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactNumber1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AdmissionDate)
+            </th>
+            <th>Edit/Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Muhammad Farooq</td>
+            <td>BS(SE)</td>
+            <td>bsef18a516</td>
+            <td>0302-********</td>
+            <td>01/01/2018</td>
+            <td>
+                <a href="#" class="btn btn-success">Edit</a>
+                <a href="#" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        @*@foreach (var item in Model)
+        {
+               <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TeacherId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Designation)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Salary)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Education)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Gender)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TeacherName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TeacherCnic)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Experience)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                        </td>
+                    </tr>
+
+            }*@
+        </tbody>
+    </table>
