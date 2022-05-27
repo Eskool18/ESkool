@@ -151,13 +151,13 @@ function assign() {
     row = table.insertRow(rowCount);
 
     cell1 = row.insertCell(0);
-    cell1.innerHTML = selectedT;
+    cell1.innerHTML = selectedS;
 
     cell2 = row.insertCell(1);
-    cell2.innerHTML = " will teach";
+    cell2.innerHTML = "is assigned to";
 
     cell3 = row.insertCell(2);
-    cell3.innerHTML = selectedS;
+    cell3.innerHTML = selectedT;
 
     cell4 = row.insertCell(3);
     //element1 = document.createElement("a");
@@ -347,9 +347,15 @@ function displayCalendar() {
         if ((i >= first_day) && (dy <= last_date)) {
             cell = row.insertCell(j); 
             cell.innerHTML = dy;
+            cd = new Date();
+            d = cd.getDate();
+            if (dy == d) {
+                cell.className = "today";
+            }
             j++;
             //document.write("<td>" + dy + "</td>");
             dy = dy + 1;
+
         } else {
             cell = row.insertCell(j); 
             cell.innerHTML = "*";
@@ -361,3 +367,4 @@ function displayCalendar() {
     
     //document.write("</tr></table>")
 }
+

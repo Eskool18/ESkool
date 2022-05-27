@@ -12,7 +12,11 @@ namespace eSkool.Controllers
         {
             return View();
         }
-        
-      
+        public IActionResult setPaper()
+        {
+            return View();
+        }
+
+
     }
 }
