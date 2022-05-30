@@ -6,9 +6,10 @@
 
 
 <style>
-      #complaint, #books, #leave {
+      #complaint, #books, #leave, #announce {
         width: 30%;
-        padding: 4%;
+        padding: 1%;
+        margin: 1%;
         font-size: 20px;
         text-align: center;
         color: white;
@@ -16,6 +17,76 @@
         border-radius: 5px;
         box-shadow: 0 3px 15px 0 rgb(0 0 0 / 10%);
         float: left;
+    }
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 50px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        border: 1px solid rgb(145 74 140);
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+    .modal-body form {
+        display: flex;
+        flex-direction: column;
+        padding: 2%;
+    }
+    .modal-header {
+        background-color: #7b5c9261;
+        color: white;
+    }
+    #duration {
+        display: flex;
+        justify-content: space-between;
+    }
+
+        #duration input {
+        
+            font-size: 15px;
+        }
+
+    #total-days input {
+        width: 16%;
+    }
+        .modal-header h3 {
+            font-size: 25px;
+            font-style: italic;
+            font-family: serif;
+        }
+
+    .modal-body input, .modal-body textarea {
+        border: none;
+        background: #efefef;
+        padding: 2%;
+    }
+
+        .modal-body form input[type=submit]:hover {
+            box-shadow: -6px 6px 0px 0 #22a1b782;
+            background: rgb(145 74 140 / 45%);
+        }
+
+        .modal-body form input[type=submit] {
+            color: #ffffff;
+            box-shadow: -6px 6px 0px 0 rgb(145 74 140 / 45%);
+            background: #22a1b782;
+        }
+
+        .modal-body form div {
+            margin-bottom: 2%
+        }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        box-shadow: 0 4px 8px 0 rgb(199 24 161 / 57%), 0 6px 20px 0 #448797;
+        border: 1px solid #888;
+        width: 50%;
     }
 
     .dash i {
@@ -35,8 +106,20 @@
     .dash {
         display: flex;
         justify-content: space-evenly;
+        flex-wrap: wrap;
+      
     }
 
+
+    }
+    #duration label, #total-days label {
+        width: 10%;
+    }
+
+    #total-days label {
+        width: fit-content;
+        margin: 2%;
+    }
         .dash button {
             border: none;
             background: none;
@@ -172,10 +255,63 @@
         <div id="leave">
             <a class="show-leave dash-links" href="/admin/showStudents"><p>Show students</p><i class="fas fa-user-graduate"></i></a>
         </div>
+        <div id="announce">
+            <button class="show-btn dash-links" onclick="announceModal()"><p>Announce</p> <i class="fas fa-exclamation-circle"></i> </button>
+        </div>
+
     </div>
 
 
+    <div id="announceModal" class="modal">
 
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Post Announcements</h3>
+                <button class="leave-close" onclick="closeAnnounce()"> &times; </button>
+                @*<span class="comp-close">&times;</span>*@
+
+
+            </div>
+            <div class="modal-body">
+
+              
+                <form action="admin/adminDashboard">
+                    <div>
+                        <label for="name">Name:</label>
+                        <input type="text" style=" width: 40%;" id="name" name="name" placeholder="@ViewBag.uname" disabled />
+                        <label for="reason" style="margin-left:2%;"> To: </label>
+                        <select id="reason" style=" width: 35%; padding: 2%; border: none; background: #efefef;" name="reason">
+                            <option value="teacher">Teacher </option>
+                            <option value="student">Students </option>
+                            <option value="both">Both</option>
+                        </select>
+                    </div>
+                    <p style="color:gray;">Anouncement will be displayed : <br /></p>
+                    <div id="duration">
+
+                        <label for="from">From:</label>
+                        <input type="date" id="from" name="from" onchange="calculateDuration();" required>
+                        <label for="to">To:</label>
+                        <input type="date" id="to" name="to" onchange="calculateDuration();" checked required>
+                        <label for="event">Add to events </label>
+                        <input type="checkbox" style="height:25px; width:25px;" id="event" name="event" />
+                    </div>
+                  
+
+                    <label for="txt"> Content : </label>
+                    <input type="text" id="txt" name="txt" style="height:80px; margin-bottom:2%;" required>
+
+
+                    <input type="submit" style=" width: 30%; margin: auto;">
+                </form>
+
+
+            </div>
+
+        </div>
+
+    </div>
 
 
 

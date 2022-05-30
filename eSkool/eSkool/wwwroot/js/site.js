@@ -58,6 +58,11 @@ function popModal() {
     btn = document.getElementsByClassName("show-btn");
     modal.style.display = "block";  
 }
+function announceModal() {
+    modal = document.getElementById("announceModal");
+    btn = document.getElementsByClassName("show-btn");
+    modal.style.display = "block";
+}
 function closeModal() {
     modal = document.getElementById("myModal");
     modal.style.display = "none";
@@ -69,6 +74,10 @@ function leaveModal() {
 }
 function closeLeave() {
     modal = document.getElementById("leave-Modal");
+    modal.style.display = "none";
+}
+function closeAnnounce() {
+    modal = document.getElementById("announceModal");
     modal.style.display = "none";
 }
 //modal = document.getElementsByClassName("modal")[0];
