@@ -6,7 +6,7 @@
 
 
 <style>
-      #complaint, #books, #leave, #announce {
+      #complaint, #books, #leave, #announce, #complaintBox {
         width: 30%;
         padding: 1%;
         margin: 1%;
@@ -252,9 +252,13 @@
         <div id="complaint">
             <a class="show-btn dash-links" href="/admin/showTeachers"><p>Show teachers</p> <i class="fas fa-chalkboard-teacher"></i></a>
         </div>
+        <div id="complaintBox">
+            <a class="show-btn dash-links" href="/admin/complaintBox"><p>Complaint Box</p></a>
+        </div>
         <div id="leave">
             <a class="show-leave dash-links" href="/admin/showStudents"><p>Show students</p><i class="fas fa-user-graduate"></i></a>
         </div>
+
         <div id="announce">
             <button class="show-btn dash-links" onclick="announceModal()"><p>Announce</p> <i class="fas fa-exclamation-circle"></i> </button>
         </div>
@@ -276,10 +280,10 @@
             <div class="modal-body">
 
               
-                <form action="admin/adminDashboard">
+                <form action="adminDashboard" method="post">
                     <div>
                         <label for="name">Name:</label>
-                        <input type="text" style=" width: 40%;" id="name" name="name" placeholder="@ViewBag.uname" disabled />
+                        <input type="text" style=" width: 40%;" id="name" name="name" placeholder="@ViewBag.username" disabled />
                         <label for="reason" style="margin-left:2%;"> To: </label>
                         <select id="reason" style=" width: 35%; padding: 2%; border: none; background: #efefef;" name="reason">
                             <option value="teacher">Teacher </option>

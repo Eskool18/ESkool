@@ -195,3 +195,4 @@ F:\Desktop\Sem 7\Fyp\eSkool\eSkool\obj\Debug\netcoreapp3.1\eSkool.pdb
 F:\Desktop\Sem 7\Fyp\eSkool\eSkool\obj\Debug\netcoreapp3.1\eSkool.genruntimeconfig.cache
 F:\Desktop\Sem 7\Fyp\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\login\temp.cshtml.g.cs
 F:\Desktop\Sem 7\Fyp\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\setPaper.cshtml.g.cs
+F:\Desktop\Sem 7\Fyp\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\admin\complaintBox.cshtml.g.cs

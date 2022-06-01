@@ -1,0 +1,84 @@
+﻿@model IEnumerable<eSkool.Models.Complaint>
+@{
+    ViewBag.Title = "attendance";
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+
+}
+
+<style>
+
+
+    #attendance-sheet {
+        margin-top: 5%;
+        background-color: #f6eff5;
+        text-align: center;
+        padding: 5px;
+        padding-bottom: 2%
+    }
+
+    table, th, td {
+        text-align: center;
+        margin: auto;
+        border: 1px solid #f6eff5;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 10px 30px;
+        background-color: #338da13d;
+        color: #267385;
+    }
+
+    #absent {
+        color: red;
+    }
+
+    th {
+        background-color: #338da1;
+        color: #f6eff5;
+    }
+
+    #attendance-sheet h1 {
+        color: #c1becd;
+        text-shadow: 2px 2px #954587;
+    }
+
+    #attendance-sheet h3 {
+        color: #c1becd;
+        text-shadow: 1px 1px #954587;
+    }
+ 
+</style>
+
+
+
+<div id="attendance-sheet">
+    <h1>Complaints</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Date</th>
+                <th>Complaint By:</th>
+                <th>Complaint</th>
+                <th>Response</th>
+            </tr>
+            @{
+                foreach (var complaint in Model)
+                {
+                        <tr>
+                            <td>@complaint.ComplaintDate</td>
+                            <td>@complaint.UserName</td>
+                            <td style="color:red;">@complaint.ComplaintStatement</td>
+
+                            <td class="response">
+                           
+                                <a href="/admin/deleteComplaint/@complaint.ComplaintId" class="btn btn-danger">Remove</a>
+                            </td>
+                        </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+</div>

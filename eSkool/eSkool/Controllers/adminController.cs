@@ -10,7 +10,7 @@ namespace eSkool.Controllers
 {
     public class adminController : Controller
     {
-
+        [HttpGet]
         public IActionResult adminDashboard()
         {
             if (HttpContext.Session.GetString("username") != null)
@@ -53,9 +53,12 @@ namespace eSkool.Controllers
    
         }
 
+        [HttpPost]
+        public IActionResult adminDashboard(string name, string reason, string txt)
+        {
+            return View();
 
-
-
+        }
 
 
         [HttpGet]
@@ -86,10 +89,6 @@ namespace eSkool.Controllers
             return RedirectToAction("login", "login");
 
         }
-
-
-
-
 
 
 
@@ -126,10 +125,6 @@ namespace eSkool.Controllers
             }
             return RedirectToAction("login", "login");
         }
-
-
-
-
 
 
         public IActionResult showTeachers()
@@ -169,10 +164,6 @@ namespace eSkool.Controllers
             }
             return RedirectToAction("login", "login");          
         }
-
-
-
-
 
 
         [HttpGet]
@@ -396,6 +387,50 @@ namespace eSkool.Controllers
             return View();
         }
 
+        public IActionResult deleteComplaint(int id)
+        {
+                if (HttpContext.Session.GetString("username") != null)
+                {
+                    string username = HttpContext.Session.GetString("username");
+                    using (eSkoolDBContext db = new eSkoolDBContext())
+                    {
+                        string role = db.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
+                        if (role == "A")
+                        {
+                            ViewBag.username = username;
+
+                            //Coding Block------------------------------------------------------------
+
+                            try
+                            {
+                                using (eSkoolDBContext dBContext = new eSkoolDBContext())
+                                {
+                                    List<Complaint> Complaint = dBContext.Complaints.Where(c => c.ComplaintId == id).ToList();
+                                dBContext.Complaints.RemoveRange(Complaint);
+                                dBContext.SaveChanges();
+                                return RedirectToAction("complaintBox");
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                return View();
+                            }
+
+
+                            //Coding Block--------------------------------------------------------
+
+                        }
+                        else return RedirectToAction("AccessWarning403", "login", new { role = role });
+                    }
+
+                }
+                return RedirectToAction("login", "login");
+            
+          
+          
+            return RedirectToAction("Index");
+        }
+
 
         public IActionResult questionNotification()
         {
@@ -437,7 +472,7 @@ namespace eSkool.Controllers
                 using (eSkoolDBContext db = new eSkoolDBContext())
                 {
                     string role = db.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
-                   
+                    
                     if (role == "A")
                     {
                        ViewBag.username = username;
@@ -522,5 +557,44 @@ namespace eSkool.Controllers
             return RedirectToAction("login", "login");                       
         }
 
+
+        public IActionResult complaintBox()
+        {
+
+            if (HttpContext.Session.GetString("username") != null)
+            {
+                string username = HttpContext.Session.GetString("username");
+                using (eSkoolDBContext db = new eSkoolDBContext())
+                {
+                    string role = db.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
+                    if (role == "A")
+                    {
+                        ViewBag.username = username;
+
+                        //Coding Block------------------------------------------------------------
+                        
+                            try
+                            {
+                                using (eSkoolDBContext dBContext = new eSkoolDBContext())
+                                {
+                                    List<Complaint> ComplaintList = dBContext.Complaints.ToList();
+                                    return View(ComplaintList);
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                return View();
+                            }
+
+                        
+                        //Coding Block--------------------------------------------------------
+
+                    }
+                    else return RedirectToAction("AccessWarning403", "login", new { role = role });
+                }
+
+            }
+            return RedirectToAction("login", "login");
+        }
     }
 }
