@@ -1,83 +1,26 @@
-﻿!DOCTYPE html>
-<html>
-<head>
-    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/js/site.js" />
-    <style>
-        .forcol {
-            margin: 5px;
-            padding: 5px;
-            background-color: white;
-            text-align: center;
-        }
-    </style>
+﻿@{
+    ViewBag.Title = "Dashboard ";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+
+}
+<style>
+    .forcol {
+        margin: 5px;
+        padding: 5px;
+        background-color: white;
+        text-align: center;
+    }
+</style>
 
 
-</head>
 
-<body style="background-color: #f1f1f1; padding: 15px; ">
-    <div style=" background-color: white; text-align:center; padding: 30px;">
-        <h1 style="font-size: 50px; font-weight: bold;">School Name</h1>
-        <p>Few Discription for School</p>
-    </div>
-
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="padding: 8px; margin: 8px;">
-        <!-- Brand -->
-        <a class="navbar-brand" href="#">Scool Name</a>
-
-        <!-- Links -->
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Dashboard</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Papers</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Results </a>
-            </li>
-
-            <!-- Dropdown -->
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                    Manages
-                </a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Attendence</a>
-                    <a class="dropdown-item" href="#">Classes</a>
-                    <a class="dropdown-item" href="#">Subject</a>
-                </div>
-            </li>
-        </ul>
-    </nav>
+<div>
+   
     <!--mainDiv For Entire Page-->
     <div class="container-fluid" style="width:100%">
         <!--main Row For Entire Page-->
         <div class="row">
-            <div style="margin-left: 50px;" class="col-sm-3 forcol">
-                <h1>Account setting</h1>
-
-                <div class="card" style="text-align: left;margin-top: 30px;">
-                    <img style="padding: 20px; border-radius:50% " src="/image/profilePic.png" class="card-img-top">
-                    <div class="card-body">
-                        <h4 class="card-title">Teacher profile </h4>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Name</li>
-                            <li class="list-group-item"> Designation </li>
-                            <li class="list-group-item">Contact</li>
-                            <li class="list-group-item">Classes</li>
-                        </ul>
-
-                    </div>
-                    <div class="card-footer">
-                        <a class="card-link" href="#">Manage Account </a>
-                        <a class="card-link" href=#>xyz</a>
-                    </div>
-                </div>
-
-                <div class="card-"></div>
-
-            </div>
+            
             <div class="col-sm-5 forcol">
                 <h1> Functionalities</h1>
                 <div class="container-fluid">
@@ -202,5 +145,4 @@
     <div class="container">
 
     </div>
-</body>
-</html>
+</div>

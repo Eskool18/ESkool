@@ -1,11 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-
     <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-  
+    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-12/css/all.min.css">*@
     <link rel="stylesheet" href="~/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/fontawesome-free-5.10.0-web/css/fontawesome.min.css" />
+    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">*@
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <style>
 
         html, body {
@@ -197,10 +199,8 @@
             @*<div class="bg"></div>*@
             <div id="profile-card">
                 <img src="~/lib/pp.png" />
-                <p>
-                    Maira Malik <br />
-                    BSEF18A509<br />
-                </p>
+            <p>    @ViewBag.username</p>
+                
             </div>
             <div class="side-links">
                 <a href="#">Manage Profile</a>
@@ -220,16 +220,16 @@
                 <!-- Links -->
                 <ul class="navbar-nav" style=" color: #7e0404; justify-content: flex-end; ">
                     <li class="nav-item">
-                        <a class="nav-link" href="/Student/Dashboard">Dashboard  </a>
+                        <a class="nav-link" href="/Teacher/Dashboard">Dashboard  </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/Student/subjects">Subjects </a>
+                        <a class="nav-link" href="/Teacher/setPaper"> Generate Paper </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/Student/challan"> Fee Challan  </a>
+                        <a class="nav-link" href="#">   </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/Student/attendance"> Attendance </a>
+                        <a class="nav-link" href="#">  </a>
                     </li>
                 </ul>
             </nav>

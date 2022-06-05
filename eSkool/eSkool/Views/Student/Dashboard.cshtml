@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<eSkool.Models.Notice>
+@{
     ViewBag.Title = "Dashboard";
     Layout = "~/Views/Shared/_StudentLayout.cshtml";
 
@@ -157,18 +158,20 @@
         display: flex;
         justify-content: space-evenly;
     }
+
     .cal-notice {
         display: flex;
         justify-content: space-evenly;
         margin: 3%;
     }
-        .dash button {
-            border: none;
-            background: none;
-            color: white;
-            width: 100%;
-            margin: 0;
-        }
+
+    .dash button {
+        border: none;
+        background: none;
+        color: white;
+        width: 100%;
+        margin: 0;
+    }
 
     .dash-links {
         display: flex;
@@ -182,23 +185,24 @@
         width: 30%;
         text-align: center;
         color: #ef172b;
-      
         border: 1px dashed red;
         padding: 1%;
-       
     }
+
     #calendar {
         padding: 2%;
         width: 40%;
         text-align: center;
     }
-    #calendar td {
-      
-        padding: 2%;
-    }
+
+        #calendar td {
+            padding: 2%;
+        }
+
         #calendar .aesterik {
             color: #a3a3c4;
         }
+
         #calendar .row1 {
             background: #4771a5;
             color: white;
@@ -208,14 +212,17 @@
             background: #b2aacc45;
             color: #995bad;
         }
+
     #announcement p {
         border-bottom: 1px solid red;
     }
+
     .dash-links:hover {
         background: rgba(255, 255, 255, 0.4) none repeat scroll 0 0;
         text-decoration: none;
         color: white;
     }
+
     .today {
         background: #00000017;
     }
@@ -225,11 +232,18 @@
         <table id="calendar"> </table>
         <div id="announcement">
             <h1 style="font-size: 40px; margin-top:10px;"><i class="fas fa-bullhorn"></i></h1>
-            <p>Holidays are starting from 27 Decemeber 2021.</p>
-            <p>Final Exams to be held from 2nd February 2022.</p>
+            @{
+                foreach (var notice in Model)
+                {
+
+                    <p>@notice.NoticeStatement</p>
+                    
+                   
+                }
+            }
         </div>
     </div>
-   
+
     <div class="dash">
 
         <div id="books">
@@ -241,7 +255,7 @@
         <div id="leave">
             <button class="show-leave dash-links" onclick="leaveModal()"><p>Apply for Leave </p> <i class="fas fa-edit"></i> </button>
         </div>
-       
+
     </div>
 
 
@@ -261,15 +275,15 @@
             <div class="modal-body">
 
                 <p style="color:red;">This message will be received by admin of institute.</p>
-                <form action="Student/Dashboard">
+                <form action="Dashboard" method="post">
                     <div id="form-field">
                         <div class="col-25">
                             <label for="complaint-from" style="width: 13%;">From:</label>
-                            <input id="complaint-from" type="text" placeholder="@ViewBag.uname" disabled />
+                            <input id="complaint-from" name="uname" type="text" placeholder="@ViewBag.username" disabled />
                         </div>
                         <div class="col-25">
                             <label for="complaint-body">Complaint</label>
-                            <textarea id="complaint-body" style="margin-left: 3%; width: 60%;" type="text" name="subject" placeholder="Write here.."></textarea>
+                            <textarea id="complaint-body" name ="complaint" style="margin-left: 3%; width: 60%;" type="text" name="subject" placeholder="Write here.."></textarea>
                         </div>
 
 

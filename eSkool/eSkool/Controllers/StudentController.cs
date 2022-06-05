@@ -24,12 +24,22 @@ namespace eSkool.Controllers
                     {
                         ViewBag.username = username;
 
-                        {
+                        
+                            try
+                            {
+                                using (eSkoolDBContext dBContext = new eSkoolDBContext())
+                                {
+                                    List<Notice> NoticeList = dBContext.Notices.ToList();
+                                    return View(NoticeList);
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                return View();
+                            }
 
-                          
-                            return View();                         
-                        }
-
+                                             
+                       
                     }
                     else return RedirectToAction("AccessWarning403", "login", new { role = role });
                 }
@@ -41,7 +51,52 @@ namespace eSkool.Controllers
         }  
 
 
+        [HttpPost]
+        public IActionResult Dashboard( string uname, string complaint)
+        {
+            if (HttpContext.Session.GetString("username") != null)
+            {
+                string username = HttpContext.Session.GetString("username");
+                using (eSkoolDBContext db = new eSkoolDBContext())
+                {
+                    string role = db.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
+                    if (role == "S")
+                    {
+                        
+                        try
+                        {
+                            using (eSkoolDBContext dBContext = new eSkoolDBContext())
+                            {
+                                Complaint newComplaint = new Complaint();
+                                newComplaint.ComplaintStatement = complaint;
+                                newComplaint.UserName = username;
+                            
+                                newComplaint.ComplaintDate = DateTime.Now;
+                                      
+                                dBContext.Complaints.Add(newComplaint);
 
+                                //Update DB
+                                dBContext.SaveChanges();
+
+                               RedirectToAction("Dashboard");
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            return View();
+                        }
+
+
+
+                    }
+                    else return RedirectToAction("AccessWarning403", "login", new { role = role });
+                }
+
+            }
+
+            return RedirectToAction("login", "login");
+
+        }
 
 
         public ActionResult download_books()

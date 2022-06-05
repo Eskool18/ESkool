@@ -54,9 +54,39 @@ namespace eSkool.Controllers
         }
 
         [HttpPost]
-        public IActionResult adminDashboard(string name, string reason, string txt)
+        public IActionResult adminDashboard(string name, string reason, string txt, DateTime from, DateTime to)
         {
-            return View();
+            if (HttpContext.Session.GetString("username") != null)
+            {
+
+                try
+                {
+                    using (eSkoolDBContext dBContext = new eSkoolDBContext())
+                    {
+
+                        Notice newNotice = new Notice();
+                        newNotice.NoticeStatement = txt;
+                        newNotice.NoticeFromDate = from;
+                        newNotice.NoticeLastDate = to;
+
+                        dBContext.Notices.Add(newNotice);
+
+                        //Update DB
+                        dBContext.SaveChanges();
+
+                        return View();
+               
+                
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+                return RedirectToAction("showStudents", "admin");
+            }
+            return RedirectToAction("login", "login");
+        
 
         }
 
