@@ -8,7 +8,7 @@ using eSkool.Logistics;
 
 namespace eSkool.Controllers
 {
-    public class adminController : Controller
+    public class adminController : Controller 
     {
         [HttpGet]
         public IActionResult adminDashboard()
@@ -22,6 +22,7 @@ namespace eSkool.Controllers
                     if (role == "A")
                     {
                         ViewBag.username = username;
+                        ActiveUser.recordActive(username);
                         ViewBag.color = "57%";
 
                         //Coding Block---------------------------------------------------------
@@ -58,6 +59,7 @@ namespace eSkool.Controllers
         {
             if (HttpContext.Session.GetString("username") != null)
             {
+                ActiveUser.recordActive(HttpContext.Session.GetString("username"));
 
                 try
                 {
@@ -103,7 +105,7 @@ namespace eSkool.Controllers
                     if (role == "A")
                     {
                         ViewBag.username = username;
-
+                        ActiveUser.recordActive(username);
                         //Coding Block---------------------------------------------------------
                         {
 
@@ -127,7 +129,7 @@ namespace eSkool.Controllers
         {
             if(HttpContext.Session.GetString("username") != null)
             {
-                
+                ActiveUser.recordActive( HttpContext.Session.GetString("username"));
                 try
                 {
                     using (eSkoolDBContext dBContext = new eSkoolDBContext())
@@ -168,7 +170,7 @@ namespace eSkool.Controllers
                     if (role == "A")
                     {
                         ViewBag.username = username;
-
+                        ActiveUser.recordActive(username);
                         //Coding Block---------------------------------------------------------
                         {
                             try
@@ -208,9 +210,9 @@ namespace eSkool.Controllers
                        if (role == "A")
                        {
                            ViewBag.username = username;
-
-                           //Coding Block---------------------------------------------------------
-                            {
+                        ActiveUser.recordActive(username);
+                        //Coding Block---------------------------------------------------------
+                        {
 
 
                                return View();
@@ -236,7 +238,7 @@ namespace eSkool.Controllers
         {
             if (HttpContext.Session.GetString("username") != null)
             {
-                
+                ActiveUser.recordActive(HttpContext.Session.GetString("username"));
                 try
                 {
                     using (eSkoolDBContext dBContext = new eSkoolDBContext())
@@ -300,7 +302,7 @@ namespace eSkool.Controllers
                     if (role == "A")
                     {
                         ViewBag.username = username;
-
+                        ActiveUser.recordActive(username);
                         //Coding Block---------------------------------------------------------
                         {
                             ViewBag.classGrade = "All";
@@ -348,7 +350,7 @@ namespace eSkool.Controllers
                     if (role == "A")
                     {                       
                         ViewBag.username = username;
-
+                        ActiveUser.recordActive(username);
                         //Coding Block---------------------------------------------------------
                         {
                             ViewBag.classGrade = ClassGrade;
@@ -391,7 +393,7 @@ namespace eSkool.Controllers
                     if (role == "A")
                     {
                         ViewBag.username = username;
-
+                        ActiveUser.recordActive(username);
                         //Coding Block---------------------------------------------------------
                         {
 
@@ -428,10 +430,10 @@ namespace eSkool.Controllers
                         if (role == "A")
                         {
                             ViewBag.username = username;
+                        ActiveUser.recordActive(username);
+                        //Coding Block------------------------------------------------------------
 
-                            //Coding Block------------------------------------------------------------
-
-                            try
+                        try
                             {
                                 using (eSkoolDBContext dBContext = new eSkoolDBContext())
                                 {
@@ -474,7 +476,7 @@ namespace eSkool.Controllers
                     if (role == "A")
                     {
                         ViewBag.username = username;
-
+                        ActiveUser.recordActive(username);
                         //Coding Block---------------------------------------------------------
                         {
 
@@ -506,8 +508,8 @@ namespace eSkool.Controllers
                     if (role == "A")
                     {
                        ViewBag.username = username;
-                       
-                         //Coding Block--------------------------------------------
+                        ActiveUser.recordActive(username);
+                        //Coding Block--------------------------------------------
                         {
                             List<UserInfo> Teachers = null;
                             try
@@ -558,7 +560,7 @@ namespace eSkool.Controllers
                     if (role == "A")
                     {
                         ViewBag.username = username;
-
+                        ActiveUser.recordActive(username);
                         //Coding Block------------------------------------------------------------
                         {
                             List<UserInfo> Teachers = null;
@@ -600,10 +602,10 @@ namespace eSkool.Controllers
                     if (role == "A")
                     {
                         ViewBag.username = username;
-
+                        ActiveUser.recordActive(username);
                         //Coding Block------------------------------------------------------------
-                        
-                            try
+
+                        try
                             {
                                 using (eSkoolDBContext dBContext = new eSkoolDBContext())
                                 {
@@ -626,5 +628,49 @@ namespace eSkool.Controllers
             }
             return RedirectToAction("login", "login");
         }
+
+
+        public IActionResult activeUser()
+        {
+
+            if (HttpContext.Session.GetString("username") != null)
+            {
+                string username = HttpContext.Session.GetString("username");
+                using (eSkoolDBContext db = new eSkoolDBContext())
+                {
+                    string role = db.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
+                    if (role == "A")
+                    {
+                        ViewBag.username = username;
+                        ActiveUser.recordActive(username);
+                        //Coding Block---------------------------------------------------------
+                        {
+                            ViewBag.total = db.UserInfos.ToList().Count();
+                            List<Table> activeList = db.Tables.ToList();
+                            ViewBag.active = activeList.Count();
+                            List<string> roleList = new List<string>();
+
+                            foreach (Table activeUser in activeList)
+                            {
+                                roleList.Add(db.UserInfos.Where(user => user.UserName == activeUser.Username).SingleOrDefault().Role);
+                            }
+
+                            ViewBag.activeRole = roleList;
+                            ActiveUser.recordFlushOut();
+
+                            return View(activeList);
+                        }
+                        //Coding Block---------------------------------------------------------
+
+
+                    }
+                    else return RedirectToAction("AccessWarning403", "login", new { role = role });
+                }
+
+            }
+            return RedirectToAction("login", "login");
+        }
+
     }
 }
+

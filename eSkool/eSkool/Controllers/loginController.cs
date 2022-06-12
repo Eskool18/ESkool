@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
+using eSkool.Logistics;
 
 namespace eSkool.Controllers
 {
@@ -16,6 +17,7 @@ namespace eSkool.Controllers
 
         [HttpPost]
         public IActionResult Login(String user,String password)
+        
         {
             try
             {
@@ -29,7 +31,7 @@ namespace eSkool.Controllers
                     if (temp != null && temp.UserName == user && temp.Password == password)
                     {
                         HttpContext.Session.SetString("username", user);
-                  
+                        ActiveUser.recordActive(user);
                         HttpContext.Session.SetString("password", password);
                         if(temp.Role=="A")
                             return RedirectToAction("adminDashboard","admin");
@@ -48,8 +50,9 @@ namespace eSkool.Controllers
         }
         public IActionResult Logout()
         {
+            ActiveUser.recordInActive(HttpContext.Session.GetString("username"));
             HttpContext.Session.Remove("username");
-            HttpContext.Session.Remove("passwrod");            
+            HttpContext.Session.Remove("passwrod");
             return RedirectToAction("login");
         }
 

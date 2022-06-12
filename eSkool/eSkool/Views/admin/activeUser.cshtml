@@ -1,0 +1,134 @@
+﻿@{
+    ViewBag.Title = "activeUser";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .flex{
+        display:flex;
+        flex-wrap:wrap;
+    }
+
+    .box {
+        margin: 60px;
+        padding: 20px;
+        height: 150px;
+        justify-content: center;
+        text-align:center;
+        font-size: xx-large;
+        font-weight: bolder
+    }
+    .total {
+        background-color: #b1a9cc;
+        color: white;
+    }
+
+        .total:hover {
+            background-color: white;
+            color: #b1a9cc;
+            border: 2px solid #b1a9cc;
+        }
+
+    .active {
+        background-color: #338da1c4;
+        color: white;
+    }
+
+        .active:hover {
+            background-color: white;
+            color: #338da1c4;
+            border: 2px solid #338da1c4;
+        }
+    #attendance-sheet {
+        margin-top: 5%;
+        background-color: #f6eff5;
+        text-align: center;
+        padding: 5px;
+        padding-bottom: 2%
+    }
+
+    table, th, td {
+        text-align: center;
+        margin: auto;
+        border: 1px solid #f6eff5;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 10px 30px;
+        background-color: #338da13d;
+        color: #267385;
+    }
+
+    #absent {
+        color: red;
+    }
+
+    th {
+        background-color: #338da1;
+        color: #f6eff5;
+    }
+
+    #attendance-sheet h1 {
+        color: #c1becd;
+        text-shadow: 2px 2px #954587;
+    }
+
+    #attendance-sheet h3 {
+        color: #c1becd;
+        text-shadow: 1px 1px #954587;
+    }
+</style>
+
+<body>
+
+    <div>
+        <div class="flex">
+            <div class="total box">
+                Total Users <br />
+                @ViewBag.total
+            </div>
+            <div class="active box">
+                Active Users <br />
+                @ViewBag.active
+            </div>
+        </div>
+        <div>
+
+
+        </div>
+    </div>
+
+    <div id="attendance-sheet">
+        <h1> Active Users</h1>
+     
+        <table>
+            <tbody>
+                <tr>
+                    <th>Username</th>
+                    <th>Role</th>
+                    <th>Login Time</th>
+                    <th>Updated Time</th>
+                </tr>
+               @{ 
+                   var i = 0;
+                   foreach (Table user in Model)
+                   {
+                <tr>
+                    <td> @user.Username</td>
+                    <td> @ViewBag.activeRole[i]</td>
+                    <td> @user.PeTime</td>
+                    <td> @user.UpdatedTime</td>
+                </tr>
+                i++;
+             }
+                
+               }
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+</body>

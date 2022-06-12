@@ -34,6 +34,7 @@ namespace eSkool.Models
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<Subject> Subjects { get; set; }
         public virtual DbSet<SubjectsInfo> SubjectsInfos { get; set; }
+        public virtual DbSet<Table> Tables { get; set; }
         public virtual DbSet<Teacher> Teachers { get; set; }
         public virtual DbSet<UserInfo> UserInfos { get; set; }
 
@@ -497,6 +498,30 @@ namespace eSkool.Models
                     .WithMany(p => p.SubjectsInfos)
                     .HasForeignKey(d => new { d.CourseId, d.ClassGrade })
                     .HasConstraintName("FK_SubjectsInfo_ClasssesInfo");
+            });
+
+            modelBuilder.Entity<Table>(entity =>
+            {
+                entity.HasKey(e => e.ActiveId)
+                    .HasName("PK__Table__DDEC27590394B8D1");
+
+                entity.ToTable("Table");
+
+                entity.Property(e => e.ActiveId).HasColumnName("Active_id");
+
+                entity.Property(e => e.PeTime)
+                    .HasColumnType("datetime")
+                    .HasColumnName("pe_time");
+
+                entity.Property(e => e.UpdatedTime)
+                    .HasColumnType("datetime")
+                    .HasColumnName("updated_time");
+
+                entity.Property(e => e.Username)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("username");
             });
 
             modelBuilder.Entity<Teacher>(entity =>

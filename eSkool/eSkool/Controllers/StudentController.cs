@@ -7,7 +7,7 @@ using eSkool.Models;
 using Grpc.Core;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
+using eSkool.Logistics;
 namespace eSkool.Controllers
 {
     public class StudentController : Controller
@@ -23,9 +23,9 @@ namespace eSkool.Controllers
                     if (role == "S")
                     {
                         ViewBag.username = username;
+                        ActiveUser.recordActive(username);
 
-                        
-                            try
+                        try
                             {
                                 using (eSkoolDBContext dBContext = new eSkoolDBContext())
                                 {
@@ -62,7 +62,7 @@ namespace eSkool.Controllers
                     string role = db.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
                     if (role == "S")
                     {
-                        
+                        ActiveUser.recordActive(username);
                         try
                         {
                             using (eSkoolDBContext dBContext = new eSkoolDBContext())
@@ -110,7 +110,7 @@ namespace eSkool.Controllers
                     if (role == "S")
                     {
                         ViewBag.username = username;
-
+                        ActiveUser.recordActive(username);
                         //Coding Block---------------------------------------------------------
                         {
 
@@ -143,7 +143,7 @@ namespace eSkool.Controllers
                     if (role == "S")
                     {
                         ViewBag.username = username;
-
+                        ActiveUser.recordActive(username);
                         //Coding Block---------------------------------------------------------
                         {
 
@@ -176,7 +176,7 @@ namespace eSkool.Controllers
                     if (role == "S")
                     {
                         ViewBag.username = username;
-
+                        ActiveUser.recordActive(username);
                         //Coding Block---------------------------------------------------------
                         {
 
@@ -209,7 +209,7 @@ namespace eSkool.Controllers
                     if (role == "S")
                     {
                         ViewBag.username = username;
-
+                        ActiveUser.recordActive(username);
                         //Coding Block---------------------------------------------------------
                         {
 
@@ -242,7 +242,7 @@ namespace eSkool.Controllers
                     if (role == "S")
                     {
                         ViewBag.username = username;
-
+                        ActiveUser.recordActive(username);
                         //Coding Block---------------------------------------------------------
                         {
 
@@ -278,7 +278,7 @@ namespace eSkool.Controllers
                     if (role == "S")
                     {
                         ViewBag.username = username;
-
+                        ActiveUser.recordActive(username);
                         //Coding Block---------------------------------------------------------
                         {
 
@@ -310,7 +310,7 @@ namespace eSkool.Controllers
                     if (role == "S")
                     {
                         ViewBag.username = username;
-
+                        ActiveUser.recordActive(username);
                         //Coding Block---------------------------------------------------------
                         {
 
@@ -342,7 +342,7 @@ namespace eSkool.Controllers
                     if (role == "S")
                     {
                         ViewBag.username = username;
-
+                        ActiveUser.recordActive(username);
                         //Coding Block---------------------------------------------------------
                         {
 
@@ -374,7 +374,7 @@ namespace eSkool.Controllers
                     if (role == "S")
                     {
                         ViewBag.username = username;
-
+                        ActiveUser.recordActive(username);
                         //Coding Block---------------------------------------------------------
                         {
 
