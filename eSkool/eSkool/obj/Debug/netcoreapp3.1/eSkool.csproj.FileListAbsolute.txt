@@ -196,3 +196,8 @@ F:\Desktop\Sem 7\Fyp\eSkool\eSkool\obj\Debug\netcoreapp3.1\eSkool.genruntimeconf
 F:\Desktop\Sem 7\Fyp\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\login\temp.cshtml.g.cs
 F:\Desktop\Sem 7\Fyp\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\setPaper.cshtml.g.cs
 F:\Desktop\Sem 7\Fyp\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\admin\complaintBox.cshtml.g.cs
+F:\Desktop\Sem 7\Fyp\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\leaveBox.cshtml.g.cs
+F:\Desktop\Sem 7\Fyp\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\teach_subject.cshtml.g.cs
+F:\Desktop\Sem 7\Fyp\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\post_class_announcement.cshtml.g.cs
+F:\Desktop\Sem 7\Fyp\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\upload_gradebook.cshtml.g.cs
+F:\Desktop\Sem 7\Fyp\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\upload_helping_material.cshtml.g.cs

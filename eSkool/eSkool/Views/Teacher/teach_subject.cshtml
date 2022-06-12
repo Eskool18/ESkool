@@ -1,7 +1,6 @@
-﻿@model IEnumerable<eSkool.Models.ClassSubjectTeacher>
-@{
-    ViewBag.Title = "subjects";
-    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+﻿@{
+    ViewBag.Title = "teach_subject";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
 
 }
 
@@ -14,7 +13,7 @@
 
     .class-banner {
         width: 18%;
-        color: #22a1b782;
+        color: #beaacf;
         font-weight: bolder;
         text-align: center;
         border-left: 3px #75b1c6;
@@ -28,11 +27,12 @@
 
     .class-div {
         color: whitesmoke;
-        box-shadow: 0px 10px 10px 0 rgb(39 155 176 / 42%), 0 15px 30px 0 rgb(145 73 139 / 60%);
+        box-shadow: 0px 10px 10px 0 rgb(171 169 202), 0 15px 30px 0 rgb(221 219 221 / 60%);
         width: 29%;
-        background-color: #7b5c9261;
+        background-color: #2ca4bab8;
         margin: 2%;
     }
+    
 
     .class-detail {
         width: 100%;
@@ -55,7 +55,7 @@
     }
 
     .class-detail i {
-        color: #954587;
+        color: #4a7586;
         font-size: 20px;
         padding: 5px;
     }
@@ -84,22 +84,22 @@
 </style>
 
 <div class="sub-div">
-
-    @foreach (var sub in Model)
-    {    
+     
+    @for (int i = 0; i < 3; i++)
+    {
         <div class="class-div">
             <div class="class-card">
                 <div class="class-banner">
                     <p>
-                        @sub.ClassGrade TH
+                        9<br />T<br />H
                     </p>
                 </div>
                 <div class="class-detail">
                     @*<i class="fas fa-shapes"></i>*@
-                    <h2> @sub.SubjectName </h2>
-                    <a href="/Student/gradebook?sName=@sub.SubjectName"><i class="fas fa-trophy"></i>&nbsp; Gradebook</a>
-                    <a href="/Student/helping_material?sName=@sub.SubjectName "><i class="fas fa-book-open"></i>&nbsp; Helping Material</a>
-                    <a href="/Student/class_announcement?sName=@sub.SubjectName"><i class="fas fa-bell"></i>&nbsp; Announcements</a>
+                    <h2>@i </h2>
+                    <a href="/Teacher/upload_gradebook"><i class="fas fa-trophy"></i>&nbsp; Gradebook</a>
+                    <a href="/Teacher/upload_helping_material"><i class="fas fa-book-open"></i>&nbsp; Helping Material</a>
+                    <a href="/Teacher/post_class_announcement"><i class="fas fa-bell"></i>&nbsp; Announcements</a>
                     
                 </div>
             </div>

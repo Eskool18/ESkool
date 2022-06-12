@@ -51,8 +51,55 @@ namespace eSkool.Controllers
         }  
 
 
+        //[HttpPost]
+        //public IActionResult Dashboard( string uname, string complaint)
+        //{
+        //    if (HttpContext.Session.GetString("username") != null)
+        //    {
+        //        string username = HttpContext.Session.GetString("username");
+        //        using (eSkoolDBContext db = new eSkoolDBContext())
+        //        {
+        //            string role = db.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
+        //            if (role == "S")
+        //            {
+                        
+        //                try
+        //                {
+        //                    using (eSkoolDBContext dBContext = new eSkoolDBContext())
+        //                    {
+        //                        Complaint newComplaint = new Complaint();
+        //                        newComplaint.ComplaintStatement = complaint;
+        //                        newComplaint.UserName = username;
+                            
+        //                        newComplaint.ComplaintDate = DateTime.Now;
+                                      
+        //                        dBContext.Complaints.Add(newComplaint);
+
+        //                        //Update DB
+        //                        dBContext.SaveChanges();
+
+        //                       RedirectToAction("Dashboard");
+        //                    }
+        //                }
+        //                catch (Exception ex)
+        //                {
+        //                    return View();
+        //                }
+
+
+
+        //            }
+        //            else return RedirectToAction("AccessWarning403", "login", new { role = role });
+        //        }
+
+        //    }
+
+        //    return RedirectToAction("login", "login");
+
+        //}
+
         [HttpPost]
-        public IActionResult Dashboard( string uname, string complaint)
+        public IActionResult Dashboard( string reason, DateTime from, DateTime to, string txt, int total)
         {
             if (HttpContext.Session.GetString("username") != null)
             {
@@ -62,23 +109,28 @@ namespace eSkool.Controllers
                     string role = db.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
                     if (role == "S")
                     {
-                        
+
                         try
                         {
                             using (eSkoolDBContext dBContext = new eSkoolDBContext())
                             {
-                                Complaint newComplaint = new Complaint();
-                                newComplaint.ComplaintStatement = complaint;
-                                newComplaint.UserName = username;
-                            
-                                newComplaint.ComplaintDate = DateTime.Now;
-                                      
-                                dBContext.Complaints.Add(newComplaint);
+                                Application newApp= new Application();
+                                string id = db.Students.Where(x => x.StudentName == username).SingleOrDefault().StudentId;
+                                newApp.StudentId = id ;
+                                newApp.SubmissionDate = DateTime.Now;
+                                newApp.ApplicationToDate = to;
+                                newApp.ApplicationFromDate = from;
+                                newApp.ApplicationBody = txt;
+                                newApp.AppicationTitle = reason;
+                                newApp.TotalDays = total;
+                                
+
+                                dBContext.Applications.Add(newApp);
 
                                 //Update DB
                                 dBContext.SaveChanges();
 
-                               RedirectToAction("Dashboard");
+                                RedirectToAction("Dashboard");
                             }
                         }
                         catch (Exception ex)
@@ -98,7 +150,6 @@ namespace eSkool.Controllers
 
         }
 
-
         public ActionResult download_books()
         {
             if (HttpContext.Session.GetString("username") != null)
@@ -110,9 +161,20 @@ namespace eSkool.Controllers
                     if (role == "S")
                     {
                         ViewBag.username = username;
-
-                        //Coding Block---------------------------------------------------------
+                        try
                         {
+                            using (eSkoolDBContext dBContext = new eSkoolDBContext())
+                            {
+                                List<HelpingMeterial> AppList = dBContext.HelpingMeterials.ToList();
+                                return View(AppList);
+                            }
+
+                        }
+                        catch (Exception ex)
+                        //Coding Block---------------------------------------------------------
+                        
+                            //Coding Block---------------------------------------------------------
+                            {
 
                             return View();
                         }
@@ -126,11 +188,6 @@ namespace eSkool.Controllers
 
             return RedirectToAction("login", "login");            
         }
-
-
-
-
-
 
         public ActionResult subjects()
         {
@@ -144,11 +201,27 @@ namespace eSkool.Controllers
                     {
                         ViewBag.username = username;
 
+                        //int? grade = db.Students.Where(x => x.StudentName == username).SingleOrDefault().ClassGrade;
+                        //Coding Block---------------------------------------------------------
+                        try
+                        {
+                            using (eSkoolDBContext dBContext = new eSkoolDBContext())
+                            {
+                                Student studentobj = db.Students.Where(x => x.StudentName == username).SingleOrDefault();
+                               
+                                List<ClassSubjectTeacher> subList = db.ClassSubjectTeachers.Where(x => x.ClassName == studentobj.ClassName
+                                  && x.ClassGrade == studentobj.ClassGrade).ToList();
+                                return View(subList);
+                            }
+
+                        }
+                        catch (Exception ex)
                         //Coding Block---------------------------------------------------------
                         {
 
                             return View();
                         }
+                        //Coding
                         //Coding Block---------------------------------------------------------
 
                     }
@@ -160,12 +233,7 @@ namespace eSkool.Controllers
             return RedirectToAction("login", "login");            
         }
 
-
-
-
-
-
-        public ActionResult helping_material()
+        public ActionResult helping_material(string sName)
         {
             if (HttpContext.Session.GetString("username") != null)
             {
@@ -173,10 +241,20 @@ namespace eSkool.Controllers
                 using (eSkoolDBContext db = new eSkoolDBContext())
                 {
                     string role = db.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
+                    int? cName = db.Students.Where(x => x.StudentName == username).SingleOrDefault().ClassGrade;
                     if (role == "S")
                     {
                         ViewBag.username = username;
+                        try
+                        {
+                            using (eSkoolDBContext dBContext = new eSkoolDBContext())
+                            {
+                                List<HelpingMeterial> AppList = dBContext.HelpingMeterials.Where(x => x.MaterialSubject == sName && x.MaterialClass == cName ).ToList();
+                                return View(AppList);
+                            }
 
+                        }
+                        catch(Exception ex)
                         //Coding Block---------------------------------------------------------
                         {
 
@@ -194,11 +272,7 @@ namespace eSkool.Controllers
         }
 
 
-
-
-
-
-        public ActionResult class_announcement()
+        public ActionResult class_announcement(string sName)
         {
             if (HttpContext.Session.GetString("username") != null)
             {
@@ -206,10 +280,20 @@ namespace eSkool.Controllers
                 using (eSkoolDBContext db = new eSkoolDBContext())
                 {
                     string role = db.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
+                    int? cName = db.Students.Where(x => x.StudentName == username).SingleOrDefault().ClassGrade;
                     if (role == "S")
                     {
                         ViewBag.username = username;
+                        try
+                        {
+                            using (eSkoolDBContext dBContext = new eSkoolDBContext())
+                            {
+                                List<HelpingMeterial> AppList = dBContext.HelpingMeterials.Where(x => x.MaterialSubject == sName && x.MaterialClass == cName).ToList();
+                                return View(AppList);
+                            }
 
+                        }
+                        catch (Exception ex)
                         //Coding Block---------------------------------------------------------
                         {
 
@@ -225,11 +309,6 @@ namespace eSkool.Controllers
 
             return RedirectToAction("login", "login");
         }
-
-
-
-
-
 
         public ActionResult challan()
         {
@@ -260,13 +339,6 @@ namespace eSkool.Controllers
             return RedirectToAction("login", "login");            
         }
 
-
-
-
-
-
-
-
         public ActionResult attendance()
         {
             if (HttpContext.Session.GetString("username") != null)
@@ -295,11 +367,7 @@ namespace eSkool.Controllers
             return RedirectToAction("login", "login");
         }
 
-
-
-
-
-        public ActionResult gradebook()
+        public ActionResult gradebook(string sName)
         {
             if (HttpContext.Session.GetString("username") != null)
             {
@@ -326,10 +394,6 @@ namespace eSkool.Controllers
 
             return RedirectToAction("login", "login");
         }
-
-
-
-
 
         public ActionResult practice()
         {
@@ -358,10 +422,6 @@ namespace eSkool.Controllers
 
             return RedirectToAction("login", "login");
         }
-
-
-
-
 
         public ActionResult download(string filePath)
         {

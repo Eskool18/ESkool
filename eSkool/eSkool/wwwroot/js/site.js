@@ -144,7 +144,7 @@ function calculateDuration() {
         total = 0;
     //total = (to.value - from.value).Days;
 
-    document.getElementById("leaves-duration").innerHTML = total;
+    document.getElementById("leaves-duration").value = total;
 }
 
 function assign() {

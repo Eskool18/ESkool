@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "upload_helping_material";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+
+}
+<style>
+    form {
+        background-color: #417d8f2e;
+        margin: auto;
+
+        border: 2px dashed #447b8d;
+    }
+    form h3{
+        text-align:center;
+    }
+</style>
+<body>
+    <form method="post" enctype="multipart/form-data" asp-controller="Teacher" asp-action="upload_helping_material">
+        <div class="form-group">
+            <div class="col-md-10">
+                <h3>Upload New Material</h3>
+                <label for="cName">Class Name:</label>
+                <input type="number" name="cName" required />
+                <label for="sName">Subject Name:</label>
+                <input type="text" name="sName" required />
+                <label for="mType">Material Type</label>
+                <input type="text" name="mType" placeholder="Slides" required />
+                <input type="file" name="files" multiple required />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="Upload" />
+            </div>
+        </div>
+    </form>
+</body>

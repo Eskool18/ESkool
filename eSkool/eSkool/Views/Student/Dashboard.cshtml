@@ -312,10 +312,10 @@
             <div class="modal-body">
 
                 <p style="color:red;">This message will be received by your Class Incharge.</p>
-                <form action="Student/Dashboard">
+                <form action="Dashboard" method="post">
                     <div>
                         <label for="name">Name:</label>
-                        <input type="text" style=" width: 40%;" id="name" name="name" placeholder="@ViewBag.uname" disabled />
+                        <input type="text" style=" width: 40%;" id="name" name="uname" placeholder="@ViewBag.username" disabled />
                         <label for="reason" style="margin-left:2%;">Reason: </label>
                         <select id="reason" style=" width: 35%; padding: 2%; border: none; background: #efefef;" name="reason">
                             <option value="Sick">Sick</option>
@@ -330,12 +330,12 @@
                         <input type="date" id="to" name="to" onchange="calculateDuration();" checked required>
                         <div id="total-days" style="display:flex;">
                             <label for="leaves-duration">Total Leaves: </label>
-                            <p style=" margin: 2%; color: red; border: 1px solid red; text-align: center; width: 45%;" id="leaves-duration">&nbsp; </p>
+                            <input type="number" name="total" style=" margin: 2%; color: red; border: 1px solid red; text-align: center; width: 45%; padding:7%;" placeholder="0" id="leaves-duration" disabled />
                         </div>
                     </div>
 
                     <label for="txt">Dear Sir/Madam, </label>
-                    <input type="text" id="txt" name="txt" style="height:80px;" required>
+                    <input type="text" id="txt" name="txt" style="height:80px;" placeholder="2-3 Lines" required>
                     <div id="obediently">
                         <p>Yours Obediently,</p>
                         <p>@ViewBag.uname</p>

@@ -1,7 +1,6 @@
-﻿@model IEnumerable<eSkool.Models.HelpingMeterial>
-@{
-    ViewBag.Title = "class_announcement";
-    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+﻿@{
+    ViewBag.Title = "post_class_announcement";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
 
 }
 
@@ -20,7 +19,6 @@
         background-color: rgb(0,0,0); /* Fallback color */
         background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
     }
-
     .modal-content {
         background-color: #fefefe;
         margin: auto;
@@ -28,7 +26,6 @@
         border: 1px solid #888;
         width: 50%;
     }
-
     .modal-body form {
         display: flex;
         flex-direction: column;
@@ -39,7 +36,6 @@
         background-color: #7b5c9261;
         color: white;
     }
-
         .modal-header h3 {
             font-size: 25px;
             font-style: italic;
@@ -50,7 +46,7 @@
         border: none;
         background: #efefef;
         padding: 2%;
-        margin: 1%;
+        margin:1%;
     }
 
     .modal-body form input[type=submit]:hover {
@@ -118,23 +114,60 @@
         font-size: larger;
         font-style: italic;
     }
-
         .add-class button:hover {
             box-shadow: 0px 10px 10px 0 rgb(223 197 197), 0 15px 30px 0 rgb(221 219 221 / 60%);
         }
+
+
 </style>
 <body>
 
 
-    @foreach (var material in Model)
-    {
+    <div class="add-class">
 
-        <div class="post">
-            <div class="post-details">
-                <h3>Slides 3</h3>
-                <p>Above are the slides of first lecture. At the end of slides, there is an assignmnet which you need to submit in next lecture.</p>
-            </div>
+
+        <button onclick="announceModal()" class="show-btn"><i class="fa fa-plus"></i>Post an announcement</button>
+
+
+    </div>
+    <div class="post">
+
+        <div class="post-details">
+            <h3>Slides 3</h3>
+            <p>Above are the slides of first lecture. At the end of slides, there is an assignmnet which you need to submit in next lecture.</p>
         </div>
-    }
+    </div>
 
-    </body>
+    <div id="announceModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Post Announcements</h3>
+                <button class="leave-close" onclick="closeAnnounce()"> &times; </button>
+                @*<span class="comp-close">&times;</span>*@
+
+
+            </div>
+            <div class="modal-body">
+                <form action="post_class_announcement" method="post">
+                    <div>
+                        <label for="name">Header: </label>
+                        <input type="text"  id="name" name="name" placeholder="Assignment due till sunday" />
+                        <label for="name">Subject: </label>
+                        <input type="text" style=" width: 40%;" id="name" name="sub" placeholder="English" />
+                        <label for="name">Class: </label>
+                        <input type="number" style=" width: 40%;" id="name" name="cls" placeholder="1" />
+                    </div>
+                    <label for="txt"> Content : </label>
+                    <input type="text" id="txt" name="txt" style="height:80px; margin-bottom:2%;" required>
+                    <input type="submit" style=" width: 30%; margin: auto;">
+                </form>
+
+
+            </div>
+
+        </div>
+
+    </div>
+</body>
