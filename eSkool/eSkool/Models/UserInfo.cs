@@ -19,5 +19,10 @@ namespace eSkool.Models
             Password = "eskool";
 
         }
+
+        public UserInfo()
+        {
+
+        }
     }
 }

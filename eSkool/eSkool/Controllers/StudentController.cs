@@ -165,25 +165,22 @@ namespace eSkool.Controllers
                         ActiveUser.recordActive(username);
                         //Coding Block---------------------------------------------------------
                         {
-                        try
-                        {
-                            using (eSkoolDBContext dBContext = new eSkoolDBContext())
+                            try
                             {
-                                List<HelpingMeterial> AppList = dBContext.HelpingMeterials.ToList();
-                                return View(AppList);
+                                using (eSkoolDBContext dBContext = new eSkoolDBContext())
+                                {
+                                    List<HelpingMeterial> AppList = dBContext.HelpingMeterials.ToList();
+                                    return View(AppList);
+                                }
+
+                            }
+                            catch (Exception ex)
+                            {
+
                             }
 
-                        }
-                        catch (Exception ex)
-                        //Coding Block---------------------------------------------------------
-                        
-                            //Coding Block---------------------------------------------------------
-                            {
 
-                            return View();
                         }
-                        //Coding Block---------------------------------------------------------
-
                     }
                     else return RedirectToAction("AccessWarning403", "login", new { role = role });
                 }

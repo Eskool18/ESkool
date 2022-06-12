@@ -669,7 +669,6 @@ namespace eSkool.Controllers
 
 
                     }
-                    }
                     else return RedirectToAction("AccessWarning403", "login", new { role = role });
                 }
 
@@ -714,6 +713,9 @@ namespace eSkool.Controllers
 
                     else return RedirectToAction("AccessWarning403", "login", new { role = role });
                 }
+            }
+            return RedirectToAction("login", "login");
+        }
 
         [HttpGet]
         public IActionResult deleteChallan(int id)

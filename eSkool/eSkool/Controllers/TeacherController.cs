@@ -34,24 +34,6 @@ namespace eSkool.Controllers
                             return View();
                         }
                         //Coding Block---------------------------------------------------------
-
-                    }
-                    else return RedirectToAction("AccessWarning403", "login", new { role = role });
-                }
-
-            }
-            return RedirectToAction("login", "login"); ;
-        }
-            if (HttpContext.Session.GetString("username") != null)
-            {
-                string username = HttpContext.Session.GetString("username");
-                using (eSkoolDBContext db = new eSkoolDBContext())
-                {
-                    string role = db.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
-                    if (role == "T")
-                    {
-                        ViewBag.username = username;
-
                         //Coding Block------------------------------------------------------------
 
                         try
@@ -70,12 +52,13 @@ namespace eSkool.Controllers
 
                         //Coding Block--------------------------------------------------------
 
+
                     }
                     else return RedirectToAction("AccessWarning403", "login", new { role = role });
                 }
 
             }
-            return RedirectToAction("login", "login");
+            return RedirectToAction("login", "login"); ;
         }
         public IActionResult setPaper()
         {
@@ -98,7 +81,9 @@ namespace eSkool.Controllers
                     }
                     else return RedirectToAction("AccessWarning403", "login", new { role = role });
                 }
-            return View();
+
+            }
+            return RedirectToAction("login", "login"); ;
         }
         public IActionResult upload_gradebook(string sname, string cname)
         {
@@ -366,24 +351,6 @@ namespace eSkool.Controllers
                             return View();
                         }
 
-            }
-            return RedirectToAction("login", "login"); ;
-        }
-
-        [HttpGet]
-        public IActionResult markAttendence()
-        {
-
-            {
-                if (HttpContext.Session.GetString("username") != null)
-                {
-                    string username = HttpContext.Session.GetString("username");
-                    ActiveUser.recordActive(username);
-
-                    try
-                    {
-                        using (eSkoolDBContext dBContext = new eSkoolDBContext())
-                        {
 
                         //Coding Block--------------------------------------------------------
 
@@ -453,9 +420,9 @@ namespace eSkool.Controllers
                             return File(
                                 fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, filePath);
                         }
-                        //Coding Block---------------------------------------------------------
 
                     }
+
                     else return RedirectToAction("AccessWarning403", "login", new { role = role });
                 }
 
@@ -463,7 +430,42 @@ namespace eSkool.Controllers
 
             return RedirectToAction("login", "login");
         }
-        byte[] GetFile(string s)
+
+
+
+        [HttpGet]
+        public IActionResult markAttendence()
+        {
+            if (HttpContext.Session.GetString("username") != null)
+            {
+                string username = HttpContext.Session.GetString("username");
+                using (eSkoolDBContext db = new eSkoolDBContext())
+                {
+                    string role = db.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
+                    if (role == "T")
+                    {
+                        ViewBag.username = username;
+
+                        //Coding Block---------------------------------------------------------
+                        {
+                            string className = db.SchoolClasses.Where(x => x.Incharge == username).SingleOrDefault().ClassName;
+                            List<Student> studentList = db.Students.Where(x => x.ClassName == className).ToList();
+                            ViewBag.date = DateTime.Now.ToLongDateString();
+
+                            return View(studentList);
+                        }
+                        //Coding Block---------------------------------------------------------
+
+                    }
+
+                    else return RedirectToAction("AccessWarning403", "login", new { role = role });
+                }
+
+            }
+
+            return RedirectToAction("login", "login");
+        }
+            byte[] GetFile(string s)
         {
             System.IO.FileStream fs = System.IO.File.OpenRead(s);
             byte[] data = new byte[fs.Length];
@@ -473,25 +475,6 @@ namespace eSkool.Controllers
             return data;
         }
 
-                            string className = dBContext.SchoolClasses.Where(x => x.Incharge == username).SingleOrDefault().ClassName;
-                            List<Student> studentList = dBContext.Students.Where(x=> x.ClassName == className).ToList();
-                            ViewBag.date = DateTime.Now.ToLongDateString();
-
-                            return View(studentList);
-
-
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-
-                    }
-                    return RedirectToAction("showStudents", "admin");
-                }
-                return RedirectToAction("login", "login");
-
-
-            }
+                         
         }
     }
-}

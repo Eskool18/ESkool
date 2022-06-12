@@ -405,3 +405,11 @@ F:\Desktop\Sem 7\Fyp\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\p
 F:\Desktop\Sem 7\Fyp\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\upload_gradebook.cshtml.g.cs
 F:\Desktop\Sem 7\Fyp\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\upload_helping_material.cshtml.g.cs
 >>>>>>> 335cf0a6995cf44020600aa10cc2cb8008688831
+D:\fyp\ESkool\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\admin\addChallanForm.cshtml.g.cs
+D:\fyp\ESkool\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\admin\challanForm.cshtml.g.cs
+D:\fyp\ESkool\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\admin\editChallan.cshtml.g.cs
+D:\fyp\ESkool\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\leaveBox.cshtml.g.cs
+D:\fyp\ESkool\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\post_class_announcement.cshtml.g.cs
+D:\fyp\ESkool\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\teach_subject.cshtml.g.cs
+D:\fyp\ESkool\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\upload_gradebook.cshtml.g.cs
+D:\fyp\ESkool\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\upload_helping_material.cshtml.g.cs
