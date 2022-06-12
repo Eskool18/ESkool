@@ -1,0 +1,183 @@
+﻿@model IEnumerable<eSkool.Models.ClassAnnouncement>
+@{
+    ViewBag.Title = "post_class_announcement";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+
+}
+
+<style>
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 50px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        border: 1px solid rgb(145 74 140);
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        box-shadow: 0 4px 8px 0 rgb(199 24 161 / 57%), 0 6px 20px 0 #448797;
+        border: 1px solid #888;
+        width: 50%;
+    }
+
+    .modal-body form {
+        display: flex;
+        flex-direction: column;
+        padding: 2%;
+    }
+
+    .modal-header {
+        background-color: #7b5c9261;
+        color: white;
+    }
+
+        .modal-header h3 {
+            font-size: 25px;
+            font-style: italic;
+            font-family: serif;
+        }
+
+    .modal-body input, .modal-body textarea {
+        border: none;
+        background: #efefef;
+        padding: 2%;
+        margin: 1%;
+    }
+
+    .modal-body form input[type=submit]:hover {
+        box-shadow: -6px 6px 0px 0 #22a1b782;
+        background: rgb(145 74 140 / 45%);
+    }
+
+    .modal-body form input[type=submit] {
+        color: #ffffff;
+        box-shadow: -6px 6px 0px 0 rgb(145 74 140 / 45%);
+        background: #22a1b782;
+    }
+
+    .modal-body form div {
+        margin-bottom: 2%
+    }
+
+
+
+    .image-card {
+        width: 20%;
+        padding: 2px;
+        height: 100%;
+        text-align: center;
+    }
+
+        .image-card img {
+            width: 100%;
+            height: 100%;
+        }
+
+    .post {
+  
+        width: 100%;
+        margin: 10px;
+        border: 1px solid #52b6c5;
+        background-color: #3d7d8930;
+    }
+
+    .post-card {
+        margin: 8px;
+        height: 8%;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+        .post-card p {
+            margin: 0;
+        }
+
+    .post-details {
+        padding: 10px;
+    }
+
+    .add-class button {
+        background-color: #e90b0b14;
+        padding: 10px;
+        width: 100%;
+        margin: 10px;
+        border: 1px dashed red;
+        color: red;
+        text-align: center;
+        font-size: larger;
+        font-style: italic;
+    }
+
+        .add-class button:hover {
+            box-shadow: 0px 10px 10px 0 rgb(223 197 197), 0 15px 30px 0 rgb(221 219 221 / 60%);
+        }
+    .date {
+        color: gray;
+        text-align: end;
+    }
+</style>
+<body>
+
+
+    <div class="add-class">
+
+
+        <button onclick="announceModal()" class="show-btn"><i class="fa fa-plus"></i>Post an announcement</button>
+
+
+    </div>
+    @foreach (var announcement in Model)
+    {
+
+        <div class="post">
+            <div class="post-details">
+                <h3>@announcement.Header</h3>
+                <p>@announcement.Content</p>
+            </div>
+            <div class="date">@announcement.PostDate</div>
+        </div>
+    }
+
+    <div id="announceModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Post Announcements</h3>
+                <button class="leave-close" onclick="closeAnnounce()"> &times; </button>
+                @*<span class="comp-close">&times;</span>*@
+
+
+            </div>
+            <div class="modal-body">
+                <form action="post_class_announcement" method="post">
+                    <div>
+                        <label for="name">Title: </label>
+                        <input type="text" id="name" name="title" placeholder="Assignment due till sunday" />
+                        <label for="name">Subject: </label>
+                        <input type="text" style=" width: 40%;" id="name" name="sub" value="@ViewBag.sname" readonly />
+                        <label for="name">Class: </label>
+                        <input type="number" style=" width: 40%;" id="name" name="cls" value="@ViewBag.cname" readonly />
+                    </div>
+                    <label for="txt"> Content : </label>
+                    <input type="text" id="txt" name="txt" style="height:80px; margin-bottom:2%;" required>
+                    <input type="submit" style=" width: 30%; margin: auto;">
+                </form>
+
+
+            </div>
+
+        </div>
+
+    </div>
+</body>

@@ -10,12 +10,23 @@
         background-color: white;
         text-align: center;
     }
+    #leave {
+        width: 30%;
+        padding: 4%;
+        font-size: 20px;
+        text-align: center;
+        color: white;
+        background: rgba(0, 0, 0, 0) linear-gradient( -135deg, #4ea5bdd1 0%, #b69cc3 100%) repeat scroll 0 0;
+        border-radius: 5px;
+        box-shadow: 0 3px 15px 0 rgb(0 0 0 / 10%);
+        float: left;
+    }
 </style>
 
 
 
 <div>
-   
+
     <!--mainDiv For Entire Page-->
 
     @{          
@@ -31,7 +42,7 @@
     <div class="container-fluid" style="width:100%">
         <!--main Row For Entire Page-->
         <div class="row">
-            
+
             <div class="col-sm-5 forcol">
                 <h1> Functionalities</h1>
                 <div class="container-fluid">
@@ -144,16 +155,11 @@
 
 
             </div>
-            <div class="col-sm-3 forcol">
-                <h1>Notification</h1>
 
-
-
-            </div>
         </div>
     </div>
 
-    <div class="container">
-
+    <div id="leave">
+        <a class="show-leave dash-links" href="leaveBox"><p> Leave Requests </p> <i class="fas fa-edit"></i> </a>
     </div>
 </div>

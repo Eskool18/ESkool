@@ -196,6 +196,7 @@ F:\Desktop\Sem 7\Fyp\eSkool\eSkool\obj\Debug\netcoreapp3.1\eSkool.genruntimeconf
 F:\Desktop\Sem 7\Fyp\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\login\temp.cshtml.g.cs
 F:\Desktop\Sem 7\Fyp\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\setPaper.cshtml.g.cs
 F:\Desktop\Sem 7\Fyp\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\admin\complaintBox.cshtml.g.cs
+<<<<<<< HEAD
 D:\fyp\ESkool\eSkool\eSkool\bin\Debug\netcoreapp3.1\appsettings.Development.json
 D:\fyp\ESkool\eSkool\eSkool\bin\Debug\netcoreapp3.1\appsettings.json
 D:\fyp\ESkool\eSkool\eSkool\bin\Debug\netcoreapp3.1\eSkool.exe
@@ -397,3 +398,10 @@ D:\fyp\ESkool\eSkool\eSkool\obj\Debug\netcoreapp3.1\eSkool.pdb
 D:\fyp\ESkool\eSkool\eSkool\obj\Debug\netcoreapp3.1\eSkool.genruntimeconfig.cache
 D:\fyp\ESkool\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\admin\activeUser.cshtml.g.cs
 D:\fyp\ESkool\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\markAttendence.cshtml.g.cs
+=======
+F:\Desktop\Sem 7\Fyp\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\leaveBox.cshtml.g.cs
+F:\Desktop\Sem 7\Fyp\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\teach_subject.cshtml.g.cs
+F:\Desktop\Sem 7\Fyp\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\post_class_announcement.cshtml.g.cs
+F:\Desktop\Sem 7\Fyp\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\upload_gradebook.cshtml.g.cs
+F:\Desktop\Sem 7\Fyp\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\upload_helping_material.cshtml.g.cs
+>>>>>>> 335cf0a6995cf44020600aa10cc2cb8008688831

@@ -138,7 +138,9 @@ namespace eSkool.Controllers
                         TeacherInfoObj.TeacherId = Algorithms.generateTeacherUsername(TeacherEmail);
 
                         //Add Teacher Credential In UserInfo Table
-                        UserInfo user = new UserInfo(TeacherInfoObj.TeacherId, "T");
+                        UserInfo user = new UserInfo();
+                        user.Role = "T";
+                     
                         dBContext.UserInfos.Add(user);
 
                         //Add Teacher Complete Info Teacher Table
@@ -265,7 +267,10 @@ namespace eSkool.Controllers
                         }
 
                         //add student Credential  in USERINFO
-                        UserInfo user = new UserInfo(studentinfoObj.StudentId,"S");
+                        UserInfo user = new UserInfo();
+                        
+                        user.Role = "S";
+                        
                         dBContext.Add(user);                        
                         
                         //Add student Complete Info in Student Table
@@ -664,9 +669,176 @@ namespace eSkool.Controllers
 
 
                     }
+                    }
                     else return RedirectToAction("AccessWarning403", "login", new { role = role });
                 }
 
+            }
+            return RedirectToAction("login", "login");
+        }
+
+        [HttpGet]
+        public IActionResult challanForm()
+        {
+            if (HttpContext.Session.GetString("username") != null)
+            {
+                string username = HttpContext.Session.GetString("username");
+                using (eSkoolDBContext db = new eSkoolDBContext())
+                {
+                    string role = db.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
+
+                    if (role == "A")
+                    {
+                        ViewBag.username = username;
+
+                        //Coding Block--------------------------------------------
+                        {
+                            List<ChallanInfo> ChallanInfos = null;
+                            try
+                            {
+                                using (eSkoolDBContext eskoolDb = new eSkoolDBContext())
+                                {
+                                    ChallanInfos = eskoolDb.ChallanInfos.ToList();
+                                }
+                            }
+                            catch (Exception e)
+                            {
+
+                            }
+
+                            return View(ChallanInfos);
+                        }
+                        //Coding Block-----------------------------------------------------
+                    }
+
+
+                    else return RedirectToAction("AccessWarning403", "login", new { role = role });
+                }
+
+        [HttpGet]
+        public IActionResult deleteChallan(int id)
+        {
+            if(HttpContext.Session.GetString("username") != null)
+            {
+                string username = HttpContext.Session.GetString("username");
+                using (eSkoolDBContext db = new eSkoolDBContext())
+                {
+                    string role = db.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
+                    if (role == "A")
+                    {
+                        ViewBag.username = username;
+
+                        //Coding Block------------------------------------------------------------
+
+                        try
+                        {
+                            using (eSkoolDBContext dBContext = new eSkoolDBContext())
+                            {
+                                List<ChallanInfo> Challans = dBContext.ChallanInfos.Where(c => c.ChallanId == id).ToList();
+                                dBContext.ChallanInfos.RemoveRange(Challans);
+                                dBContext.SaveChanges();
+                                return RedirectToAction("challanForm");
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            return View();
+                        }
+
+
+                        //Coding Block--------------------------------------------------------
+
+                    }
+                    else 
+                    { 
+                        return RedirectToAction("AccessWarning403", "login", new { role = role }); 
+                    } 
+                }
+                
+            }
+            return RedirectToAction("login", "login");
+        }
+
+        [HttpGet]
+        public IActionResult editChallan(int id)
+        {
+            if (HttpContext.Session.GetString("username") != null)
+            {
+                string username = HttpContext.Session.GetString("username");
+                using (eSkoolDBContext db = new eSkoolDBContext())
+                {
+                    string role = db.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
+
+                    if (role == "A")
+                    {
+                        ViewBag.username = username;
+
+                        //Coding Block--------------------------------------------
+                        {
+                            ChallanInfo obj = new ChallanInfo();
+                            try
+                            {
+                                using (eSkoolDBContext eskoolDb = new eSkoolDBContext())
+                                {
+                                    obj = eskoolDb.ChallanInfos.Find(id);
+                                }
+                            }
+                            catch (Exception e)
+                            {
+
+                            }
+
+                            return View(obj);
+                        }
+                        //Coding Block-----------------------------------------------------
+                    }
+
+
+                    else return RedirectToAction("AccessWarning403", "login", new { role = role });
+                }
+
+            }
+            return RedirectToAction("login", "login");
+        }
+
+        [HttpPost]
+        public IActionResult editChallan(int id, int classGrade, int fee)
+        {
+            if (HttpContext.Session.GetString("username") != null)
+            {
+                ChallanInfo obj = new ChallanInfo();
+                try
+                {
+                    using (eSkoolDBContext dBContext = new eSkoolDBContext())
+                    {
+                        obj = dBContext.ChallanInfos.Find(id);
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+
+                obj.ClassGrade = classGrade;
+                obj.Fee = fee;
+                try
+                {
+                    using (eSkoolDBContext dBContext = new eSkoolDBContext())
+                    {
+
+                        //Add challan Info in ChallanInfo Table
+                        dBContext.ChallanInfos.Update(obj);
+
+                        //Update DB
+                        dBContext.SaveChanges();
+
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+                return RedirectToAction("challanForm", "admin");
             }
             return RedirectToAction("login", "login");
         }

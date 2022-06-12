@@ -1,0 +1,87 @@
+﻿@model IEnumerable<eSkool.Models.Application>
+@{
+    ViewBag.Title = "leaveBox ";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+
+}
+
+<style>
+
+
+    #attendance-sheet {
+        margin-top: 5%;
+        background-color: #f6eff5;
+        text-align: center;
+        padding: 5px;
+        padding-bottom: 2%
+    }
+
+    table, th, td {
+        text-align: center;
+        margin: auto;
+        border: 1px solid #f6eff5;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 10px 30px;
+        background-color: #338da13d;
+        color: #267385;
+    }
+
+    #absent {
+        color: red;
+    }
+
+    th {
+        background-color: #338da1;
+        color: #f6eff5;
+    }
+
+    #attendance-sheet h1 {
+        color: #c1becd;
+        text-shadow: 2px 2px #954587;
+    }
+
+    #attendance-sheet h3 {
+        color: #c1becd;
+        text-shadow: 1px 1px #954587;
+    }
+</style>
+
+
+
+<div id="attendance-sheet">
+    <h1>Requests for Leave</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Date</th>
+                <th>Application By:</th>
+                <th>Application</th> 
+                <th>Reason</th>
+                <th>Duration</th>
+                <th>Response</th>
+            </tr>
+            @{
+                foreach (var application in Model)
+                {
+                    <tr>
+                        <td>@application.SubmissionDate</td>
+                        <td>@application.StudentId</td>
+                        <td style="color:red;">@application.ApplicationBody</td>
+                        <td>@application.AppicationTitle</td>
+                        <td>@application.ApplicationFromDate to @application.ApplicationToDate</td>
+                        <td class="response">
+                            <a href="#" class="btn btn-success">Accept</a>
+                            <a href="#" class="btn btn-danger">Reject</a>
+
+                        </td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+</div>

@@ -10,7 +10,6 @@ namespace eSkool.Models
         public Teacher()
         {
             ClassSubjectTeachers = new HashSet<ClassSubjectTeacher>();
-            Complaints = new HashSet<Complaint>();
         }
 
         public string TeacherId { get; set; }
@@ -23,6 +22,5 @@ namespace eSkool.Models
         public string Experience { get; set; }
 
         public virtual ICollection<ClassSubjectTeacher> ClassSubjectTeachers { get; set; }
-        public virtual ICollection<Complaint> Complaints { get; set; }
     }
 }

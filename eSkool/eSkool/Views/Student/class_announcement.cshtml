@@ -1,23 +1,74 @@
-﻿@{
+﻿@model IEnumerable<eSkool.Models.ClassAnnouncement>
+@{
     ViewBag.Title = "class_announcement";
     Layout = "~/Views/Shared/_StudentLayout.cshtml";
 
 }
 
 <style>
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 50px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        border: 1px solid rgb(145 74 140);
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
 
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        box-shadow: 0 4px 8px 0 rgb(199 24 161 / 57%), 0 6px 20px 0 #448797;
+        border: 1px solid #888;
+        width: 50%;
+    }
 
-    .sub-div {
-        background-color: #f9e9f3;
+    .modal-body form {
         display: flex;
-        flex-direction: row;
-        margin: 10px;
-        width: 25%;
-        height: 50%;
+        flex-direction: column;
+        padding: 2%;
+    }
+
+    .modal-header {
+        background-color: #7b5c9261;
+        color: white;
+    }
+
+        .modal-header h3 {
+            font-size: 25px;
+            font-style: italic;
+            font-family: serif;
+        }
+
+    .modal-body input, .modal-body textarea {
+        border: none;
+        background: #efefef;
+        padding: 2%;
+        margin: 1%;
+    }
+
+    .modal-body form input[type=submit]:hover {
+        box-shadow: -6px 6px 0px 0 #22a1b782;
+        background: rgb(145 74 140 / 45%);
+    }
+
+    .modal-body form input[type=submit] {
+        color: #ffffff;
+        box-shadow: -6px 6px 0px 0 rgb(145 74 140 / 45%);
+        background: #22a1b782;
+    }
+
+    .modal-body form div {
+        margin-bottom: 2%
     }
 
 
-    
 
     .image-card {
         width: 20%;
@@ -32,13 +83,15 @@
         }
 
     .post {
-        display: flex;
-        flex-direction: row;
+       
+        width: 100%;
+        margin: 10px;
+        border: 1px solid #52b6c5;
+        background-color: #3d7d8930;
     }
 
     .post-card {
         margin: 8px;
-       
         height: 8%;
         padding: 0;
         display: flex;
@@ -51,58 +104,41 @@
 
     .post-details {
         padding: 10px;
-        width: 60%;
+    }
+
+    .add-class button {
+        background-color: #e90b0b14;
+        padding: 10px;
+        width: 100%;
         margin: 10px;
-        background-color: #f9e9f3;
+        border: 1px dashed red;
+        color: red;
+        text-align: center;
+        font-size: larger;
+        font-style: italic;
+    }
+
+        .add-class button:hover {
+            box-shadow: 0px 10px 10px 0 rgb(223 197 197), 0 15px 30px 0 rgb(221 219 221 / 60%);
+        }
+    .date {
+        color: gray;
+        text-align: end;
     }
 </style>
+<body>
 
 
-    <div class="post">
-        <div class="sub-div">
-            <div class="image-card">
-                <i class="far fa-user"></i>
-            </div>
-            <div class="post-card">
-                <p > Ali Iftikhar </p>
-                <p style="font-style: italic; color:#8080809c;"> Dec 3, 2021</p>
-            </div>
+    @foreach (var announcement in Model)
+    {
 
-        </div>
-        <div class="post-details">
-            <h3>Slides 3</h3>
-            <p>Above are the slides of first lecture. At the end of slides, there is an assignmnet which you need to submit in next lecture.</p>
-        </div>
-    </div>
-    <div class="post">
-        <div class="sub-div">
-            <div class="image-card">
-                <img src="~/lib/profilepic.png" />
+        <div class="post">
+            <div class="post-details">
+                <h3>@announcement.Header</h3>
+                <p>@announcement.Content</p>
             </div>
-            <div class="post-card">
-                <p style="font-weight:bold;"> Ali Iftikhar </p>
-                <p style="font-style:italic; color:grey;"> Dec 2, 2021</p>
-            </div>
+            <div class="date">@announcement.PostDate</div>
+        </div>
+    }
 
-        </div>
-        <div class="post-details">
-            <h3>Slides 2</h3>
-            <p>Above are the slides of first lecture. At the end of slides, there is an assignmnet which you need to submit in next lecture.</p>
-        </div>
-    </div>
-    <div class="post">
-        <div class="sub-div">
-            <div class="image-card">
-                <img src="~/lib/profilepic.png" />
-            </div>
-            <div class="post-card">
-                <p style="font-weight:bold;"> Ali Iftikhar </p>
-                <p style="font-style:italic; color:grey;"> Dec 1, 2021</p>
-            </div>
-
-        </div>
-        <div class="post-details">
-            <h3>Slides 1</h3>
-            <p>Above are the slides of first lecture. At the end of slides, there is an assignmnet which you need to submit in next lecture.</p>
-        </div>
-    </div>
+    </body>
