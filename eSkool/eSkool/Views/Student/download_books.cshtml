@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<eSkool.Models.HelpingMeterial>
+@{
     ViewBag.Title = "download_books";
     Layout = "~/Views/Shared/_StudentLayout.cshtml";
 
@@ -77,43 +78,43 @@
         text-align: center;
         color: white;
         padding: 8px;
-        width: 25%;
+      
         justify-content: center;
-        margin: 10px 38%;
+    }
+
+    h1 {
+        color: #75b1c6;
+        text-shadow: 2px 2px #a66a9f;
+        text-align: center;
+        background-color: #f6eff5;
+        padding: 1%;
+        font-weight: 600;
     }
 </style>
-@{String book = "CN.pdf";}
-@for (int j = 0; j < 4; j++)
-{
-    <h3 class="heading"> Class @j <sup>th</sup> </h3>
-    <div class="book-display">
-        @for (int i = 0; i < 6; i++)
-        {
+<h1>Download Books</h1>
+<div class="book-display">
+    @foreach (var material in Model)
+    {
+       
+    <div class="book-card">
+        <h3 class="heading"> @material.MaterialClass<sup>th</sup> </h3>
+        <ul>
+            <div class="book-details">
+                <li>
+                    <i class="fas fa-book"></i>
 
-            <div class="book-card">
-                <ul>
-                    <div class="book-details">
-                        <li>
-                            <i class="fas fa-book"></i>
-
-                        </li>
-
-                        <li>
-                            @j . @i
-                        </li>
-                    </div>
-
-                    <li>
-                        <a class="show-btn" href="~/Student/download?filePath=/lib/@book"> <i class="fas fa-angle-double-down"> </i> Download </a>
-                    </li>
-                </ul>
+                </li>
+                <li>
+                    @material.MaterialName
+                </li>
             </div>
-
-
-        }
+            <li>
+                <a class="show-btn" href="~/Student/download?filePath=/lib/@material.MaterialName"> <i class="fas fa-angle-double-down"> </i> Download </a>
+            </li>
+        </ul>
     </div>
 
-}
+    }
 
-
+</div>
 

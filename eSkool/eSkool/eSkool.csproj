@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Teacher\Index.cshtml" />
     <Content Remove="wwwroot\lib\CN.pdf" />
   </ItemGroup>
 

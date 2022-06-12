@@ -165,11 +165,10 @@ form .field input:focus::placeholder {
 
     .form-inner form .pass-link a,
     .form-inner form .signup-link a {
-        
         font-style: italic;
         font-weight: 400;
-        color: #ffffff;
-        text-shadow: 3px -1px #40aec1;
+        color: #eb051b;
+     
     }
     
         .form-inner form .pass-link a:hover,

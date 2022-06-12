@@ -10,7 +10,6 @@ namespace eSkool.Models
         public Student()
         {
             Applications = new HashSet<Application>();
-            Complaints = new HashSet<Complaint>();
         }
 
         public string StudentId { get; set; }
@@ -27,6 +26,5 @@ namespace eSkool.Models
 
         public virtual SchoolClass Class { get; set; }
         public virtual ICollection<Application> Applications { get; set; }
-        public virtual ICollection<Complaint> Complaints { get; set; }
     }
 }

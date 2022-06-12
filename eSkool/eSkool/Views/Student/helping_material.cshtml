@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<eSkool.Models.HelpingMeterial>
+@{
     ViewBag.Title = "helping_material";
     Layout = "~/Views/Shared/_StudentLayout.cshtml";
 
@@ -10,6 +11,7 @@
         width: 40%;
         height: 10%;
     }
+
     .show-btn {
         /* font-weight: 600; */
         color: #ffffff;
@@ -21,36 +23,38 @@
         /* border: 1px solid #7b5c92d9; */
         background: #22a1b782;
     }
-    .book-details{
 
-        display:flex;
-        flex-direction:column;
+    .book-details {
+        display: flex;
+        flex-direction: column;
     }
-        .show-btn:hover {
-            /*   box-shadow: 0px 20px 80px 0 rgb(38 157 178 / 62%);*/
-            box-shadow: -6px 6px 0px 0 #22a1b782;
-            background: rgb(145 74 140 / 45%);
-            color: white;
-            text-decoration: none;
-        }
-        .show-btn i {
-            color: #954587;
-        }
+
+    .show-btn:hover {
+        /*   box-shadow: 0px 20px 80px 0 rgb(38 157 178 / 62%);*/
+        box-shadow: -6px 6px 0px 0 #22a1b782;
+        background: rgb(145 74 140 / 45%);
+        color: white;
+        text-decoration: none;
+    }
+
+    .show-btn i {
+        color: #954587;
+    }
 
 
     .book-card {
-     
         width: 25%;
         color: white;
-       
         margin: 10px;
         padding: 1%;
         background-color: #7b5c9261;
         text-align: center;
     }
-    .book-details li i{
-        font-size:50px;
+
+    .book-details li i {
+        font-size: 50px;
     }
+
     .book-display {
         display: flex;
         flex-direction: row;
@@ -63,52 +67,52 @@
         list-style: none;
         padding-top: 5px;
     }
-    .book-card ul li{
-        margin:2%;
-    }
+
+        .book-card ul li {
+            margin: 2%;
+        }
+
     .heading {
         background-color: #954587;
         opacity: 0.7;
         text-align: center;
         color: white;
         padding: 8px;
-        width: 25%;
         justify-content: center;
-        margin: 10px 38%;
+    }
+    h1 {
+        color: #75b1c6;
+        text-shadow: 2px 2px #a66a9f;
+        text-align: center;
+        background-color: #f6eff5;
+        padding: 1%;
+        font-weight: 600;
     }
 </style>
-@{String book = "CN.pdf";}
-@for (int j = 0; j < 4; j++)
-{
-    <h3 class="heading"> Class @j <sup>th</sup> </h3>
-    <div class="book-display">
-        @for (int i = 0; i < 6; i++)
-        {
+<h1>Download Helping Material</h1>
+<div class="book-display">
+    @foreach (var material in Model)
+    {
 
-            <div class="book-card">
-                <ul>
-                    <div class="book-details">
-                        <li>
-                            <i class="fas fa-book"></i>
-
-                        </li>
-
-                        <li>
-                            @j . @i
-                        </li>
-                    </div>
-                 
+        <div class="book-card">
+            <h3 class="heading"> @material.MaterialClass<sup>th</sup> </h3>
+            <ul>
+                <div class="book-details">
                     <li>
-                        <a class="show-btn" href="~/Student/download?filePath=/lib/@book"> <i class="fas fa-angle-double-down"> </i> Download </a>
+                        <i class="fas fa-book"></i>
+
                     </li>
-                </ul>
-            </div>
+                    <li>
+                        @material.MaterialName
+                    </li>
+                </div>
+                <li>
+                    <a class="show-btn" href="~/Student/download?filePath=/lib/@material.MaterialName"> <i class="fas fa-angle-double-down"> </i> Download </a>
+                </li>
+            </ul>
+        </div>
 
+    }
 
-        }
-    </div>
-
-}
-
-
+</div>
 

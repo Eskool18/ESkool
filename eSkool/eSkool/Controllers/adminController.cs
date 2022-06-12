@@ -136,7 +136,9 @@ namespace eSkool.Controllers
                         TeacherInfoObj.TeacherId = Algorithms.generateTeacherUsername(TeacherEmail);
 
                         //Add Teacher Credential In UserInfo Table
-                        UserInfo user = new UserInfo(TeacherInfoObj.TeacherId, "T");
+                        UserInfo user = new UserInfo();
+                        user.Role = "T";
+                     
                         dBContext.UserInfos.Add(user);
 
                         //Add Teacher Complete Info Teacher Table
@@ -263,7 +265,10 @@ namespace eSkool.Controllers
                         }
 
                         //add student Credential  in USERINFO
-                        UserInfo user = new UserInfo(studentinfoObj.StudentId,"S");
+                        UserInfo user = new UserInfo();
+                        
+                        user.Role = "S";
+                        
                         dBContext.Add(user);                        
                         
                         //Add student Complete Info in Student Table
