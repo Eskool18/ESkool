@@ -396,3 +396,4 @@ D:\fyp\ESkool\eSkool\eSkool\obj\Debug\netcoreapp3.1\eSkool.dll
 D:\fyp\ESkool\eSkool\eSkool\obj\Debug\netcoreapp3.1\eSkool.pdb
 D:\fyp\ESkool\eSkool\eSkool\obj\Debug\netcoreapp3.1\eSkool.genruntimeconfig.cache
 D:\fyp\ESkool\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\admin\activeUser.cshtml.g.cs
+D:\fyp\ESkool\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\markAttendence.cshtml.g.cs

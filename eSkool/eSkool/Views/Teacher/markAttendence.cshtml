@@ -1,0 +1,48 @@
+﻿@model IEnumerable<eSkool.Models.Student>
+
+
+<body>
+    <h1> Attendence Daily </h1>
+
+    <div class="description_box">
+        <div class="className">
+
+        </div>
+        <div class="date-box">
+
+        </div>
+        <div>
+            <input type="button" class="btn btn-primary" value="Mark Attendence" />
+        </div>
+    </div>
+    <div class="attendence-box">
+        <table class="table-bordered">
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Mark Attendence  </th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ 
+                @foreach (var Student in Model)
+                  {
+                    <tr>
+                        <td> @Student.StudentName @Student.FatherName</td>
+                        <td> 
+                            <div>
+                             <input type="radio" class="custom-radio" value="Present" />
+                             <input type="radio" class="custom-radio" value="Absent" />
+                            </div>
+                        </td>
+
+                    </tr>
+                  }
+                }
+
+            </tbody>
+        </table>
+    
+        
+    </div>
+</body>

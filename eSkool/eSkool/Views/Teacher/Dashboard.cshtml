@@ -17,6 +17,17 @@
 <div>
    
     <!--mainDiv For Entire Page-->
+
+    @{          
+        if (ViewBag.InchargeStatus)
+            {
+                <div style="border:2px solid black">
+                    <h4>You are class Incharge </h4>
+                    <input type="button" class="btn btn-primary" value="Mark Attendence" />
+                </div>
+            }
+    }
+
     <div class="container-fluid" style="width:100%">
         <!--main Row For Entire Page-->
         <div class="row">

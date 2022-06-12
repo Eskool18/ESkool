@@ -18,6 +18,7 @@ namespace eSkool.Models
         }
 
         public virtual DbSet<Application> Applications { get; set; }
+        public virtual DbSet<Attendence> Attendences { get; set; }
         public virtual DbSet<ChaptersInfo> ChaptersInfos { get; set; }
         public virtual DbSet<ClassSubjectTeacher> ClassSubjectTeachers { get; set; }
         public virtual DbSet<ClassTeacher> ClassTeachers { get; set; }
@@ -77,6 +78,29 @@ namespace eSkool.Models
                     .HasForeignKey(d => d.StudentId)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_Applications_Student");
+            });
+
+            modelBuilder.Entity<Attendence>(entity =>
+            {
+                entity.ToTable("Attendence");
+
+                entity.Property(e => e.AttendenceId).HasColumnName("attendence_id");
+
+                entity.Property(e => e.AttendenceDate)
+                    .HasColumnType("date")
+                    .HasColumnName("attendence_date");
+
+                entity.Property(e => e.AttendenceStatus).HasColumnName("attendence_status");
+
+                entity.Property(e => e.ClassName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("className");
+
+                entity.Property(e => e.StudentId)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("student_id");
             });
 
             modelBuilder.Entity<ChaptersInfo>(entity =>
