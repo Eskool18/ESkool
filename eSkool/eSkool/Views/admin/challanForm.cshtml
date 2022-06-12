@@ -1,0 +1,35 @@
+﻿@model List<ChallanInfo>
+@{
+    ViewBag.Title = "chalanForm";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<head>
+
+</head>
+<body>
+    <form action="/admin/addChallanForm" method="get">
+        <button type="submit" class="btn btn-secondary" href="/admin/addChallanForm">Add Challan Form</button><br /><br />
+    </form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Class grade</th>
+                <th scope="col">Fee</th>
+                <th scope="col">Edit/Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ChallanInfo in Model)
+            {
+            <tr>
+                <td>@ChallanInfo.ClassGrade</td>
+                <td>@ChallanInfo.Fee</td>
+                <td><a type="submit" class="btn btn-secondary" href="/admin/editChallan/@ChallanInfo.ChallanId">Edit</a>
+                <a type="submit" class="btn btn-danger" href="/admin/deleteChallan/@ChallanInfo.ChallanId">Delete</a></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</body>

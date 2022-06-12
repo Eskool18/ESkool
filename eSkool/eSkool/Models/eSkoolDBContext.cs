@@ -18,6 +18,7 @@ namespace eSkool.Models
         }
 
         public virtual DbSet<Application> Applications { get; set; }
+        public virtual DbSet<ChallanInfo> ChallanInfos { get; set; }
         public virtual DbSet<ChaptersInfo> ChaptersInfos { get; set; }
         public virtual DbSet<ClassSubjectTeacher> ClassSubjectTeachers { get; set; }
         public virtual DbSet<ClassTeacher> ClassTeachers { get; set; }
@@ -76,6 +77,16 @@ namespace eSkool.Models
                     .HasForeignKey(d => d.StudentId)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_Applications_Student");
+            });
+
+            modelBuilder.Entity<ChallanInfo>(entity =>
+            {
+                entity.HasKey(e => e.ChallanId)
+                    .HasName("PK__ChallanI__5F721BB203B20085");
+
+                entity.ToTable("ChallanInfo");
+
+                entity.Property(e => e.ChallanId).HasColumnName("Challan_id");
             });
 
             modelBuilder.Entity<ChaptersInfo>(entity =>
