@@ -19,6 +19,7 @@ namespace eSkool.Models
 
         public virtual DbSet<Application> Applications { get; set; }
         public virtual DbSet<ChaptersInfo> ChaptersInfos { get; set; }
+        public virtual DbSet<ClassAnnouncement> ClassAnnouncements { get; set; }
         public virtual DbSet<ClassSubjectTeacher> ClassSubjectTeachers { get; set; }
         public virtual DbSet<ClassTeacher> ClassTeachers { get; set; }
         public virtual DbSet<ClasssesInfo> ClasssesInfos { get; set; }
@@ -34,6 +35,7 @@ namespace eSkool.Models
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<Subject> Subjects { get; set; }
         public virtual DbSet<SubjectsInfo> SubjectsInfos { get; set; }
+        public virtual DbSet<Table> Tables { get; set; }
         public virtual DbSet<Teacher> Teachers { get; set; }
         public virtual DbSet<UserInfo> UserInfos { get; set; }
 
@@ -107,6 +109,27 @@ namespace eSkool.Models
                     .WithMany(p => p.ChaptersInfos)
                     .HasForeignKey(d => new { d.CourseId, d.ClassGrade, d.SubjectName })
                     .HasConstraintName("FK_ChaptersInfo_SubjectsInfo");
+            });
+
+            modelBuilder.Entity<ClassAnnouncement>(entity =>
+            {
+                entity.ToTable("classAnnouncement");
+
+                entity.Property(e => e.ClassName)
+                    .IsRequired()
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Content)
+                    .IsRequired()
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PostDate).HasColumnType("datetime");
+
+                entity.Property(e => e.Subject)
+                    .IsRequired()
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Username).IsUnicode(false);
             });
 
             modelBuilder.Entity<ClassSubjectTeacher>(entity =>
@@ -196,18 +219,6 @@ namespace eSkool.Models
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("userName");
-
-                entity.HasOne(d => d.UserNameNavigation)
-                    .WithMany(p => p.Complaints)
-                    .HasForeignKey(d => d.UserName)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK_complaints_Student");
-
-                entity.HasOne(d => d.UserName1)
-                    .WithMany(p => p.Complaints)
-                    .HasForeignKey(d => d.UserName)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK_complaints_Teacher");
             });
 
             modelBuilder.Entity<CoursesInfo>(entity =>
@@ -497,6 +508,29 @@ namespace eSkool.Models
                     .WithMany(p => p.SubjectsInfos)
                     .HasForeignKey(d => new { d.CourseId, d.ClassGrade })
                     .HasConstraintName("FK_SubjectsInfo_ClasssesInfo");
+            });
+
+            modelBuilder.Entity<Table>(entity =>
+            {
+                entity.ToTable("Table");
+
+                entity.Property(e => e.Id).ValueGeneratedNever();
+
+                entity.Property(e => e.ClassName)
+                    .IsRequired()
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Content)
+                    .IsRequired()
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PostDate).HasColumnType("datetime");
+
+                entity.Property(e => e.Subject)
+                    .IsRequired()
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Username).IsUnicode(false);
             });
 
             modelBuilder.Entity<Teacher>(entity =>

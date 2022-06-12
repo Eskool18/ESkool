@@ -280,7 +280,7 @@ namespace eSkool.Controllers
                 using (eSkoolDBContext db = new eSkoolDBContext())
                 {
                     string role = db.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
-                    int? cName = db.Students.Where(x => x.StudentName == username).SingleOrDefault().ClassGrade;
+                    string cName = db.Students.Where(x => x.StudentName == username).SingleOrDefault().ClassName;
                     if (role == "S")
                     {
                         ViewBag.username = username;
@@ -288,7 +288,7 @@ namespace eSkool.Controllers
                         {
                             using (eSkoolDBContext dBContext = new eSkoolDBContext())
                             {
-                                List<HelpingMeterial> AppList = dBContext.HelpingMeterials.Where(x => x.MaterialSubject == sName && x.MaterialClass == cName).ToList();
+                                List<ClassAnnouncement> AppList = dBContext.ClassAnnouncements.Where(x => x.Subject == sName && x.ClassName == cName).ToList();
                                 return View(AppList);
                             }
 

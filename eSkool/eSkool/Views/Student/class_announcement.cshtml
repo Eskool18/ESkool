@@ -1,4 +1,4 @@
-﻿@model IEnumerable<eSkool.Models.HelpingMeterial>
+﻿@model IEnumerable<eSkool.Models.ClassAnnouncement>
 @{
     ViewBag.Title = "class_announcement";
     Layout = "~/Views/Shared/_StudentLayout.cshtml";
@@ -83,8 +83,7 @@
         }
 
     .post {
-        display: flex;
-        flex-direction: row;
+       
         width: 100%;
         margin: 10px;
         border: 1px solid #52b6c5;
@@ -122,18 +121,23 @@
         .add-class button:hover {
             box-shadow: 0px 10px 10px 0 rgb(223 197 197), 0 15px 30px 0 rgb(221 219 221 / 60%);
         }
+    .date {
+        color: gray;
+        text-align: end;
+    }
 </style>
 <body>
 
 
-    @foreach (var material in Model)
+    @foreach (var announcement in Model)
     {
 
         <div class="post">
             <div class="post-details">
-                <h3>Slides 3</h3>
-                <p>Above are the slides of first lecture. At the end of slides, there is an assignmnet which you need to submit in next lecture.</p>
+                <h3>@announcement.Header</h3>
+                <p>@announcement.Content</p>
             </div>
+            <div class="date">@announcement.PostDate</div>
         </div>
     }
 

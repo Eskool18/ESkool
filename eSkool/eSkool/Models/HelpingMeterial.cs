@@ -13,6 +13,5 @@ namespace eSkool.Models
         public string MaterialType { get; set; }
         public string MaterialSubject { get; set; }
         public string UserName { get; set; }
-
     }
 }

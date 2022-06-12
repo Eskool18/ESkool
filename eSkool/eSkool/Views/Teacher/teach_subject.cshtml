@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<eSkool.Models.ClassSubjectTeacher>
+@{
     ViewBag.Title = "teach_subject";
     Layout = "~/Views/Shared/_TeacherLayout.cshtml";
 
@@ -32,7 +33,7 @@
         background-color: #2ca4bab8;
         margin: 2%;
     }
-    
+
 
     .class-detail {
         width: 100%;
@@ -84,23 +85,22 @@
 </style>
 
 <div class="sub-div">
-     
-    @for (int i = 0; i < 3; i++)
+
+    @foreach (var sub in Model)
     {
         <div class="class-div">
             <div class="class-card">
                 <div class="class-banner">
                     <p>
-                        9<br />T<br />H
+                        @sub.ClassGrade TH
+                        @sub.SubjectName
                     </p>
                 </div>
-                <div class="class-detail">
-                    @*<i class="fas fa-shapes"></i>*@
-                    <h2>@i </h2>
-                    <a href="/Teacher/upload_gradebook"><i class="fas fa-trophy"></i>&nbsp; Gradebook</a>
-                    <a href="/Teacher/upload_helping_material"><i class="fas fa-book-open"></i>&nbsp; Helping Material</a>
-                    <a href="/Teacher/post_class_announcement"><i class="fas fa-bell"></i>&nbsp; Announcements</a>
-                    
+                <div class="class-detail">     
+                    <a href="/Teacher/upload_gradebook?sname=@sub.SubjectName&cname=@sub.ClassName"><i class="fas fa-trophy"></i>&nbsp; Gradebook</a>
+                    <a href="/Teacher/upload_helping_material?sname=@sub.SubjectName&cname=@sub.ClassGrade"><i class="fas fa-book-open"></i>&nbsp; Helping Material</a>
+                    <a href="/Teacher/post_class_announcement?sname=@sub.SubjectName&cname=@sub.ClassName"><i class="fas fa-bell"></i>&nbsp; Announcements</a>
+
                 </div>
             </div>
         </div>

@@ -53,7 +53,7 @@ namespace eSkool.Controllers
         {
             return View();
         }
-        public IActionResult upload_gradebook()
+        public IActionResult upload_gradebook(string sname, string cname)
         {
             if (HttpContext.Session.GetString("username") != null)
             {
@@ -90,7 +90,7 @@ namespace eSkool.Controllers
             }
             return RedirectToAction("login", "login");
         }
-        public IActionResult post_class_announcement()
+        public IActionResult post_class_announcement(string sname, string cname)
         {
             if (HttpContext.Session.GetString("username") != null)
             {
@@ -101,15 +101,17 @@ namespace eSkool.Controllers
                     if (role == "T")
                     {
                         ViewBag.username = username;
-
+                        ViewBag.sname = sname;
+                        ViewBag.cname = cname;
                         //Coding Block------------------------------------------------------------
 
                         try
                         {
                             using (eSkoolDBContext dBContext = new eSkoolDBContext())
                             {
-                                List<Application> AppList = dBContext.Applications.ToList();
-                                return View(AppList);
+                                List<ClassAnnouncement> announcement = dBContext.ClassAnnouncements.Where(x => x.Subject == sname && x.ClassName == cname).ToList();
+                                return View(announcement);
+                                //return View();
                             }
                         }
                         catch (Exception ex)
@@ -128,42 +130,53 @@ namespace eSkool.Controllers
             return RedirectToAction("login", "login");
         }
         [HttpPost]
-        public IActionResult post_class_announcement(string name,string txt, string cls, string sub)
+        public IActionResult post_class_announcement(string title,string txt, string cls, string sub)
         {
             if (HttpContext.Session.GetString("username") != null)
             {
-
-                try
+                string username = HttpContext.Session.GetString("username");
+                using (eSkoolDBContext db = new eSkoolDBContext())
                 {
-                    using (eSkoolDBContext dBContext = new eSkoolDBContext())
+                    string role = db.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
+                    if (role == "T")
                     {
+                        try
+                        {
+                            using (eSkoolDBContext dBContext = new eSkoolDBContext())
+                            {
 
-                        Notice newNotice = new Notice();
-                        newNotice.NoticeStatement = txt;
-                  
+                                ClassAnnouncement newAnnouncement = new ClassAnnouncement();
+                                newAnnouncement.ClassName = cls;
+                                newAnnouncement.Content = txt;
+                                newAnnouncement.Header = title;
+                                newAnnouncement.PostDate = DateTime.Now;
+                                newAnnouncement.Subject = sub;
+                                newAnnouncement.Username = username;
+                                dBContext.ClassAnnouncements.Add(newAnnouncement);
 
-                        dBContext.Notices.Add(newNotice);
-
-                        //Update DB
-                        dBContext.SaveChanges();
-
-                        return View();
+                                //Update DB
+                                dBContext.SaveChanges();
+                                
+                                return RedirectToAction("post_class_announcement", "Teacher", new { sname = sub, cname = cls });
 
 
+
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                           
+                        }
+                       
                     }
+                    return RedirectToAction("post_class_announcement", "Teacher");
+                   
                 }
-                catch (Exception ex)
-                {
-
-                }
-                return RedirectToAction("post_class_announcement", "Teacher");
             }
             return RedirectToAction("login", "login");
-
-
         }
 
-        public IActionResult upload_helping_material()
+        public IActionResult upload_helping_material(string sname, int? cname)
         {
             if (HttpContext.Session.GetString("username") != null)
             {
@@ -174,14 +187,15 @@ namespace eSkool.Controllers
                     if (role == "T")
                     {
                         ViewBag.username = username;
-
+                        ViewBag.sname = sname;
+                        ViewBag.cname = cname;
                         //Coding Block------------------------------------------------------------
 
                         try
                         {
                             using (eSkoolDBContext dBContext = new eSkoolDBContext())
                             {
-                                List<Application> AppList = dBContext.Applications.ToList();
+                                List<HelpingMeterial> AppList = dBContext.HelpingMeterials.Where(x => x.MaterialSubject == sname && x.MaterialClass == cname).ToList();
                                 return View(AppList);
                             }
                         }
@@ -201,7 +215,7 @@ namespace eSkool.Controllers
             return RedirectToAction("login", "login");
         }
 
-        [HttpPost("upload_helping_material")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> upload_helping_material(List<IFormFile> files, string sName, int cName, string mType)
         {
@@ -252,10 +266,11 @@ namespace eSkool.Controllers
                                         //Update DB
                                         await dBContext.SaveChangesAsync();
 
-                                        return View();
+                                        return RedirectToAction("upload_helping_material", "Teacher", new { sname = sName, cname = cName  });
+                                    
 
 
-                                    }
+                                }
                                 }
                                 catch (Exception ex)
                                 {
@@ -292,8 +307,11 @@ namespace eSkool.Controllers
                         {
                             using (eSkoolDBContext dBContext = new eSkoolDBContext())
                             {
-                                List<Application> AppList = dBContext.Applications.ToList();
-                                return View(AppList);
+                                Teacher teacherobj = db.Teachers.Where(x => x.TeacherName == username).SingleOrDefault();
+
+                                List<ClassSubjectTeacher> subList = db.ClassSubjectTeachers.Where(x => x.TeacherId == teacherobj.TeacherId
+                                 ).ToList();
+                                return View(subList);
                             }
                         }
                         catch (Exception ex)
@@ -348,6 +366,46 @@ namespace eSkool.Controllers
 
             }
             return RedirectToAction("login", "login");
+        }
+        public ActionResult download(string filePath)
+        {
+            if (HttpContext.Session.GetString("username") != null)
+            {
+                string username = HttpContext.Session.GetString("username");
+                using (eSkoolDBContext db = new eSkoolDBContext())
+                {
+                    string role = db.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
+                    if (role == "T")
+                    {
+                        ViewBag.username = username;
+
+                        //Coding Block---------------------------------------------------------
+                        {
+
+                            string fullName = "wwwroot" + filePath;
+                            //string fullName = Server.MapPath("~" + filePath);
+                            byte[] fileBytes = GetFile(fullName);
+                            return File(
+                                fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, filePath);
+                        }
+                        //Coding Block---------------------------------------------------------
+
+                    }
+                    else return RedirectToAction("AccessWarning403", "login", new { role = role });
+                }
+
+            }
+
+            return RedirectToAction("login", "login");
+        }
+        byte[] GetFile(string s)
+        {
+            System.IO.FileStream fs = System.IO.File.OpenRead(s);
+            byte[] data = new byte[fs.Length];
+            int br = fs.Read(data, 0, data.Length);
+            if (br != fs.Length)
+                throw new System.IO.IOException(s);
+            return data;
         }
 
     }

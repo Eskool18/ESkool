@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<eSkool.Models.ClassAnnouncement>
+@{
     ViewBag.Title = "post_class_announcement";
     Layout = "~/Views/Shared/_TeacherLayout.cshtml";
 
@@ -19,6 +20,7 @@
         background-color: rgb(0,0,0); /* Fallback color */
         background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
     }
+
     .modal-content {
         background-color: #fefefe;
         margin: auto;
@@ -26,6 +28,7 @@
         border: 1px solid #888;
         width: 50%;
     }
+
     .modal-body form {
         display: flex;
         flex-direction: column;
@@ -36,6 +39,7 @@
         background-color: #7b5c9261;
         color: white;
     }
+
         .modal-header h3 {
             font-size: 25px;
             font-style: italic;
@@ -46,7 +50,7 @@
         border: none;
         background: #efefef;
         padding: 2%;
-        margin:1%;
+        margin: 1%;
     }
 
     .modal-body form input[type=submit]:hover {
@@ -79,8 +83,7 @@
         }
 
     .post {
-        display: flex;
-        flex-direction: row;
+  
         width: 100%;
         margin: 10px;
         border: 1px solid #52b6c5;
@@ -114,11 +117,14 @@
         font-size: larger;
         font-style: italic;
     }
+
         .add-class button:hover {
             box-shadow: 0px 10px 10px 0 rgb(223 197 197), 0 15px 30px 0 rgb(221 219 221 / 60%);
         }
-
-
+    .date {
+        color: gray;
+        text-align: end;
+    }
 </style>
 <body>
 
@@ -130,13 +136,17 @@
 
 
     </div>
-    <div class="post">
+    @foreach (var announcement in Model)
+    {
 
-        <div class="post-details">
-            <h3>Slides 3</h3>
-            <p>Above are the slides of first lecture. At the end of slides, there is an assignmnet which you need to submit in next lecture.</p>
+        <div class="post">
+            <div class="post-details">
+                <h3>@announcement.Header</h3>
+                <p>@announcement.Content</p>
+            </div>
+            <div class="date">@announcement.PostDate</div>
         </div>
-    </div>
+    }
 
     <div id="announceModal" class="modal">
 
@@ -152,12 +162,12 @@
             <div class="modal-body">
                 <form action="post_class_announcement" method="post">
                     <div>
-                        <label for="name">Header: </label>
-                        <input type="text"  id="name" name="name" placeholder="Assignment due till sunday" />
+                        <label for="name">Title: </label>
+                        <input type="text" id="name" name="title" placeholder="Assignment due till sunday" />
                         <label for="name">Subject: </label>
-                        <input type="text" style=" width: 40%;" id="name" name="sub" placeholder="English" />
+                        <input type="text" style=" width: 40%;" id="name" name="sub" value="@ViewBag.sname" readonly />
                         <label for="name">Class: </label>
-                        <input type="number" style=" width: 40%;" id="name" name="cls" placeholder="1" />
+                        <input type="number" style=" width: 40%;" id="name" name="cls" value="@ViewBag.cname" readonly />
                     </div>
                     <label for="txt"> Content : </label>
                     <input type="text" id="txt" name="txt" style="height:80px; margin-bottom:2%;" required>
