@@ -1,48 +1,159 @@
 ﻿@model IEnumerable<eSkool.Models.Student>
 
+@{
+    ViewBag.Title = "Dashboard ";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+
+}
 
 <body>
+    <script>
+
+        function showMarkTable() {
+            document.getElementById("attendence-box").style.display = 'block'
+           
+        }
+        function showEditTable() {
+            document.getElementById("attendence-box-edit").style.display = 'block'
+    
+
+        }
+
+    </script>
+
     <h1> Attendence Daily </h1>
 
     <div class="description_box">
         <div class="className">
-
+            <p>--9th <sup>th</sup></p>
         </div>
         <div class="date-box">
+            <p> @DateTime.Today;</p>
+        </div>
+        @{
+            if (ViewBag.attendenceMarked)
+            {
+                <div>
+                    <input type="button" class="btn btn-danger" value="Update Attendence" id="edit" onclick="showEditTable()" />
+                </div>
+            }
+            else
+            {
+                <div>
+                    <input type="button" class="btn btn-info" value="Mark Attendence" id="Mark" onclick="showMarkTable()" />
+                </div>
+            }
+        }
 
-        </div>
-        <div>
-            <input type="button" class="btn btn-primary" value="Mark Attendence" />
-        </div>
+
     </div>
-    <div class="attendence-box">
-        <table class="table-bordered">
-            <thead>
-                <tr>
-                    <th>Student Name</th>
-                    <th>Mark Attendence  </th>
-                </tr>
-            </thead>
-            <tbody>
-                @{ 
-                @foreach (var Student in Model)
-                  {
-                    <tr>
-                        <td> @Student.StudentName @Student.FatherName</td>
-                        <td> 
-                            <div>
-                             <input type="radio" class="custom-radio" value="Present" />
-                             <input type="radio" class="custom-radio" value="Absent" />
-                            </div>
-                        </td>
-
+    <div class="attendence-box" id="attendence-box" style="display:none">
+        <form action="/Teacher/uploadAttendence">
+            <table class="table-bordered">
+                <thead>
+                    <tr class="tab-header">
+                        <th>Roll#</th>
+                        <th>Student Name</th>
+                        <th>Father Name</th>
+                        <th>Mark Attendence  </th>
                     </tr>
-                  }
-                }
+                </thead>
+                <tbody>
+                    @{
+                        @foreach (var Student in Model)
+                        {
+                            <tr>
+                                <td>@Student.RollNumber</td>
+                                <td> @Student.StudentName</td>
+                                <td>@Student.FatherName</td>
+                                <td>
+                                    <div id="@Student.StudentId">
+                                        <input type="radio" class="custom-radio" value="1" name=@Student.StudentId checked required /> Present
+                                        <input type="radio" class="custom-radio" value="-1" name=@Student.StudentId   required /> Absent
+                                        <input type="radio" class="custom-radio" value="0" name=@Student.StudentId  required /> Leave
+                                    </div>
+                                </td>
 
-            </tbody>
-        </table>
-    
-        
+                            </tr>
+                        }
+                    }
+
+                </tbody>
+            </table>
+            <input type="submit" class="btn btn-success" />
+        </form>
+
+
     </div>
+
+    <div class="attendence-box" id="attendence-box-edit" style="display:none">
+        <form action="/Teacher/updateAttendence">
+            <table class="table-bordered">
+                <thead>
+                    <tr class="tab-header">
+                        <th>Roll#</th>
+                        <th>Student Name</th>
+                        <th>Father Name</th>
+                        <th>Mark Attendence  </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        @foreach (var Student in Model)
+                        {
+                            <tr>
+                                <td>@Student.RollNumber</td>
+                                <td> @Student.StudentName</td>
+                                <td>@Student.FatherName</td>
+                                <td>
+                                    <div>
+                                        @{ var i = 0;
+                                            foreach (var attendence in ViewBag.attendenceList)
+                                            {
+                                                if (Student.StudentId == attendence.StudentId)
+                                                {
+                                                    if (attendence.AttendenceStatus == 1)
+                                                    {
+                                                        <input type="radio" class="custom-radio" value="1" name=@Student.StudentId checked required /><i>Present</i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="radio" class="custom-radio" value="1" name=@Student.StudentId required /><i>Present</i>
+                                                    }
+                                                    if (attendence.AttendenceStatus == -1)
+                                                    {
+                                                        <input type="radio" class="custom-radio" value="-1" name=@Student.StudentId checked required /><i>Absent</i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="radio" class="custom-radio" value="-1" name=@Student.StudentId required /><i>Absent</i>
+                                                    }
+                                                    if (attendence.AttendenceStatus == 0)
+                                                    {
+                                                        <input type="radio" class="custom-radio" value="0" name=@Student.StudentId checked required /><i>Leave</i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="radio" class="custom-radio" value="0" name=@Student.StudentId required /><i>Leave</i>
+                                                    }
+                                                    break;
+                                                }
+                                                i++;
+
+                                            }
+                                        }
+                                      
+                                    </div>
+                                </td>
+
+                            </tr>
+                        }
+                    }
+
+                </tbody>
+            </table>
+            <input type="submit" class="btn btn-success" />
+        </form>
+    </div>
+
 </body>

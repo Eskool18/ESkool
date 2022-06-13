@@ -343,7 +343,7 @@ namespace eSkool.Controllers
             return RedirectToAction("login", "login");            
         }
 
-        public ActionResult attendance()
+        public ActionResult attendance(string attendenceMonth)
         {
             if (HttpContext.Session.GetString("username") != null)
             {
@@ -357,8 +357,39 @@ namespace eSkool.Controllers
                         ActiveUser.recordActive(username);
                         //Coding Block---------------------------------------------------------
                         {
+                            string[] months = { "January", "February", "March", "April", "May", "June", "July", "Auguest", "Septemer", "October", "Novmber", "December" };
+                            ViewBag.months = months;
+                            if (attendenceMonth == null)
+                                attendenceMonth = months[DateTime.Today.Month - 1];
+                            ViewBag.attendenceMonth = attendenceMonth;
+                            int daysInmonth = DateTime.DaysInMonth(DateTime.Now.Year, getIndexMonth(attendenceMonth, months));
+                            ViewBag.DaysInMonth = daysInmonth;
+                            ViewBag.monthNum = getIndexMonth(attendenceMonth, months);
+                            //object of attendence stuff
+                             studentMonthlyAttendence student = new studentMonthlyAttendence();
 
-                            return View();
+                           //get student all attendence
+                               
+                                List<Attendence> studentAttendence = db.Attendences.Where(x => x.StudentId == username).ToList();
+                                List<Attendence> temp = new List<Attendence>();
+                                foreach (var selectedStudent in studentAttendence)
+                                {
+                                    if (Convert.ToInt32(selectedStudent.AttendenceDate.ToString().Split("/")[1]) == getIndexMonth(attendenceMonth, months))
+                                        temp.Add(selectedStudent);
+                                }
+
+                                studentAttendence.Clear();
+                                studentAttendence = temp;
+
+                                foreach (var attendence in studentAttendence)
+                                {
+                                    int index = Convert.ToInt32(attendence.AttendenceDate.ToString().Split("/")[0]);
+                                    if (attendence.AttendenceStatus != null)
+                                        student.days[index - 1] = Convert.ToInt32(attendence.AttendenceStatus.ToString());
+                                }   
+
+
+                            return View(student);
                         }
                         //Coding Block---------------------------------------------------------
 
@@ -469,7 +500,18 @@ namespace eSkool.Controllers
         }
 
 
+        int getIndexMonth(string month, string[] months)
+        {
+            int i = 1;
+            foreach (var m in months)
+            {
+                if (m == month)
+                    return i;
+                i++;
+            }
+            return i - 1;
+        }
+    }
 
+}//End Controller
 
-    }//End Controller
-}

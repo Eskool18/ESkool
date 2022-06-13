@@ -10,6 +10,8 @@ using eSkool.Models;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using eSkool.Logistics;
+using System.Web;
+using System.Text.RegularExpressions;
 
 namespace eSkool.Controllers
 {
@@ -162,7 +164,7 @@ namespace eSkool.Controllers
             return RedirectToAction("login", "login");
         }
         [HttpPost]
-        public IActionResult post_class_announcement(string title,string txt, string cls, string sub)
+        public IActionResult post_class_announcement(string title, string txt, string cls, string sub)
         {
             if (HttpContext.Session.GetString("username") != null)
             {
@@ -188,7 +190,7 @@ namespace eSkool.Controllers
 
                                 //Update DB
                                 dBContext.SaveChanges();
-                                
+
                                 return RedirectToAction("post_class_announcement", "Teacher", new { sname = sub, cname = cls });
 
 
@@ -197,12 +199,12 @@ namespace eSkool.Controllers
                         }
                         catch (Exception ex)
                         {
-                           
+
                         }
-                       
+
                     }
                     return RedirectToAction("post_class_announcement", "Teacher");
-                   
+
                 }
             }
             return RedirectToAction("login", "login");
@@ -263,7 +265,7 @@ namespace eSkool.Controllers
 
                         //Coding Block------------------------------------------------------------
 
-               
+
                         long size = files.Sum(f => f.Length);
 
                         var filePaths = new List<string>();
@@ -298,23 +300,23 @@ namespace eSkool.Controllers
                                         //Update DB
                                         await dBContext.SaveChangesAsync();
 
-                                        return RedirectToAction("upload_helping_material", "Teacher", new { sname = sName, cname = cName  });
-                                    
+                                        return RedirectToAction("upload_helping_material", "Teacher", new { sname = sName, cname = cName });
 
 
-                                }
+
+                                    }
                                 }
                                 catch (Exception ex)
                                 {
 
                                 }
-                    
+
                             }
                         }
 
                         return Ok(new { count = files.Count, size, filePaths });
                     }
-                
+
                     else return RedirectToAction("AccessWarning403", "login", new { role = role });
                 }
 
@@ -452,6 +454,10 @@ namespace eSkool.Controllers
                             List<Student> studentList = db.Students.Where(x => x.ClassName == className).ToList();
                             ViewBag.date = DateTime.Now.ToLongDateString();
 
+                            List<Attendence> attendenceList = db.Attendences.Where(x => x.ClassName == className && x.AttendenceDate == DateTime.Today).ToList();
+                            ViewBag.attendenceList = attendenceList;
+                            bool attendenceMarked = attendenceList.Count > 0;
+                            ViewBag.attendenceMarked = attendenceMarked;
                             return View(studentList);
                         }
                         //Coding Block---------------------------------------------------------
@@ -465,7 +471,188 @@ namespace eSkool.Controllers
 
             return RedirectToAction("login", "login");
         }
-            byte[] GetFile(string s)
+
+        public IActionResult UploadAttendence()
+        {
+            {
+                if (HttpContext.Session.GetString("username") != null)
+                {
+                    string username = HttpContext.Session.GetString("username");
+                    using (eSkoolDBContext db = new eSkoolDBContext())
+                    {
+                        string role = db.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
+                        if (role == "T")
+                        {
+                            ViewBag.username = username;
+
+                            //Coding Block---------------------------------------------------------
+                            {
+
+
+                                var attendenceList = Request.QueryString.ToString();
+                                attendenceList = attendenceList.Split("?")[1];
+                                string[] pairValue = attendenceList.Split("&");
+                                string sampleStudentid = pairValue[1].Split("=")[0];
+                                string className = db.Students.Where(x => x.StudentId == sampleStudentid).SingleOrDefault().ClassName;
+                                foreach (string atttendence in pairValue)
+                                {
+                                    Attendence student = new Attendence();
+                                    student.StudentId = atttendence.Split("=")[0];
+                                    student.AttendenceStatus = Convert.ToInt32(atttendence.Split("=")[1]);
+                                    student.AttendenceDate = DateTime.Today;
+                                    student.ClassName = className;
+                                    db.Attendences.Add(student);
+
+
+                                }
+                                db.SaveChanges();
+                                return RedirectToAction("Dashboard");
+
+                            }
+                            //Coding Block---------------------------------------------------------
+
+                        }
+
+                        else return RedirectToAction("AccessWarning403", "login", new { role = role });
+                    }
+
+                }
+
+                return RedirectToAction("login", "login");
+            }
+
+
+        }
+
+        public IActionResult updateAttendence()
+        {
+            {
+                if (HttpContext.Session.GetString("username") != null)
+                {
+                    string username = HttpContext.Session.GetString("username");
+                    using (eSkoolDBContext db = new eSkoolDBContext())
+                    {
+                        string role = db.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
+                        if (role == "T")
+                        {
+                            ViewBag.username = username;
+
+                            //Coding Block---------------------------------------------------------
+                            {
+
+                                var attendenceList = Request.QueryString.ToString();
+                                attendenceList = attendenceList.Split("?")[1];
+                                string[] pairValue = attendenceList.Split("&");
+                                string sampleStudentid = pairValue[1].Split("=")[0];
+                                string className = db.Students.Where(x => x.StudentId == sampleStudentid).SingleOrDefault().ClassName;
+                                foreach (string atttendence in pairValue)
+                                {
+                                    string StudentId = atttendence.Split("=")[0];
+                                    int AttendenceStatus = Convert.ToInt32(atttendence.Split("=")[1]);
+                                    Attendence obj = db.Attendences.Where(x => x.StudentId == StudentId && x.AttendenceDate == DateTime.Today).SingleOrDefault();
+                                    obj.AttendenceStatus = AttendenceStatus;
+                                    db.Attendences.Update(obj);
+
+                                }
+
+                                db.SaveChanges();
+                                return RedirectToAction("Dashboard");
+
+                            }
+                            //Coding Block---------------------------------------------------------
+
+                        }
+
+                        else return RedirectToAction("AccessWarning403", "login", new { role = role });
+                    }
+
+                }
+
+                return RedirectToAction("login", "login");
+            }
+
+
+        }
+
+        public IActionResult attendenceRecord(string attendenceMonth)
+        {
+            {
+                if (HttpContext.Session.GetString("username") != null)
+                {
+                    string username = HttpContext.Session.GetString("username");
+                    using (eSkoolDBContext db = new eSkoolDBContext())
+                    {
+                        string role = db.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
+                        if (role == "T")
+                        {
+                            ViewBag.username = username;
+
+                            //Coding Block---------------------------------------------------------
+                            {
+                                string[] months = { "January", "February", "March", "April", "May", "June", "July", "Auguest", "Septemer", "October", "Novmber", "December" };
+                                ViewBag.months = months;
+                                if (attendenceMonth == null)
+                                    attendenceMonth = months[DateTime.Today.Month - 1];
+                                ViewBag.attendenceMonth = attendenceMonth;
+                                int daysInmonth = DateTime.DaysInMonth(DateTime.Now.Year,getIndexMonth(attendenceMonth,months));
+                                ViewBag.DaysInMonth = daysInmonth;
+                                   
+                                //list conaton all attendence stuff
+                                List<studentMonthlyAttendence> listOfStudent = new List<studentMonthlyAttendence>();
+
+                                //get class name then all student of class
+                                string className = db.SchoolClasses.Where(x => x.Incharge == username).SingleOrDefault().ClassName;
+                                List<Student> studentNames = db.Students.Where(x => x.ClassName == className).ToList();
+
+                                // one by one get student all attendence
+                                foreach(var student in studentNames)
+                                {
+                                    studentMonthlyAttendence std = new studentMonthlyAttendence();
+                                    std.studentName = student.StudentName;
+                                    std.fatherName = student.FatherName;
+
+                                    List<Attendence> studentAttendence = db.Attendences.Where(x => x.StudentId == student.StudentId).ToList();
+                                    List<Attendence> temp = new List<Attendence>();
+                                    foreach(var selectedStudent in studentAttendence)
+                                    {
+                                        if (Convert.ToInt32(selectedStudent.AttendenceDate.ToString().Split("/")[1]) == getIndexMonth(attendenceMonth, months))
+                                            temp.Add(selectedStudent);
+                                    }
+
+                                    studentAttendence.Clear();
+                                    studentAttendence = temp;
+
+                                    foreach(var attendence in studentAttendence)
+                                    {
+                                        int index = Convert.ToInt32(attendence.AttendenceDate.ToString().Split("/")[0]);
+                                        if (attendence.AttendenceStatus != null)
+                                            std.days[index - 1] = Convert.ToInt32(attendence.AttendenceStatus.ToString());
+                                    }
+
+                                    listOfStudent.Add(std);    
+
+                                }
+
+
+
+                                return View(listOfStudent);
+                            }
+                            //Coding Block---------------------------------------------------------
+
+                        }
+
+                        else return RedirectToAction("AccessWarning403", "login", new { role = role });
+                    }
+
+                }
+
+                return RedirectToAction("login", "login");
+            }
+
+
+        }
+
+        byte[] GetFile(string s)
         {
             System.IO.FileStream fs = System.IO.File.OpenRead(s);
             byte[] data = new byte[fs.Length];
@@ -475,6 +662,16 @@ namespace eSkool.Controllers
             return data;
         }
 
-                         
+        int getIndexMonth(string month, string[] months)
+        {
+            int i = 1;
+            foreach (var m in months)
+            {
+                if (m == month)
+                    return i;
+                i++;
+            }
+            return i - 1;
         }
     }
+}

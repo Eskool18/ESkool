@@ -413,3 +413,4 @@ D:\fyp\ESkool\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\post_cla
 D:\fyp\ESkool\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\teach_subject.cshtml.g.cs
 D:\fyp\ESkool\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\upload_gradebook.cshtml.g.cs
 D:\fyp\ESkool\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\upload_helping_material.cshtml.g.cs
+D:\fyp\ESkool\eSkool\eSkool\obj\Debug\netcoreapp3.1\Razor\Views\Teacher\attendenceRecord.cshtml.g.cs

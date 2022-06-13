@@ -1,0 +1,113 @@
+﻿@model IEnumerable<eSkool.Logistics.studentMonthlyAttendence>
+@{
+    ViewData["Title"] = "attendenceRecord";
+    Layout = "~/Views/Shared/_TeacherLayout.cshtml";
+}
+<style>
+    table, th, td {
+        text-align: center;
+        margin: auto;
+        border: 1px solid #f6eff5;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 10px 30px;
+        background-color: #338da13d;
+        color: #267385;
+    }
+
+
+
+    th {
+        background-color: #338da1;
+        color: #f6eff5;
+    }
+</style>
+
+
+<div class="form-group">
+    <form action="/Teacher/attendenceRecord" method="post">
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label><b>Attendence of Month</b> </label>
+                <select name="attendenceMonth" class="custom-select custom-select-lg" required>
+                    <option disabled selected>--Month @ViewBag.attendenceMonth</option>
+                    @{
+
+                      foreach(var month in ViewBag.months)
+                            {
+                            <option>@month</option>
+                            }
+                    }
+                    
+                </select>
+            </div>
+
+            <div class="form-group col-md-3">
+                <input type="submit" class="btn btn-dark" value="Search Now" style="margin-left:50px;margin-top:33px;width:60%">
+            </div>
+        </div>
+    </form>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Student Name
+            </th>
+            <th>
+                Father Name
+            </th>
+            @{ 
+                for(int i=1; i<= ViewBag.DaysInMonth;i++)
+                  {
+                    <th>@i</th>
+                  }
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach(var studentAttendence in Model)
+            {
+                <tr>
+                    <td>
+                        @studentAttendence.studentName
+                    </td>
+                    <td>
+                        @studentAttendence.fatherName
+                    </td>
+                    @{ var i = 1;
+                        foreach(var day in studentAttendence.days)
+                        {
+                            if (i <= ViewBag.DaysInMonth)
+                            {
+                                if (day == 1)
+                                {
+                                    <td style="color:green">P</td>
+                                }
+                                else if (day == 0)
+                                {
+                                    <td style="color:blue">L</td>
+                                }
+                                else if (day == -1)
+                                {
+                                   <td style="color:red" >A</td>
+                                }
+                                else
+                                {
+                                    <td> </td>
+                                }
+                            }
+                            i = i + 1;
+                        }
+                        }
+                </tr>
+            }
+        }
+        
+    </tbody>
+
+</table>

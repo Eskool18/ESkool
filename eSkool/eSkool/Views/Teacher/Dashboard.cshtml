@@ -32,10 +32,11 @@
     @{          
         if (ViewBag.InchargeStatus)
             {
-                <div style="border:2px solid black">
-                    <h4>You are class Incharge </h4>
-                    <input type="button" class="btn btn-primary" value="Mark Attendence" />
-                </div>
+        <div style="border:2px solid black">
+            <h4>You are class Incharge </h4>
+            <a href="/Teacher/markAttendence" class="btn btn-outline-primary">Mark Attendence</a>
+            <a href="/Teacher/attendenceRecord" class="btn btn-outline-primary">Attendence record</a>
+        </div>
             }
     }
 
