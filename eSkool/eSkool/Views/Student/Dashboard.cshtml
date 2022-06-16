@@ -226,6 +226,9 @@
     .today {
         background: #00000017;
     }
+    .check{
+        display:none;
+    }
 </style>
 <body onload="displayCalendar();">
     <div class=" cal-notice">
@@ -237,8 +240,8 @@
                 {
 
                     <p>@notice.NoticeStatement</p>
-                    
-                   
+
+
                 }
             }
         </div>
@@ -261,17 +264,17 @@
 
 
 
-    <div id="myModal" class="modal">
+    <!--<div id="myModal" class="modal">
 
         <!-- Modal content -->
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Complaint</h3>
-                <button class="comp-close" onclick="closeModal()"> &times; </button>
-                @*<span class="comp-close">&times;</span>*@
+    <!--<div class="modal-content">
+        <div class="modal-header">
+            <h3>Complaint</h3>
+            <button class="comp-close" onclick="closeModal()"> &times; </button>-->
+    @*<span class="comp-close">&times;</span>*@
 
 
-            </div>
+    <!--</div>
             <div class="modal-body">
 
                 <p style="color:red;">This message will be received by admin of institute.</p>
@@ -298,6 +301,89 @@
     </div>
 
 
+    <div id="leave-Modal" class="modal">-->
+    <!-- Modal content -->
+    <!--<div class="modal-content">
+        <div class="modal-header">
+            <h3>Leave/Application</h3>
+            <button class="leave-close" onclick="closeLeave()"> &times; </button>-->
+    @*<span class="comp-close">&times;</span>*@
+
+
+    @*</div>
+                <div class="modal-body">
+
+                    <p style="color:red;">This message will be received by your Class Incharge.</p>
+                    <form action="Dashboard" method="post">
+                        <div>
+                            <label for="name">Name:</label>
+                            <input type="text" style=" width: 40%;" id="name" name="uname" placeholder="@ViewBag.username" disabled />
+                            <label for="reason" style="margin-left:2%;">Reason: </label>
+                            <select id="reason" style=" width: 35%; padding: 2%; border: none; background: #efefef;" name="reason">
+                                <option value="Sick">Sick</option>
+                                <option value="Urgent">Urgent Work</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div id="duration">
+                            <label for="from">From:</label>
+                            <input type="date" id="from" name="from" onchange="calculateDuration();" required>
+                            <label for="to">To:</label>
+                            <input type="date" id="to" name="to" onchange="calculateDuration();" checked required>
+                            <div id="total-days" style="display:flex;">
+                                <label for="leaves-duration">Total Leaves: </label>
+                                <input type="number" name="total" style=" margin: 2%; color: red; border: 1px solid red; text-align: center; width: 45%; padding:7%;" placeholder="0" id="leaves-duration" disabled />
+                            </div>
+                        </div>
+
+                        <label for="txt">Dear Sir/Madam, </label>
+                        <input type="text" id="txt" name="txt" style="height:80px;" placeholder="2-3 Lines" required>
+                        <div id="obediently">
+                            <p>Yours Obediently,</p>
+                            <p>@ViewBag.uname</p>
+                        </div>
+
+                        <input type="submit" style=" width: 30%; margin: auto;">
+                    </form>
+
+
+                </div>
+
+            </div>
+
+        </div>-->*@
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Complaint</h3>
+                <button class="comp-close" onclick="closeModal()"> &times; </button>
+                @*@<span class="comp-close">&times;</span>@*@
+            </div>
+            <div class="modal-body">
+                <p style="color:red;">This message will be received by admin of institute.</p>
+                <form action="Dashboard" method="post">
+                    <div id="form-field">
+                        <div class="col-25">
+                            <label for="complaint-from" style="width: 13%;">From:</label>
+                            <input id="complaint-from" name="uname" type="text" placeholder="@ViewBag.username" readonly />
+                        </div>
+                        <div class="col-25">
+                            <label for="complaint-body">Complaint</label>
+                            <textarea id="complaint-body" name="complaint" style="margin-left: 3%; width: 60%;" type="text" name="subject" placeholder="Write here.."></textarea>
+                        </div>
+                        <input class="check" name="check" value="complaint" readonly />
+                    </div>
+                    <input type="submit" style=" width: 30%; margin: auto;" value=" Send " />
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+
     <div id="leave-Modal" class="modal">
 
         <!-- Modal content -->
@@ -305,7 +391,7 @@
             <div class="modal-header">
                 <h3>Leave/Application</h3>
                 <button class="leave-close" onclick="closeLeave()"> &times; </button>
-                @*<span class="comp-close">&times;</span>*@
+                @*@<span class="comp-close">&times;</span>@*@
 
 
             </div>
@@ -323,6 +409,7 @@
                             <option value="Other">Other</option>
                         </select>
                     </div>
+                    <input class="check" name="check" value="leave" readonly />
                     <div id="duration">
                         <label for="from">From:</label>
                         <input type="date" id="from" name="from" onchange="calculateDuration();" required>
@@ -330,7 +417,7 @@
                         <input type="date" id="to" name="to" onchange="calculateDuration();" checked required>
                         <div id="total-days" style="display:flex;">
                             <label for="leaves-duration">Total Leaves: </label>
-                            <input type="number" name="total" style=" margin: 2%; color: red; border: 1px solid red; text-align: center; width: 45%; padding:7%;" placeholder="0" id="leaves-duration" disabled />
+                            <input type="number" name="total" style=" margin: 2%; color: red; border: 1px solid red; text-align: center; width: 45%; padding:7%;" placeholder="0" id="leaves-duration" readonly />
                         </div>
                     </div>
 
@@ -350,6 +437,5 @@
         </div>
 
     </div>
-
 
 </body> 

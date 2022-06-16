@@ -10,7 +10,7 @@
         background-color: white;
         text-align: center;
     }
-    #leave {
+    #leave, #mark, #record {
         width: 30%;
         padding: 4%;
         font-size: 20px;
@@ -20,7 +20,27 @@
         border-radius: 5px;
         box-shadow: 0 3px 15px 0 rgb(0 0 0 / 10%);
         float: left;
+        color: white;
+        font-weight: 500;
     }
+
+    .incharge-box{
+        margin:20px;
+        padding:30px;
+        width:45%;
+        border-radius:10px;
+    }
+
+
+
+    h4 {
+        color: #269eb3;
+        text-align: center;
+        padding: 2%;
+        background: #40a5bc21;
+        text-shadow: 2px 2px #427d8f29;
+    }
+
 </style>
 
 
@@ -32,11 +52,17 @@
     @{          
         if (ViewBag.InchargeStatus)
             {
-        <div style="border:2px solid black">
-            <h4>You are class Incharge </h4>
-            <a href="/Teacher/markAttendence" class="btn btn-outline-primary">Mark Attendence</a>
-            <a href="/Teacher/attendenceRecord" class="btn btn-outline-primary">Attendence record</a>
-        </div>
+        
+            <h4><i > @ViewBag.className </i>Class Incharge ! </h4>
+
+            <div id="mark">
+                <a style="color:white;" href="/Teacher/markAttendence" >Mark Attendence</a>
+            </div>
+            
+            <div id="record">
+                <a style="color:white;" href="/Teacher/attendenceRecord" >Attendence record</a>
+            </div>
+         
             }
     }
 
@@ -50,7 +76,7 @@
                     <div class="row" style="margin-top: 30px;">
                         <div class="col-sm-6">
                             <a href="/GeneratePaper/showCourses">
-                                <button class="btn btn-outline-primary">
+                                <button >
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-sm-4">
@@ -66,7 +92,7 @@
                             </a>
                         </div>
                         <div class="col-sm-6">
-                            <button class="btn btn-outline-primary">
+                            <button >
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-sm-4">
@@ -84,7 +110,7 @@
 
                     <div class="row" style="margin-top: 30px;">
                         <div class="col-sm-6">
-                            <button class="btn btn-outline-primary">
+                            <button >
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-sm-4">
@@ -99,7 +125,7 @@
                             </button>
                         </div>
                         <div class="col-sm-6">
-                            <button class="btn btn-outline-primary">
+                            <button >
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-sm-4">
@@ -119,7 +145,7 @@
 
                     <div class="row" style="margin-top: 30px;">
                         <div class="col-sm-6">
-                            <button class="btn btn-outline-primary">
+                            <button >
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-sm-4">
@@ -134,7 +160,7 @@
                             </button>
                         </div>
                         <div class="col-sm-6">
-                            <button class="btn btn-outline-primary">
+                            <button >
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-sm-4">
@@ -161,6 +187,6 @@
     </div>
 
     <div id="leave">
-        <a class="show-leave dash-links" href="leaveBox"><p> Leave Requests </p> <i class="fas fa-edit"></i> </a>
+        <a class="show-leave dash-links"  style="color:white;"href="leaveBox"><p> Leave Requests </p> <i class="fas fa-edit"></i> </a>
     </div>
 </div>

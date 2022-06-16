@@ -6,7 +6,7 @@
 
 }
 
-<body>
+<body style="padding:20px">
     <script>
 
         function showMarkTable() {
@@ -23,18 +23,25 @@
 
     <h1> Attendence Daily </h1>
 
-    <div class="description_box">
-        <div class="className">
-            <p>--9th <sup>th</sup></p>
+    <div class="description_box" style="display:flex;padding:20px">
+        <div class="className-box" style="display:flex;margin:20px">
+               <p style="font-weight:bolder;margin:15px 15px 10px 10px;font-size:25px">Class</p>
+                <div style="border: 2px solid lightgrey; border-radius: 10px;">
+               <p style="color: lightgrey; margin:15px 10px 0px 10px ">--@ViewBag.className <sup>th</sup></p>
+                </div>
         </div>
-        <div class="date-box">
-            <p> @DateTime.Today;</p>
+        <div class="date-box" style="display:flex;margin:20px;">
+            <p style="font-weight:bolder;margin:15px 15px 10px 10px;font-size:25px">Date</p>
+            <div style="border: 2px solid lightgrey; border-radius: 10px;">
+                <p style="color: lightgrey;margin:15px 10px 0px 10px"> @DateTime.Today.\/p>
+            </div>
+
         </div>
         @{
             if (ViewBag.attendenceMarked)
             {
                 <div>
-                    <input type="button" class="btn btn-danger" value="Update Attendence" id="edit" onclick="showEditTable()" />
+                    <input type="button" class="btn btn-danger" value="Update Attendence" id="edit" onclick="showEditTable()" style="margin:30px"/>
                 </div>
             }
             else
@@ -49,9 +56,9 @@
     </div>
     <div class="attendence-box" id="attendence-box" style="display:none">
         <form action="/Teacher/uploadAttendence">
-            <table class="table-bordered">
-                <thead>
-                    <tr class="tab-header">
+            <table class="table-bordered table-dark">
+                <thead class="thead-dark">
+                    <tr>
                         <th>Roll#</th>
                         <th>Student Name</th>
                         <th>Father Name</th>
@@ -68,9 +75,9 @@
                                 <td>@Student.FatherName</td>
                                 <td>
                                     <div id="@Student.StudentId">
-                                        <input type="radio" class="custom-radio" value="1" name=@Student.StudentId checked required /> Present
-                                        <input type="radio" class="custom-radio" value="-1" name=@Student.StudentId   required /> Absent
-                                        <input type="radio" class="custom-radio" value="0" name=@Student.StudentId  required /> Leave
+                                        <input type="radio" class="custom-radio" value="1" name=@Student.StudentId checked required style="padding:10px"/> Present
+                                        <input type="radio" class="custom-radio" value="-1" name=@Student.StudentId   required style="padding:10px" /> Absent
+                                        <input type="radio" class="custom-radio" value="0" name=@Student.StudentId  required style="padding:10px"/> Leave
                                     </div>
                                 </td>
 
@@ -80,7 +87,7 @@
 
                 </tbody>
             </table>
-            <input type="submit" class="btn btn-success" />
+            <input style="margin-top:15px" type="submit" class="btn btn-success" />
         </form>
 
 
@@ -88,16 +95,16 @@
 
     <div class="attendence-box" id="attendence-box-edit" style="display:none">
         <form action="/Teacher/updateAttendence">
-            <table class="table-bordered">
-                <thead>
-                    <tr class="tab-header">
+            <table class="table-bordered table-danger table-hover">
+                <thead class="thead-dark">
+                    <tr >
                         <th>Roll#</th>
                         <th>Student Name</th>
                         <th>Father Name</th>
                         <th>Mark Attendence  </th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody >
                     @{
                         @foreach (var Student in Model)
                         {
@@ -114,27 +121,27 @@
                                                 {
                                                     if (attendence.AttendenceStatus == 1)
                                                     {
-                                                        <input type="radio" class="custom-radio" value="1" name=@Student.StudentId checked required /><i>Present</i>
+                                                        <input type="radio" class="custom-radio" value="1" name=@Student.StudentId checked required style="padding:10px" /><i>Present</i>
                                                     }
                                                     else
                                                     {
-                                                        <input type="radio" class="custom-radio" value="1" name=@Student.StudentId required /><i>Present</i>
+                                                        <input type="radio" class="custom-radio" value="1" name=@Student.StudentId required style="padding:10px" /><i>Present</i>
                                                     }
                                                     if (attendence.AttendenceStatus == -1)
                                                     {
-                                                        <input type="radio" class="custom-radio" value="-1" name=@Student.StudentId checked required /><i>Absent</i>
+                                                        <input type="radio" class="custom-radio" value="-1" name=@Student.StudentId checked required style="padding:10px" /><i>Absent</i>
                                                     }
                                                     else
                                                     {
-                                                        <input type="radio" class="custom-radio" value="-1" name=@Student.StudentId required /><i>Absent</i>
+                                                        <input type="radio" class="custom-radio" value="-1" name=@Student.StudentId required style="padding:10px" /><i>Absent</i>
                                                     }
                                                     if (attendence.AttendenceStatus == 0)
                                                     {
-                                                        <input type="radio" class="custom-radio" value="0" name=@Student.StudentId checked required /><i>Leave</i>
+                                                        <input type="radio" class="custom-radio" value="0" name=@Student.StudentId checked required style="padding:10px" /><i>Leave</i>
                                                     }
                                                     else
                                                     {
-                                                        <input type="radio" class="custom-radio" value="0" name=@Student.StudentId required /><i>Leave</i>
+                                                        <input type="radio" class="custom-radio" value="0" name=@Student.StudentId required style="padding:10px" /><i>Leave</i>
                                                     }
                                                     break;
                                                 }
@@ -152,7 +159,7 @@
 
                 </tbody>
             </table>
-            <input type="submit" class="btn btn-success" />
+            <input type="submit" style="margin-top:15px" class="btn btn-success" />
         </form>
     </div>
 

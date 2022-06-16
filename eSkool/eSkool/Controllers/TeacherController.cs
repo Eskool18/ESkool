@@ -31,7 +31,10 @@ namespace eSkool.Controllers
                         ActiveUser.recordActive(username);
                         //Coding Block---------------------------------------------------------
                         {
-                            bool inchargeStatus = db.SchoolClasses.Where(x => x.Incharge == username).SingleOrDefault() != null;
+                            SchoolClass classObj = db.SchoolClasses.Where(x => x.Incharge == username).SingleOrDefault();
+                            bool inchargeStatus = classObj != null;
+                            if(inchargeStatus)
+                                ViewBag.className = classObj.ClassName;
                             ViewBag.InchargeStatus = inchargeStatus;
                             return View();
                         }
@@ -143,7 +146,7 @@ namespace eSkool.Controllers
                         {
                             using (eSkoolDBContext dBContext = new eSkoolDBContext())
                             {
-                                List<ClassAnnouncement> announcement = dBContext.ClassAnnouncements.Where(x => x.Subject == sname && x.ClassName == cname).ToList();
+                              List<ClassAnnouncement> announcement = dBContext.ClassAnnouncements.Where(x => x.Subject == sname && x.ClassName == cname).ToList();
                                 return View(announcement);
                                 //return View();
                             }
@@ -183,7 +186,7 @@ namespace eSkool.Controllers
                                 newAnnouncement.ClassName = cls;
                                 newAnnouncement.Content = txt;
                                 newAnnouncement.Header = title;
-                                newAnnouncement.PostDate = DateTime.Now;
+                                newAnnouncement.PostDate = DateTime.Today;
                                 newAnnouncement.Subject = sub;
                                 newAnnouncement.Username = username;
                                 dBContext.ClassAnnouncements.Add(newAnnouncement);
@@ -341,10 +344,8 @@ namespace eSkool.Controllers
                         {
                             using (eSkoolDBContext dBContext = new eSkoolDBContext())
                             {
-                                Teacher teacherobj = db.Teachers.Where(x => x.TeacherName == username).SingleOrDefault();
-
-                                List<ClassSubjectTeacher> subList = db.ClassSubjectTeachers.Where(x => x.TeacherId == teacherobj.TeacherId
-                                 ).ToList();
+                                
+                                List<ClassSubjectTeacher> subList = db.ClassSubjectTeachers.Where(x => x.TeacherId == username).ToList();
                                 return View(subList);
                             }
                         }
@@ -453,7 +454,7 @@ namespace eSkool.Controllers
                             string className = db.SchoolClasses.Where(x => x.Incharge == username).SingleOrDefault().ClassName;
                             List<Student> studentList = db.Students.Where(x => x.ClassName == className).ToList();
                             ViewBag.date = DateTime.Now.ToLongDateString();
-
+                            ViewBag.className = className;
                             List<Attendence> attendenceList = db.Attendences.Where(x => x.ClassName == className && x.AttendenceDate == DateTime.Today).ToList();
                             ViewBag.attendenceList = attendenceList;
                             bool attendenceMarked = attendenceList.Count > 0;
@@ -673,5 +674,58 @@ namespace eSkool.Controllers
             }
             return i - 1;
         }
+
+        [HttpGet]
+        public IActionResult manageProfile(string id)
+        {
+            if (HttpContext.Session.GetString("username") != null)
+            {
+                string username = HttpContext.Session.GetString("username");
+                UserInfo temp = new UserInfo();
+                using (eSkoolDBContext eskoolDb = new eSkoolDBContext())
+                {
+                    string role = eskoolDb.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
+                    if (role == "T")
+                    {
+                        try
+                        {
+                            using (eSkoolDBContext eskoolDB = new eSkoolDBContext())
+                            {
+                                temp = (UserInfo)eskoolDB.UserInfos.Where(user => user.UserName == id).SingleOrDefault();
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                        return View(temp);
+                    }
+                    else return RedirectToAction("AccessWarning403", "login", new { role = role });
+                }
+            }
+            return RedirectToAction("login", "login");
+        }
+
+        [HttpPost]
+        public IActionResult manageProfile(string id, string newPassword)
+        {
+            if (HttpContext.Session.GetString("username") != null && newPassword != null)
+            {
+                string username = HttpContext.Session.GetString("username");
+                UserInfo temp = new UserInfo();
+                using (eSkoolDBContext eskoolDB = new eSkoolDBContext())
+                {
+
+                    temp = eskoolDB.UserInfos.Where(user => user.UserName == username).SingleOrDefault();
+                    temp.Password = newPassword;
+                    eskoolDB.UserInfos.Update(temp);
+                    eskoolDB.SaveChanges();
+                    return RedirectToAction("Dashboard", "Teacher");
+                }
+            }
+            else { return RedirectToAction("manageProfile", "Teacher"); }
+            return RedirectToAction("login", "login");
+        }
+
     }
 }

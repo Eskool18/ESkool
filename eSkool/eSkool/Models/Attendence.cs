@@ -7,7 +7,6 @@ namespace eSkool.Models
 {
     public partial class Attendence
     {
-        
         public int AttendenceId { get; set; }
         public string StudentId { get; set; }
         public DateTime? AttendenceDate { get; set; }

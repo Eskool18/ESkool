@@ -163,11 +163,11 @@
                 <form action="post_class_announcement" method="post">
                     <div>
                         <label for="name">Title: </label>
-                        <input type="text" id="name" name="title" placeholder="Assignment due till sunday" />
+                        <input type="text" id="name" name="title" placeholder="Assignment due till sunday" required />
                         <label for="name">Subject: </label>
                         <input type="text" style=" width: 40%;" id="name" name="sub" value="@ViewBag.sname" readonly />
                         <label for="name">Class: </label>
-                        <input type="number" style=" width: 40%;" id="name" name="cls" value="@ViewBag.cname" readonly />
+                        <input type="text" style=" width: 40%;" id="name" name="cls" value="@ViewBag.cname" readonly />
                     </div>
                     <label for="txt"> Content : </label>
                     <input type="text" id="txt" name="txt" style="height:80px; margin-bottom:2%;" required>

@@ -99,7 +99,7 @@ namespace eSkool.Controllers
         //}
 
         [HttpPost]
-        public IActionResult Dashboard( string reason, DateTime from, DateTime to, string txt, int total)
+        public IActionResult Dashboard(string check, string uname, string complaint, string reason, DateTime from, DateTime to, string txt, int total)
         {
             if (HttpContext.Session.GetString("username") != null)
             {
@@ -109,35 +109,58 @@ namespace eSkool.Controllers
                     string role = db.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
                     if (role == "S")
                     {
-                        ActiveUser.recordActive(username);
 
-                        try
-                        {
+                        
                             using (eSkoolDBContext dBContext = new eSkoolDBContext())
                             {
-                                Application newApp= new Application();
-                                string id = db.Students.Where(x => x.StudentName == username).SingleOrDefault().StudentId;
-                                newApp.StudentId = id ;
-                                newApp.SubmissionDate = DateTime.Now;
-                                newApp.ApplicationToDate = to;
-                                newApp.ApplicationFromDate = from;
-                                newApp.ApplicationBody = txt;
-                                newApp.AppicationTitle = reason;
-                                newApp.TotalDays = total;
-                                
+                            try
+                            {
+                                if (check == "leave")
+                                {
+                                    Application newApp = new Application();
+                                    string id = username;
+                                    newApp.StudentId = id;
+                                    newApp.SubmissionDate = DateTime.Now;
+                                    newApp.ApplicationToDate = to;
+                                    newApp.ApplicationFromDate = from;
+                                    newApp.ApplicationBody = txt;
+                                    newApp.AppicationTitle = reason;
+                                    newApp.TotalDays = total;
 
-                                dBContext.Applications.Add(newApp);
 
+                                    dBContext.Applications.Add(newApp);
+
+                                    //Update DB
+                                    dBContext.SaveChanges();
+                                }
+                                else if (check == "complaint")
+                                {
+                                    Complaint newComplaint = new Complaint();
+                                    newComplaint.ComplaintStatement = complaint;
+                                    newComplaint.UserName = username;
+
+                                    newComplaint.ComplaintDate = DateTime.Today;
+
+                                    dBContext.Complaints.Add(newComplaint);
+                                  
+                                }
                                 //Update DB
                                 dBContext.SaveChanges();
+                                
+                                    ViewBag.username = username;
+                                    ActiveUser.recordActive(username);
+                                    List<Notice> NoticeList = dBContext.Notices.ToList();
+                                return View(NoticeList);
+                             
+                            }
+                            catch (Exception ex)
+                            {
+                                List<Notice> NoticeList = dBContext.Notices.ToList();
+                                return View(NoticeList);
 
-                                RedirectToAction("Dashboard");
                             }
                         }
-                        catch (Exception ex)
-                        {
-                            return View();
-                        }
+                       
 
 
 
@@ -150,6 +173,57 @@ namespace eSkool.Controllers
             return RedirectToAction("login", "login");
 
         }
+        //public IActionResult Dashboard( string reason, DateTime from, DateTime to, string txt, int total)
+        //{
+        //    if (HttpContext.Session.GetString("username") != null)
+        //    {
+        //        string username = HttpContext.Session.GetString("username");
+        //        using (eSkoolDBContext db = new eSkoolDBContext())
+        //        {
+        //            string role = db.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
+        //            if (role == "S")
+        //            {
+        //                ActiveUser.recordActive(username);
+
+        //                try
+        //                {
+        //                    using (eSkoolDBContext dBContext = new eSkoolDBContext())
+        //                    {
+        //                        Application newApp= new Application();
+        //                        string id = db.Students.Where(x => x.StudentName == username).SingleOrDefault().StudentId;
+        //                        newApp.StudentId = id ;
+        //                        newApp.SubmissionDate = DateTime.Now;
+        //                        newApp.ApplicationToDate = to;
+        //                        newApp.ApplicationFromDate = from;
+        //                        newApp.ApplicationBody = txt;
+        //                        newApp.AppicationTitle = reason;
+        //                        newApp.TotalDays = total;
+
+
+        //                        dBContext.Applications.Add(newApp);
+
+        //                        //Update DB
+        //                        dBContext.SaveChanges();
+
+        //                        RedirectToAction("Dashboard");
+        //                    }
+        //                }
+        //                catch (Exception ex)
+        //                {
+        //                    return View();
+        //                }
+
+
+
+        //            }
+        //            else return RedirectToAction("AccessWarning403", "login", new { role = role });
+        //        }
+
+        //    }
+
+        //    return RedirectToAction("login", "login");
+
+        //}
 
         public ActionResult download_books()
         {
@@ -292,8 +366,8 @@ namespace eSkool.Controllers
                         {
                             using (eSkoolDBContext dBContext = new eSkoolDBContext())
                             {
-                                List<ClassAnnouncement> AppList = dBContext.ClassAnnouncements.Where(x => x.Subject == sName && x.ClassName == cName).ToList();
-                                return View(AppList);
+                                //List<ClassAnnouncement> AppList = dBContext.ClassAnnouncements.Where(x => x.Subject == sName && x.ClassName == cName).ToList();
+                               // return View(AppList);
                             }
 
                         }
@@ -510,6 +584,58 @@ namespace eSkool.Controllers
                 i++;
             }
             return i - 1;
+        }
+
+        [HttpGet]
+        public IActionResult manageProfile(string id)
+        {
+            if (HttpContext.Session.GetString("username") != null)
+            {
+                string username = HttpContext.Session.GetString("username");
+                UserInfo temp = new UserInfo();
+                using (eSkoolDBContext eskoolDb = new eSkoolDBContext())
+                {
+                    string role = eskoolDb.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
+                    if (role == "S")
+                    {
+                        try
+                        {
+                            using (eSkoolDBContext eskoolDB = new eSkoolDBContext())
+                            {
+                                temp = (UserInfo)eskoolDB.UserInfos.Where(user => user.UserName == id).SingleOrDefault();
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                        return View(temp);
+                    }
+                    else return RedirectToAction("AccessWarning403", "login", new { role = role });
+                }
+            }
+            return RedirectToAction("login", "login");
+        }
+
+        [HttpPost]
+        public IActionResult manageProfile(string id, string newPassword)
+        {
+            if (HttpContext.Session.GetString("username") != null && newPassword != null)
+            {
+                string username = HttpContext.Session.GetString("username");
+                UserInfo temp = new UserInfo();
+                using (eSkoolDBContext eskoolDB = new eSkoolDBContext())
+                {
+
+                    temp = eskoolDB.UserInfos.Where(user => user.UserName == username).SingleOrDefault();
+                    temp.Password = newPassword;
+                    eskoolDB.UserInfos.Update(temp);
+                    eskoolDB.SaveChanges();
+                    return RedirectToAction("Dashboard", "Student");
+                }
+            }
+            else { return RedirectToAction("manageProfile", "Student"); }
+            return RedirectToAction("login", "login");
         }
     }
 

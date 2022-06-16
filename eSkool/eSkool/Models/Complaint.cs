@@ -11,5 +11,7 @@ namespace eSkool.Models
         public string UserName { get; set; }
         public DateTime? ComplaintDate { get; set; }
         public string ComplaintStatement { get; set; }
+
+        public virtual Student UserNameNavigation { get; set; }
     }
 }

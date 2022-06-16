@@ -1,0 +1,158 @@
+﻿@model UserInfo
+@{
+    ViewBag.Title = "ManageProfile";
+    Layout = "~/Views/Shared/_StudentLayout.cshtml";
+}
+<head>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            padding: 2%;
+            margin: 2%;
+            /*  border: 2px dashed #954587;     */
+            background-color: #f6eff5;
+        }
+
+        .tab {
+            display: none;
+        }
+
+        .step {
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbbbbb;
+            border: none;
+            border-radius: 50%;
+            display: inline-block;
+            opacity: 0.5;
+        }
+
+            .step.finish {
+                background-color: #04AA6D;
+            }
+
+            .step.active {
+                opacity: 1;
+            }
+
+        .dlt-row {
+            color: red;
+            border: 1px solid #ff0000;
+            width: 12%;
+            font-weight: bold;
+            cursor: pointer;
+            background: #ff000014;
+        }
+
+        .form-tab input {
+            border-color: #22a1b782;
+            margin: 1%;
+            padding: 1%;
+            width: 50%;
+        }
+
+        #assign tr {
+            border: 1px dashed grey;
+            background-color: #457a8b1f;
+        }
+
+        #assign {
+            width: 30%;
+        }
+
+            #assign tr td {
+                padding: 5% 0%;
+            }
+
+        h2 {
+            text-align: center;
+            color: #22a1b782;
+        }
+
+        .add-btn input:hover {
+            box-shadow: -6px 6px 0px 0 #22a1b782;
+            background: rgb(145 74 140 / 45%);
+        }
+
+        .add-btn input {
+            color: #ffffff;
+            width: 100%;
+            box-shadow: -6px 6px 0px 0 rgb(145 74 140 / 45%);
+            font-size: 18px;
+            border: none;
+            padding: 3%;
+            /* border: 1px solid #7b5c92d9; */
+            background: #22a1b782;
+        }
+
+        .assign-btn {
+            text-align: center;
+            background: #75b1c65c;
+            border: 2px dashed #269cb2;
+            padding: 1%;
+        }
+
+            .assign-btn i {
+                color: #22a0b6;
+                font-size: 20px;
+            }
+
+            .assign-btn:hover {
+                cursor: pointer;
+            }
+
+        h3 {
+            font-size: 20px;
+            text-align: left;
+            color: #bfaacf8f;
+        }
+
+        .add-btn {
+            color: #ffffff;
+            box-shadow: -6px 6px 0px 0 rgb(145 74 140 / 45%);
+            font-size: 18px;
+            border: none;
+            width: 15%;
+            margin: 2% 2%;
+            padding: 1%;
+            background: #22a1b782;
+        }
+
+            .add-btn:hover, .add-btn:focus, .add-btn:visited {
+                box-shadow: -6px 6px 0px 0 #22a1b782;
+                background: rgb(145 74 140 / 45%);
+            }
+
+
+        .form-tab label {
+            width: 20%;
+            margin: 1%;
+        }
+
+        .btn btn-primary {
+            align-items: center;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <form id="reg-form" action="/Student/manageProfile/@Model.UserName" method="post">
+        <h2>Manage Profile</h2>
+        <div class="tab">
+            <div>
+                <input type="hidden" name="id" value="@Model.UserId" />
+            </div>
+            <div class="form-tab">
+                <label for="old-password">Old Password </label>
+                <input id="old-password" name="oldPassword" oninput="this.className = ''" type="text" value=@Model.Password />
+            </div>
+            <div class="form-tab">
+                <label for="new-password">New password </label>
+                <input id="new-password" name="newPassword" type="text" oninput="this.className = ''" />
+            </div>
+            <input type="submit" class="btn btn-primary text-center" />
+        </div>
+    </form>
+</body>

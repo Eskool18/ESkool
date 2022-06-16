@@ -271,7 +271,7 @@ namespace eSkool.Controllers
                         
                         user.Role = "S";
                         
-                        dBContext.Add(user);                        
+                        dBContext.UserInfos.Add(user);                        
                         
                         //Add student Complete Info in Student Table
                         dBContext.Students.Add(studentinfoObj);
@@ -718,6 +718,37 @@ namespace eSkool.Controllers
         }
 
         [HttpGet]
+        public IActionResult addChallanForm()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult addChallanForm(int classGrade, int fee)
+        {
+            if (HttpContext.Session.GetString("username") != null)
+            {
+                ChallanInfo obj = new ChallanInfo();
+                obj.ClassGrade = classGrade;
+                obj.Fee = fee;
+                try
+                {
+                    using (eSkoolDBContext dBContext = new eSkoolDBContext())
+                    {
+                        //Add challan Info in ChallanInfo Table
+                        dBContext.ChallanInfos.Add(obj);
+                        //Update DB
+                        dBContext.SaveChanges();
+                    }
+                }
+                catch (Exception ex)
+                {
+                }
+                return RedirectToAction("challanForm", "admin");
+            }
+            return RedirectToAction("login", "login");
+        }
+
+        [HttpGet]
         public IActionResult deleteChallan(int id)
         {
             if(HttpContext.Session.GetString("username") != null)
@@ -844,6 +875,59 @@ namespace eSkool.Controllers
             }
             return RedirectToAction("login", "login");
         }
+
+        [HttpGet]
+        public IActionResult manageProfile(string id)
+        {
+            if (HttpContext.Session.GetString("username") != null)
+            {
+                string username = HttpContext.Session.GetString("username");
+                UserInfo temp = new UserInfo();
+                using (eSkoolDBContext eskoolDb = new eSkoolDBContext())
+                {
+                    string role = eskoolDb.UserInfos.Where(x => x.UserName == username).SingleOrDefault().Role;
+                    if (role == "A")
+                    {
+                        try
+                        {
+                            using (eSkoolDBContext eskoolDB = new eSkoolDBContext())
+                            {
+                                temp = (UserInfo)eskoolDB.UserInfos.Where(user => user.UserName == id).SingleOrDefault();
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                        return View(temp);
+                    }
+                    else return RedirectToAction("AccessWarning403", "login", new { role = role });
+                }
+            }
+            return RedirectToAction("login", "login");
+        }
+
+        [HttpPost]
+        public IActionResult manageProfile(string id, string newPassword)
+        {
+            if (HttpContext.Session.GetString("username") != null && newPassword != null)
+            {
+                string username = HttpContext.Session.GetString("username");
+                UserInfo temp = new UserInfo();
+                using (eSkoolDBContext eskoolDB = new eSkoolDBContext())
+                {
+
+                    temp = eskoolDB.UserInfos.Where(user => user.UserName == username).SingleOrDefault();
+                    temp.Password = newPassword;
+                    eskoolDB.UserInfos.Update(temp);
+                    eskoolDB.SaveChanges();
+                    return RedirectToAction("admindashboard", "admin");
+                }
+            }
+            else { return RedirectToAction("manageProfile", "admin"); }
+            return RedirectToAction("login", "login");
+        }
+
 
     }
 }
